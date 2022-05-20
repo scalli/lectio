@@ -24122,7 +24122,10 @@ __webpack_require__.r(__webpack_exports__);
     canLogin: Boolean,
     canRegister: Boolean,
     laravelVersion: String,
-    phpVersion: String
+    phpVersion: String,
+    phrases: Array,
+    questions: Array,
+    voc: Array
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
@@ -28409,7 +28412,28 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Register ");
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"ml-2 mr-2 md:w-1/2 lg:w-1/3 md:mx-auto\"><div class=\"pt-2 pb-2 pl-2 pr-2 bg-white\"> Troia urbs in litore Asiae est. Ibi Graeci bellum gerunt et urbem oppugnant. Aeneas cum patre Anchise, cum filio Ascanio et cum amicis paucis e patria fugit.In Latio post multa proelia cum Turno rege novum oppidum, Lavinium, condit. </div></div><div class=\"ml-2 mr-2 md:w-3/4 lg:w-1/3 md:mx-auto\"><div class=\"mt-4 pt-2 pb-2 pl-2 pr-2 bg-white\"><p>Over welke stad gaat het in de tekst?</p></div></div><div class=\"ml-2 mr-2 md:w-3/4 lg:w-1/3 md:mx-auto\"><div class=\"mt-4 pt-2 pb-2 pl-2 pr-2 bg-white\"><p>Troia, Troiae: Troje</p><p>urbs, urbis: de stad</p></div></div>", 3);
+var _hoisted_7 = {
+  "class": "pt-2 pb-2 pl-2 pr-2 bg-white pt-2 pb-2 pl-2 pr-2 ml-2 mr-2 md:w-1/2 lg:w-1/3 md:mx-auto"
+};
+var _hoisted_8 = {
+  "class": "inline-block pr-2"
+};
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "ml-2 mr-2 md:w-3/4 lg:w-1/3 md:mx-auto"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "mt-4 pt-2 pb-2 pl-2 pr-2 bg-white"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Over welke stad gaat het in de tekst?")])], -1
+/* HOISTED */
+);
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "ml-2 mr-2 md:w-3/4 lg:w-1/3 md:mx-auto"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "mt-4 pt-2 pb-2 pl-2 pr-2 bg-white"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Troia, Troiae: Troje"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "urbs, urbis: de stad")])], -1
+/* HOISTED */
+);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
@@ -28452,7 +28476,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_7])], 64
+  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.phrases, function (phrase) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(phrase), 1
+    /* TEXT */
+    );
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  ))]), _hoisted_9, _hoisted_10])], 64
   /* STABLE_FRAGMENT */
   );
 }

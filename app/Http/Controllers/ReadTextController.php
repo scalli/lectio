@@ -10,7 +10,7 @@ use Inertia\Inertia;
 class ReadTextController extends Controller
 {
     public function show($id){
-        $id = 3;
+        $id = $id;
 
         $text_words = DB::table('texts')
             ->join('vocs', 'texts.word_voc', '=', 'vocs.id')
@@ -79,7 +79,7 @@ class ReadTextController extends Controller
 
         // dd($phrases);
         // dd($questions);
-        dd($voc);
+        // dd($voc);
 
         return Inertia::render('Welcome', [
             'phrases' => $phrases,

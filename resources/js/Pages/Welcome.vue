@@ -6,6 +6,9 @@ defineProps({
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
+    phrases: Array,
+    questions: Array,
+    voc: Array
 });
 </script>
 
@@ -36,10 +39,8 @@ defineProps({
             </template>
         </div>
 
-        <div class="ml-2 mr-2  md:w-1/2 lg:w-1/3 md:mx-auto">
-            <div class="pt-2 pb-2 pl-2 pr-2 bg-white">
-                    Troia urbs in litore Asiae est. Ibi Graeci bellum gerunt et urbem oppugnant. Aeneas cum patre Anchise, cum filio Ascanio et cum amicis paucis e patria fugit.In Latio post multa proelia cum Turno rege novum oppidum, Lavinium, condit.
-            </div> 
+        <div class="pt-2 pb-2 pl-2 pr-2 bg-white pt-2 pb-2 pl-2 pr-2 ml-2 mr-2  md:w-1/2 lg:w-1/3 md:mx-auto">
+            <div class=" inline-block pr-2" v-for="phrase in phrases">{{phrase}}</div>
         </div>
 
         <div class="ml-2 mr-2 md:w-3/4 lg:w-1/3 md:mx-auto">
