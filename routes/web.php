@@ -24,7 +24,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/text/{id}', 'App\Http\Controllers\ReadTextController@show');
+Route::get('/text/{layout}/{id}', 'App\Http\Controllers\ReadTextController@show');
 
 Route::middleware([
     'auth:sanctum',

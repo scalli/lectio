@@ -9,12 +9,14 @@ const props = defineProps({
     phpVersion: String,
     phrases: Object,
     questions: Object,
-    voc: Object
+    voc: Object,
+    title: String
 });
 
 const selected = reactive({ index: 0 });
 const questions = reactive(props.questions);
 const voc = reactive(props.voc);
+const title = props.title;
 const selected_question = ref("") ;
 const selected_voc = ref([]);
 const helper_questions = ref(true);//show the supporting questions
@@ -26,6 +28,7 @@ function setSelected(event) {
   selected.index = event.target.id;
   // console.log(selected);
   // console.log(this.questions);
+  console.log(voc);
   if(this.helper_questions){
       this.selected_question = this.questions[this.selected.index];
   }
@@ -82,13 +85,7 @@ function toggleShowPreferences(event){
             &#8595 Instellingen &#8595
         </div>
         <div class="pt-2 pb-2 pl-2 pr-2 bg-zinc-200 pl-2 pr-2 ml-2 mr-2 mb-2 text-amber-500  md:w-1/2 lg:w-1/3 md:mx-auto" v-if="show_preferences" >
-            <div class="">
-              <div class="grid grid-cols-12 gap-1 form-check form-switch">
-                <input class="col-start-3 col-span-3 form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-white bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm" type="checkbox" role="switch" id="helper_questions" v-model="helper_questions" checked>
-                <label class="col-start-6 col-span-6 form-check-label inline-block text-gray-800" for="helper_questions">Toon hulpvragen</label>
-              </div>
-            </div>
-
+            
             <div class="">
               <div class="grid grid-cols-12 gap-1 form-check form-switch">
                 <input class="col-start-3 col-span-3 form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-white bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm" type="checkbox" role="switch" id="helper_questions" v-model="helper_voc_to_know" checked>
@@ -105,26 +102,20 @@ function toggleShowPreferences(event){
         </div>
 
 
+        <h1 class="text-amber-500 text-xl  font-bold text-center pt-2 pb-2 pl-2 pr-2 pt-2 pb-2 pl-2 pr-2 ml-2 mr-2 mt-2 md:w-1/2 lg:w-1/3 md:mx-auto">{{title}}</h1>
+
         <div class="pt-2 pb-2 pl-2 pr-2 bg-white pt-2 pb-2 pl-2 pr-2 ml-2 mr-2 mt-2 md:w-1/2 lg:w-1/3 md:mx-auto">
-            <div @click="setSelected($event)" :id="index" class="inline-block pr-2" 
-                    v-bind:class="{ 'text-blue-700 font-bold': (index == selected.index) }" 
-                    v-for="(phrase, index) in phrases">{{phrase}}</div>
-        </div>
-
-        <div class="ml-2 mr-2 md:w-3/4 lg:w-1/3 md:mx-auto">
-            <div class="mt-4 pt-2 pb-2 pl-2 pr-2 bg-white text-center text-blue-700 font-bold">
-                  <p>{{selected_question}}</p>
-            </div>
-        </div>
-
-        <div class="mt-2 ml-2 mr-2 md:w-3/4 lg:w-1/3 md:mx-auto">
-            <div class="pt-2 pb-2 pl-2 pr-2 bg-white text-blue-700 font-bold" v-for="(voc_word, index) in selected_voc">
+            <div @click="setSelected($event)" :id="index" class="text-center"
+                    v-bind:class="{ 'text-blue-700 text-xl font-bold bg-zinc-200': (index == selected.index) }" 
+                    v-for="(phrase, index) in phrases" >
+                {{phrase}}
+                <div class="pl-2 pr-2 bg-zinc-100 text-amber-500 text-sm font-light" v-if="index == selected.index" v-for="(voc_word, index) in selected_voc">
                     {{voc_word}}
-            </div> 
+                </div>
+            </div>
         </div>
     
     </div>
 
 </template>
-
 

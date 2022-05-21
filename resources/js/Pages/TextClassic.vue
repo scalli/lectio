@@ -9,12 +9,14 @@ const props = defineProps({
     phpVersion: String,
     phrases: Object,
     questions: Object,
-    voc: Object
+    voc: Object,
+    title: String
 });
 
 const selected = reactive({ index: 0 });
 const questions = reactive(props.questions);
 const voc = reactive(props.voc);
+const title = props.title;
 const selected_question = ref("") ;
 const selected_voc = ref([]);
 const helper_questions = ref(true);//show the supporting questions
@@ -104,6 +106,7 @@ function toggleShowPreferences(event){
             </div>
         </div>
 
+        <h1 class="text-amber-500 text-xl  font-bold text-center pt-2 pb-2 pl-2 pr-2 pt-2 pb-2 pl-2 pr-2 ml-2 mr-2 mt-2 md:w-1/2 lg:w-1/3 md:mx-auto">{{title}}</h1>
 
         <div class="pt-2 pb-2 pl-2 pr-2 bg-white pt-2 pb-2 pl-2 pr-2 ml-2 mr-2 mt-2 md:w-1/2 lg:w-1/3 md:mx-auto">
             <div @click="setSelected($event)" :id="index" class="inline-block pr-2" 
@@ -118,7 +121,7 @@ function toggleShowPreferences(event){
         </div>
 
         <div class="mt-2 ml-2 mr-2 md:w-3/4 lg:w-1/3 md:mx-auto">
-            <div class="pt-2 pb-2 pl-2 pr-2 bg-white text-blue-700 font-bold" v-for="(voc_word, index) in selected_voc">
+            <div class="pt-2 pb-2 pl-2 pr-2 bg-white text-amber-500 font-bold" v-for="(voc_word, index) in selected_voc">
                     {{voc_word}}
             </div> 
         </div>

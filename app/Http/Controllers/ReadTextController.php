@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 
 use Illuminate\Http\Request;
 
 use Inertia\Inertia;
 
+
 class ReadTextController extends Controller
 {
-    public function show($id){
+    public function show($layout, $id){
         $id = $id;
+        $layout = $layout;
 
         $text_words = DB::table('texts')
             ->join('vocs', 'texts.word_voc', '=', 'vocs.id')
@@ -18,6 +21,12 @@ class ReadTextController extends Controller
             ->where('text_info_id', '=', $id)
             ->get();
 
+        $title = DB::table('text_infos')
+            ->select('text_title')
+            ->where('id', '=', $id)
+            ->get();
+
+        // dd($title[0]->text_title);
         // dd(($text_words[count($text_words)-1])->phrase_number);
 
         $max_index = ($text_words[count($text_words)-1])->phrase_number;
@@ -81,10 +90,21 @@ class ReadTextController extends Controller
         // dd($questions);
         // dd($voc);
 
-        return Inertia::render('Welcome', [
-            'phrases' => $phrases,
-            'questions' => $questions,
-            'voc' => $voc
+        if($layout == "classic"){
+            $page_to_render = 'TextClassic';
+        }
+        if($layout == "cola"){
+            $page_to_render = 'TextCola';
+        }
+
+        return Inertia::render($page_to_render, [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'title' => $title[0]->text_title,
+        'phrases' => $phrases,
+        'questions' => $questions,
+        'voc' => $voc
         ]);
+
     }
 }
