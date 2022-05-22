@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use \stdClass;
 
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class VocController extends Controller
 {
@@ -33,6 +34,7 @@ class VocController extends Controller
         $phrases = array_fill(1, $max_index, "");//array containing all phrases
         $voc_front = array();
         $voc_back = array();
+        $voc = array();
         
         foreach($text_words as $word) {
             $index = $word->phrase_number;
@@ -42,8 +44,9 @@ class VocController extends Controller
             if($word->memorize == 1){
                 $o = new stdClass();
                 $o->word = $word->word;
+                $o->id = $word->id;
                 $o->phrase_number = $word->phrase_number;
-                array_push($voc_front, $o );
+                // array_push($voc_front, $o );
 
                 if($word->wordinfo1 != null && !str_starts_with($word->wordinfo1, '+')){
                     $vocword_back = $vocword_back . ',' . $word->wordinfo1;
@@ -80,7 +83,11 @@ class VocController extends Controller
                     $vocword_back = $vocword_back . ' (' . $word->parentheses . ' )';
                 }
 
-                array_push($voc_back, $vocword_back);
+                $o->back = $vocword_back;
+
+                // array_push($voc_back, $vocword_back);
+
+                array_push($voc, $o );
             }//end of if memorize
 
         }//end of foreach $word
@@ -101,8 +108,9 @@ class VocController extends Controller
         'canRegister' => Route::has('register'),
         'title' => $title[0]->text_title,
         'phrases' => $phrases,
-        'questions' => $questions,
         'voc' => $voc
+        // 'voc_front' => $voc_front,
+        // 'voc_back' => $voc_back
         ]);
     }
 }
