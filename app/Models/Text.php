@@ -15,6 +15,7 @@ class Text extends Model
     'text_word',
     'word_voc',
     'phrase_number',
-    'supporting_question'
+    'supporting_question',
+    'phrase_support'
     ];
 }

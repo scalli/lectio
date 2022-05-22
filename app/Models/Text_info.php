@@ -10,6 +10,11 @@ class Text_info extends Model
     use HasFactory;
 
     protected $fillable = [
-    'text_title'
+    'text_title',
+    'method',
+    'chapter',
+    'grade',
+    'extra_info',
+    'contributor'
     ];
 }

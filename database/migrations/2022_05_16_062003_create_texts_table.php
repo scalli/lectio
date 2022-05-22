@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('word_voc')->nullable();
             $table->integer('phrase_number');
             $table->string('supporting_question');
+            $table->string('phrase_support');
             $table->timestamps();
         });
     }

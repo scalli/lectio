@@ -26,6 +26,10 @@ Route::get('/', function () {
 
 Route::get('/text/{layout}/{id}', 'App\Http\Controllers\ReadTextController@show');
 
+Route::get('/voc/{layout}/{id}', 'App\Http\Controllers\VocController@show');
+
+Route::get('/overview', 'App\Http\Controllers\TextInfoController@show');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

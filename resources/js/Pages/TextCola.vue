@@ -28,7 +28,7 @@ function setSelected(event) {
   selected.index = event.target.id;
   // console.log(selected);
   // console.log(this.questions);
-  console.log(voc);
+  // console.log(voc);
   if(this.helper_questions){
       this.selected_question = this.questions[this.selected.index];
   }
@@ -55,7 +55,7 @@ function toggleShowPreferences(event){
 
 
 <template>
-    <Head title="Welcome" />
+    <Head title="Lees Latijn in cola" />
 
     <div class="bg-gray-100 dark:bg-gray-900 h-screen">
         <div v-if="canLogin" class="px-6 py-4">

@@ -54,7 +54,7 @@ function toggleShowPreferences(event){
 
 
 <template>
-    <Head title="Welcome" />
+    <Head title="Vlot Latijn lezen!" />
 
     <div class="bg-gray-100 dark:bg-gray-900 h-screen">
         <div v-if="canLogin" class="px-6 py-4">

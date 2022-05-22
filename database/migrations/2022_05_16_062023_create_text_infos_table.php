@@ -16,6 +16,11 @@ return new class extends Migration
         Schema::create('text_infos', function (Blueprint $table) {
             $table->id();
             $table->string('text_title');
+            $table->string('method');
+            $table->string('chapter');
+            $table->integer('grade');
+            $table->string('extra_info');
+            $table->integer('contributor');
             $table->timestamps();
         });
     }
