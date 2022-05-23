@@ -24392,7 +24392,9 @@ __webpack_require__.r(__webpack_exports__);
     // voc_front: Array,
     // voc_back: Array,
     voc: Array,
-    title: String
+    title: String,
+    attempts: Number,
+    corrects: Number
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
@@ -24404,14 +24406,38 @@ __webpack_require__.r(__webpack_exports__);
 
     var voc = props.voc;
     var checkedWords = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
+    var exercises = [];
+    var current_exercise = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)({
+      ex: ""
+    });
     var show_preferences = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
 
     function toggleShowPreferences(event) {
       this.show_preferences = !this.show_preferences;
     }
 
-    function setSelected(event) {
-      console.log(checkedWords); // console.log(selected.index);
+    function start(event) {
+      exercises = [];
+      checkedWords.value.forEach(function (word) {
+        exercises.push(word);
+      }); //Shuffle array exercises
+
+      exercises = exercises.sort(function (a, b) {
+        return 0.5 - Math.random();
+      });
+      console.log(exercises);
+      current_exercise.ex = exercises[0]["word"]; //Collapse the preferences menu
+
+      show_preferences.value = false;
+    }
+
+    function setSelected(event) {// console.log(checkedWords);
+      // exercises = checkedWords.value;
+      // exercises = [];
+      // checkedWords.value.forEach(function (word) {
+      //       exercises.push(word);
+      //   });
+      // console.log(exercises);
     }
 
     function selectAll(event) {
@@ -24447,8 +24473,11 @@ __webpack_require__.r(__webpack_exports__);
       title: title,
       voc: voc,
       checkedWords: checkedWords,
+      exercises: exercises,
+      current_exercise: current_exercise,
       show_preferences: show_preferences,
       toggleShowPreferences: toggleShowPreferences,
+      start: start,
       setSelected: setSelected,
       selectAll: selectAll,
       selectNone: selectNone,
@@ -29381,7 +29410,7 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Register ");
 
 var _hoisted_7 = {
-  "class": "flex justify-center pt-2 pb-2 pl-2 pr-2 text-sm bg-zinc-200 text-amber-500 pl-2 pr-2 ml-2 mr-2 md:w-1/2 lg:w-1/3 md:mx-auto font-bold"
+  "class": "flex justify-center pt-2 pb-2 pl-2 pr-2 pl-2 pr-2 ml-2 mr-2 md:w-1/2 lg:w-1/3 md:mx-auto font-bold"
 };
 var _hoisted_8 = {
   key: 1,
@@ -29390,12 +29419,18 @@ var _hoisted_8 = {
 
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mb-2"
-}, " Selecteer de woorden die je wil instuderen. ", -1
+}, " Selecteer de woorden die je wil oefenen. ", -1
 /* HOISTED */
 );
 
-var _hoisted_10 = ["id", "value"];
-var _hoisted_11 = ["for"];
+var _hoisted_10 = {
+  "class": "text-center inline-block pr-1"
+};
+var _hoisted_11 = ["id", "value"];
+var _hoisted_12 = ["for"];
+var _hoisted_13 = {
+  id: "currentFront"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
     title: "Lees Latijn in cola"
@@ -29437,12 +29472,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.title) + ": vocabularium oefenen ", 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "flex justify-center pt-2 pb-2 pl-2 pr-2 bg-zinc-200 text-amber-500 pl-2 pr-2 ml-2 mr-2 md:w-1/2 lg:w-1/3 md:mx-auto font-bold",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $setup.toggleShowPreferences($event);
     })
-  }, " ↓ Instellingen ↓ "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, " Er zijn momenteel " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.checkedWords.length) + " woorden geselecteerd. Klik hier om te wijzigen. ", 1
+  }, " ↓ Instellingen ↓ "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "flex justify-center pt-2 pb-2 pl-2 pr-2 text-sm bg-zinc-200 text-amber-500 pl-2 pr-2 ml-2 mr-2 md:w-1/2 lg:w-1/3 md:mx-auto font-bold",
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $setup.toggleShowPreferences($event);
+    })
+  }, " Er zijn momenteel " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.checkedWords.length) + " woorden geselecteerd. Klik hier om te wijzigen. ", 1
   /* TEXT */
   ), $setup.show_preferences ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "mb-2"
@@ -29459,33 +29501,35 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
     onClick: $setup.selectSecondHalf
   }, "2e helft")]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.voc, function (word, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      onClick: _cache[2] || (_cache[2] = function ($event) {
-        return $setup.setSelected($event);
-      }),
-      "class": "text-center inline-block pr-1"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       id: word.id,
       value: word,
       name: "word",
       type: "checkbox",
-      "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
         return $setup.checkedWords = $event;
       }),
       "class": "pr-1"
     }, null, 8
     /* PROPS */
-    , _hoisted_10), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.checkedWords]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+    , _hoisted_11), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.checkedWords]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
       "for": word.id,
       "class": "pl-2 font-bold"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(word["word"]), 1
     /* TEXT */
     )], 8
     /* PROPS */
-    , _hoisted_11)]);
+    , _hoisted_12)]);
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64
+  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "mb-2 flex justify-center pt-2 pb-2 pl-2 pr-2"
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "bg-green-700 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-1 ml-2 mr-2 mt-2 md:mx-auto",
+    onClick: $setup.start
+  }, "START")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex), 1
+  /* TEXT */
+  )])], 64
   /* STABLE_FRAGMENT */
   );
 }

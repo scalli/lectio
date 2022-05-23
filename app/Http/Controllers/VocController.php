@@ -39,6 +39,11 @@ class VocController extends Controller
         foreach($text_words as $word) {
             $index = $word->phrase_number;
             $phrases[$index] = $phrases[$index] . " " . $word->text_word;
+        }
+
+        foreach($text_words as $word) {
+            // $index = $word->phrase_number;
+            // $phrases[$index] = $phrases[$index] . " " . $word->text_word;
         
             $vocword_back = "";
             if($word->memorize == 1){
@@ -46,6 +51,15 @@ class VocController extends Controller
                 $o->word = $word->word;
                 $o->id = $word->id;
                 $o->phrase_number = $word->phrase_number;
+                //TODO
+                $o->phrase = "";
+                if($o->phrase_number>1){
+                    $o->phrase = $o->phrase . $phrases[$o->phrase_number-1];
+                }
+                $o->phrase = $o->phrase . $phrases[$o->phrase_number];
+                if($o->phrase_number != count($phrases)){
+                    $o->phrase = $o->phrase . $phrases[$o->phrase_number+1];
+                }
                 // array_push($voc_front, $o );
 
                 if($word->wordinfo1 != null && !str_starts_with($word->wordinfo1, '+')){
@@ -84,6 +98,8 @@ class VocController extends Controller
                 }
 
                 $o->back = $vocword_back;
+                $o->attempts = 0;
+                $o->corrects = 0;
 
                 // array_push($voc_back, $vocword_back);
 

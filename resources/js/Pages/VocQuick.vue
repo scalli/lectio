@@ -10,7 +10,9 @@ const props = defineProps({
     // voc_front: Array,
     // voc_back: Array,
     voc: Array,
-    title: String
+    title: String,
+    attempts: Number,
+    corrects: Number
 });
 
 const phrases = props.phrases;
@@ -20,6 +22,8 @@ const title = props.title;
 const voc = props.voc;
 
 const checkedWords = ref([]);
+var exercises = [];
+const current_exercise = reactive({ex : ""});
 
 const show_preferences= ref(false);
 
@@ -27,9 +31,27 @@ function toggleShowPreferences(event){
     this.show_preferences = !this.show_preferences;
 }
 
+function start(event){
+  exercises = [];
+  checkedWords.value.forEach(function (word) {
+        exercises.push(word);
+    });
+  //Shuffle array exercises
+  exercises = exercises.sort((a, b) => 0.5 - Math.random());
+  console.log(exercises);
+  current_exercise.ex = exercises[0]["word"];
+  //Collapse the preferences menu
+  show_preferences.value = false;
+}
+
 function setSelected(event) {
-  console.log(checkedWords);
-  // console.log(selected.index);
+  // console.log(checkedWords);
+  // exercises = checkedWords.value;
+  // exercises = [];
+  // checkedWords.value.forEach(function (word) {
+  //       exercises.push(word);
+  //   });
+  // console.log(exercises);
 }
 
 function selectAll(event) {
@@ -91,16 +113,18 @@ function selectSecondHalf(event){
             </template>
         </div>
 
+        <h2 class="flex justify-center pt-2 pb-2 pl-2 pr-2 pl-2 pr-2 ml-2 mr-2   md:w-1/2 lg:w-1/3 md:mx-auto font-bold">{{title}}: vocabularium oefenen </h2>
+
       <div class="flex justify-center pt-2 pb-2 pl-2 pr-2 bg-zinc-200 text-amber-500 pl-2 pr-2 ml-2 mr-2   md:w-1/2 lg:w-1/3 md:mx-auto font-bold" @click="toggleShowPreferences($event)">
                   &#8595 Instellingen &#8595
       </div>
-      <div class="flex justify-center pt-2 pb-2 pl-2 pr-2 text-sm bg-zinc-200 text-amber-500 pl-2 pr-2 ml-2 mr-2   md:w-1/2 lg:w-1/3 md:mx-auto font-bold">
+      <div class="flex justify-center pt-2 pb-2 pl-2 pr-2 text-sm bg-zinc-200 text-amber-500 pl-2 pr-2 ml-2 mr-2   md:w-1/2 lg:w-1/3 md:mx-auto font-bold" @click="toggleShowPreferences($event)">
                   Er zijn momenteel {{this.checkedWords.length}} woorden geselecteerd. Klik hier om te wijzigen.
       </div>
       <div v-if="show_preferences" class="pt-2 pb-2 pl-2 pr-2 bg-white pt-2 pb-2 pl-2 pr-2 ml-2 mr-2 mt-2 md:w-1/2 lg:w-1/3 md:mx-auto">
 
             <div class="mb-2">
-              Selecteer de woorden die je wil instuderen.
+              Selecteer de woorden die je wil oefenen.
             </div>
             <div class="mb-2">
               <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-1" @click="selectAll">Alles</button>
@@ -109,13 +133,20 @@ function selectSecondHalf(event){
               <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="selectSecondHalf">2e helft</button>
             </div>
 
-            <div @click="setSelected($event)"  class="text-center inline-block pr-1" 
+            <div class="text-center inline-block pr-1" 
                     v-for="(word, index) in voc" >
                <input :id="word.id" :value="word" name="word" type="checkbox" v-model="checkedWords" class="pr-1" />
                <label :for="word.id" class="pl-2 font-bold"><span>{{word["word"]}}</span></label> 
             </div>
       </div>
 
+      <div class="mb-2 flex justify-center pt-2 pb-2 pl-2 pr-2">
+              <button class="bg-green-700 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-1 ml-2 mr-2 mt-2 md:mx-auto" @click="start">START</button>
+      </div>
+
+      <div id="currentFront">
+        {{current_exercise.ex}}
+      </div>
 
     </div>
 
