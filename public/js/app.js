@@ -24410,10 +24410,22 @@ __webpack_require__.r(__webpack_exports__);
     var current_exercise = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)({
       ex: ""
     });
+    var current_solution = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)({
+      ex: ""
+    });
+    var current_phrase = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)({
+      ex: ""
+    });
     var show_preferences = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var show_solution = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var progress_percentage = 0;
 
     function toggleShowPreferences(event) {
       this.show_preferences = !this.show_preferences;
+    }
+
+    function toggleShowSolution(event) {
+      show_solution.value = !show_solution.value;
     }
 
     function start(event) {
@@ -24426,9 +24438,12 @@ __webpack_require__.r(__webpack_exports__);
         return 0.5 - Math.random();
       });
       console.log(exercises);
-      current_exercise.ex = exercises[0]["word"]; //Collapse the preferences menu
+      current_exercise.ex = exercises[0]["word"];
+      current_solution.ex = exercises[0]["back"];
+      current_phrase.ex = exercises[0]["phrase"]; //Collapse the preferences menu
 
       show_preferences.value = false;
+      show_solution.value = false; // console.log(show_solution.value);
     }
 
     function setSelected(event) {// console.log(checkedWords);
@@ -24467,6 +24482,46 @@ __webpack_require__.r(__webpack_exports__);
       checkedWords.value = secondHalf;
     }
 
+    function correctAnswered() {
+      toggleShowSolution();
+      console.log("here");
+      console.log(exercises[0]);
+      console.log(exercises);
+      exercises[0]["corrects"] = exercises[0]["corrects"] + 1;
+      exercises[0]["attempts"] = exercises[0]["attempts"] + 1; //Pupil knows the word
+
+      if (exercises[0]["corrects"] >= 2 && exercises[0]["corrects"] / exercises[0]["attempts"] > 0.5) {
+        exercises.splice(0, 1);
+        progress_percentage = 100 - Math.floor(exercises.length / checkedWords.value.length * 100);
+        console.log(exercises.length); // console.log(this.checkedWords.length);
+
+        console.log(progress_percentage);
+      } //Swap the word with a random word in the array
+      else {
+        var random_index = Math.floor(Math.random() * (exercises.length - 2)) + 1;
+        var temp = exercises[0];
+        exercises[0] = exercises[random_index];
+        exercises[random_index] = temp;
+      }
+
+      current_exercise.ex = exercises[0]["word"];
+      current_solution.ex = exercises[0]["back"];
+      current_phrase.ex = exercises[0]["phrase"];
+    }
+
+    function wrongAnswered() {
+      toggleShowSolution();
+      exercises[0]["attempts"] = exercises[0]["attempts"] + 1; //Swap the word with a random word in the array
+
+      var random_index = Math.floor(Math.random() * (exercises.length - 2)) + 1;
+      var temp = exercises[0];
+      exercises[0] = exercises[random_index];
+      exercises[random_index] = temp;
+      current_exercise.ex = exercises[0]["word"];
+      current_solution.ex = exercises[0]["back"];
+      current_phrase.ex = exercises[0]["phrase"];
+    }
+
     var __returned__ = {
       props: props,
       phrases: phrases,
@@ -24475,14 +24530,21 @@ __webpack_require__.r(__webpack_exports__);
       checkedWords: checkedWords,
       exercises: exercises,
       current_exercise: current_exercise,
+      current_solution: current_solution,
+      current_phrase: current_phrase,
       show_preferences: show_preferences,
+      show_solution: show_solution,
+      progress_percentage: progress_percentage,
       toggleShowPreferences: toggleShowPreferences,
+      toggleShowSolution: toggleShowSolution,
       start: start,
       setSelected: setSelected,
       selectAll: selectAll,
       selectNone: selectNone,
       selectFirstHalf: selectFirstHalf,
       selectSecondHalf: selectSecondHalf,
+      correctAnswered: correctAnswered,
+      wrongAnswered: wrongAnswered,
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Head,
       Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Link,
       reactive: vue__WEBPACK_IMPORTED_MODULE_1__.reactive,
@@ -29429,7 +29491,21 @@ var _hoisted_10 = {
 var _hoisted_11 = ["id", "value"];
 var _hoisted_12 = ["for"];
 var _hoisted_13 = {
-  id: "currentFront"
+  "class": "flex justify-center"
+};
+var _hoisted_14 = {
+  "class": "flex justify-center text-sm"
+};
+var _hoisted_15 = {
+  key: 4,
+  id: "evaluation",
+  "class": "flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold"
+};
+var _hoisted_16 = {
+  "class": "grid grid-cols-12 bg-yellow-400 rounded-full pt-2 pb-2 ml-1 mr-1 mt-4 lg:w-1/2"
+};
+var _hoisted_17 = {
+  "class": "col-span-6 bg-yellow-200 rounded-full animate-pulse ml-1 mr-1 text-center font-bold text-2xl"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
@@ -29522,14 +29598,36 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_12)]);
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "mb-2 flex justify-center pt-2 pb-2 pl-2 pr-2"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-green-700 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-1 ml-2 mr-2 mt-2 md:mx-auto",
     onClick: $setup.start
-  }, "START")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex), 1
+  }, "START")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.show_solution ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+    key: 2,
+    id: "currentFront",
+    onClick: $setup.toggleShowSolution,
+    "class": "bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-3xl mx-auto font-bold"
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex), 1
   /* TEXT */
-  )])], 64
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_phrase.ex), 1
+  /* TEXT */
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.show_solution ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+    key: 3,
+    id: "currentBack",
+    onClick: $setup.toggleShowSolution,
+    "class": "flex justify-center bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold"
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_solution.ex), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.show_solution ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-1 animate-bounce",
+    onClick: $setup.correctAnswered
+  }, "Ik wist het!"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-1 animate-bounce",
+    onClick: $setup.wrongAnswered
+  }, "Ik wist het niet ...")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.progress_percentage) + "%", 1
+  /* TEXT */
+  )])])], 64
   /* STABLE_FRAGMENT */
   );
 }

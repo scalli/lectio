@@ -62,8 +62,12 @@ class VocController extends Controller
                 }
                 // array_push($voc_front, $o );
 
+                if($word->wordinfo1 != null && str_starts_with($word->wordinfo1, '+')){
+                    $o->word = $o->word . ' + ';
+                }
                 if($word->wordinfo1 != null && !str_starts_with($word->wordinfo1, '+')){
-                    $vocword_back = $vocword_back . ',' . $word->wordinfo1;
+                    $vocword_back = $vocword_back . $word->wordinfo1;
+                    $o->word = $o->word . ', ';
                 }
                 elseif($word->wordinfo1 != null){
                     $vocword_back = $vocword_back . $word->wordinfo1;
