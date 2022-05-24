@@ -1,6 +1,6 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
-import { reactive, ref } from 'vue';
+import { reactive, ref, computed } from 'vue';
 import JetCheckbox from '@/Jetstream/Checkbox.vue';
 
 const props = defineProps({
@@ -11,8 +11,8 @@ const props = defineProps({
     // voc_back: Array,
     voc: Array,
     title: String,
-    attempts: Number,
-    corrects: Number
+    // attempts: Number,
+    // corrects: Number
 });
 
 const phrases = props.phrases;
@@ -30,7 +30,23 @@ const current_phrase = reactive({ex : ""});
 const show_preferences= ref(false);
 const show_solution = ref(false);
 
-var progress_percentage = 0;
+const progress_percentage = reactive({val : 0});
+// const word_count = computed(() => checkedWords.value.length);
+// const progress_percentage = computed(() => 100 - Math.floor((exercises.length/word_count)*100));
+
+const isOneTwelfth = ref(false);
+const isTwoTwelfth = ref(false);
+const isThreeTwelfth = ref(false);
+const isFourTwelfth = ref(false);
+const isFiveTwelfth = ref(false);
+const isSixTwelfth = ref(false);
+const isSevenTwelfth = ref(false);
+const isEightTwelfth = ref(false);
+const isNineTwelfth = ref(false);
+const isTenTwelfth = ref(false);
+const isElevenTwelfth = ref(false);
+const isTwelveTwelfth = ref(false);
+
 
 function toggleShowPreferences(event){
     this.show_preferences = !this.show_preferences;
@@ -54,7 +70,22 @@ function start(event){
   //Collapse the preferences menu
   show_preferences.value = false;
   show_solution.value = false;
+  // count = 0;
   // console.log(show_solution.value);
+  progress_percentage.val = 0;
+
+  isOneTwelfth.value = false;
+  isTwoTwelfth.value = false;
+  isThreeTwelfth.value = false;
+  isFourTwelfth.value = false;
+  isFiveTwelfth.value = false;
+  isSixTwelfth.value = false;
+  isSevenTwelfth.value = false;
+  isEightTwelfth.value = false;
+  isNineTwelfth.value = false;
+  isTenTwelfth.value = false;
+  isElevenTwelfth.value = false;
+  isTwelveTwelfth.value = false;
 }
 
 function setSelected(event) {
@@ -108,10 +139,11 @@ function correctAnswered(){
   
   //Pupil knows the word
   if((exercises[0]["corrects"] >= 2) && (exercises[0]["corrects"]/exercises[0]["attempts"] > 0.5)){
+    //remove from list and update progress
     exercises.splice(0,1);
-    progress_percentage = 100 - Math.floor((exercises.length/checkedWords.value.length)*100);
+    progress_percentage.val = 100 - Math.floor((exercises.length/checkedWords.value.length)*100);
     console.log(exercises.length);
-    // console.log(this.checkedWords.length);
+    console.log(checkedWords.value.length);
     console.log(progress_percentage);
   }
   //Swap the word with a random word in the array
@@ -120,6 +152,43 @@ function correctAnswered(){
     var temp = exercises[0];
     exercises[0] = exercises[random_index];
     exercises[random_index] = temp;
+  }
+
+  if(progress_percentage.val > 0 && progress_percentage.val < 1*100/12){
+    isOneTwelfth.value = true;
+  }
+  if(progress_percentage.val >= 1*100/12 && progress_percentage.val < 2*100/12){
+    isTwoTwelfth.value = true;
+  }
+    if(progress_percentage.val >= 2*100/12 && progress_percentage.val < 3*100/12){
+    isThreeTwelfth.value = true;
+  }
+    if(progress_percentage.val >= 3*100/12 && progress_percentage.val < 4*100/12){
+    isFourTwelfth.value = true;
+  }
+  if(progress_percentage.val >= 4*100/12 && progress_percentage.val < 5*100/12){
+    isFiveTwelfth.value = true;
+  }
+    if(progress_percentage.val >= 5*100/12 && progress_percentage.val < 6*100/12){
+    isSixTwelfth.value = true;
+  }
+   if(progress_percentage.val >= 6*100/12 && progress_percentage.val < 7*100/12){
+    isSevenTwelfth.value = true;
+  }
+  if(progress_percentage.val >= 7*100/12 && progress_percentage.val < 8*100/12){
+    isEightTwelfth.value = true;
+  }
+    if(progress_percentage.val >= 8*100/12 && progress_percentage.val < 9*100/12){
+    isNineTwelfth.value = true;
+  }
+    if(progress_percentage.val >= 9*100/12 && progress_percentage.val < 10*100/12){
+    isTenTwelfth.value = true;
+  }
+  if(progress_percentage.val >= 10*100/12 && progress_percentage.val < 11*100/12){
+    isElevenTwelfth.value = true;
+  }
+    if(progress_percentage.val >= 11*100/12 && progress_percentage.val <= 12*100/12){
+    isTwelveTwelfth.value = true;
   }
 
   current_exercise.ex = exercises[0]["word"];
@@ -142,6 +211,7 @@ function wrongAnswered(){
   current_solution.ex = exercises[0]["back"];
   current_phrase.ex = exercises[0]["phrase"];
 }
+
 </script>
 
 <template>
@@ -222,8 +292,13 @@ function wrongAnswered(){
       </div>
 
 
-      <div class="grid grid-cols-12 bg-yellow-400 rounded-full pt-2 pb-2 ml-1 mr-1 mt-4 lg:w-1/2">
-        <div class="col-span-6 bg-yellow-200 rounded-full animate-pulse ml-1 mr-1 text-center font-bold text-2xl">{{this.progress_percentage}}%</div>
+      <div class="grid grid-cols-12">
+        <div class="grid grid-cols-12 bg-yellow-400 rounded-full pt-2 pb-2 ml-1 mr-1 mt-4 col-start-1 col-span-12 md:col-start-5 md:col-end-9">
+          <div :class="{ 'col-span-1': isOneTwelfth,  'col-span-2': isTwoTwelfth, 'col-span-3': isThreeTwelfth, 'col-span-4': isFourTwelfth,  'col-span-5': isFiveTwelfth, 'col-span-6': isSixTwelfth, 
+            'col-span-7': isSevenTwelfth,  'col-span-8': isEightTwelfth, 'col-span-9': isNineTwelfth,
+            'col-span-10': isTenTwelfth,  'col-span-11': isElevenTwelfth, 'col-span-12': isTwelveTwelfth}"
+          class="bg-yellow-200 rounded-full animate-pulse ml-1 mr-1 text-center font-bold text-2xl ">{{progress_percentage.val}}%</div>
+        </div>
       </div>
 
 

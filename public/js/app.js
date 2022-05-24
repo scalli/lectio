@@ -24392,9 +24392,9 @@ __webpack_require__.r(__webpack_exports__);
     // voc_front: Array,
     // voc_back: Array,
     voc: Array,
-    title: String,
-    attempts: Number,
-    corrects: Number
+    title: String // attempts: Number,
+    // corrects: Number
+
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
@@ -24418,7 +24418,23 @@ __webpack_require__.r(__webpack_exports__);
     });
     var show_preferences = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
     var show_solution = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
-    var progress_percentage = 0;
+    var progress_percentage = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)({
+      val: 0
+    }); // const word_count = computed(() => checkedWords.value.length);
+    // const progress_percentage = computed(() => 100 - Math.floor((exercises.length/word_count)*100));
+
+    var isOneTwelfth = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var isTwoTwelfth = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var isThreeTwelfth = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var isFourTwelfth = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var isFiveTwelfth = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var isSixTwelfth = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var isSevenTwelfth = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var isEightTwelfth = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var isNineTwelfth = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var isTenTwelfth = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var isElevenTwelfth = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var isTwelveTwelfth = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
 
     function toggleShowPreferences(event) {
       this.show_preferences = !this.show_preferences;
@@ -24443,7 +24459,22 @@ __webpack_require__.r(__webpack_exports__);
       current_phrase.ex = exercises[0]["phrase"]; //Collapse the preferences menu
 
       show_preferences.value = false;
-      show_solution.value = false; // console.log(show_solution.value);
+      show_solution.value = false; // count = 0;
+      // console.log(show_solution.value);
+
+      progress_percentage.val = 0;
+      isOneTwelfth.value = false;
+      isTwoTwelfth.value = false;
+      isThreeTwelfth.value = false;
+      isFourTwelfth.value = false;
+      isFiveTwelfth.value = false;
+      isSixTwelfth.value = false;
+      isSevenTwelfth.value = false;
+      isEightTwelfth.value = false;
+      isNineTwelfth.value = false;
+      isTenTwelfth.value = false;
+      isElevenTwelfth.value = false;
+      isTwelveTwelfth.value = false;
     }
 
     function setSelected(event) {// console.log(checkedWords);
@@ -24491,10 +24522,11 @@ __webpack_require__.r(__webpack_exports__);
       exercises[0]["attempts"] = exercises[0]["attempts"] + 1; //Pupil knows the word
 
       if (exercises[0]["corrects"] >= 2 && exercises[0]["corrects"] / exercises[0]["attempts"] > 0.5) {
+        //remove from list and update progress
         exercises.splice(0, 1);
-        progress_percentage = 100 - Math.floor(exercises.length / checkedWords.value.length * 100);
-        console.log(exercises.length); // console.log(this.checkedWords.length);
-
+        progress_percentage.val = 100 - Math.floor(exercises.length / checkedWords.value.length * 100);
+        console.log(exercises.length);
+        console.log(checkedWords.value.length);
         console.log(progress_percentage);
       } //Swap the word with a random word in the array
       else {
@@ -24502,6 +24534,54 @@ __webpack_require__.r(__webpack_exports__);
         var temp = exercises[0];
         exercises[0] = exercises[random_index];
         exercises[random_index] = temp;
+      }
+
+      if (progress_percentage.val > 0 && progress_percentage.val < 1 * 100 / 12) {
+        isOneTwelfth.value = true;
+      }
+
+      if (progress_percentage.val >= 1 * 100 / 12 && progress_percentage.val < 2 * 100 / 12) {
+        isTwoTwelfth.value = true;
+      }
+
+      if (progress_percentage.val >= 2 * 100 / 12 && progress_percentage.val < 3 * 100 / 12) {
+        isThreeTwelfth.value = true;
+      }
+
+      if (progress_percentage.val >= 3 * 100 / 12 && progress_percentage.val < 4 * 100 / 12) {
+        isFourTwelfth.value = true;
+      }
+
+      if (progress_percentage.val >= 4 * 100 / 12 && progress_percentage.val < 5 * 100 / 12) {
+        isFiveTwelfth.value = true;
+      }
+
+      if (progress_percentage.val >= 5 * 100 / 12 && progress_percentage.val < 6 * 100 / 12) {
+        isSixTwelfth.value = true;
+      }
+
+      if (progress_percentage.val >= 6 * 100 / 12 && progress_percentage.val < 7 * 100 / 12) {
+        isSevenTwelfth.value = true;
+      }
+
+      if (progress_percentage.val >= 7 * 100 / 12 && progress_percentage.val < 8 * 100 / 12) {
+        isEightTwelfth.value = true;
+      }
+
+      if (progress_percentage.val >= 8 * 100 / 12 && progress_percentage.val < 9 * 100 / 12) {
+        isNineTwelfth.value = true;
+      }
+
+      if (progress_percentage.val >= 9 * 100 / 12 && progress_percentage.val < 10 * 100 / 12) {
+        isTenTwelfth.value = true;
+      }
+
+      if (progress_percentage.val >= 10 * 100 / 12 && progress_percentage.val < 11 * 100 / 12) {
+        isElevenTwelfth.value = true;
+      }
+
+      if (progress_percentage.val >= 11 * 100 / 12 && progress_percentage.val <= 12 * 100 / 12) {
+        isTwelveTwelfth.value = true;
       }
 
       current_exercise.ex = exercises[0]["word"];
@@ -24535,6 +24615,18 @@ __webpack_require__.r(__webpack_exports__);
       show_preferences: show_preferences,
       show_solution: show_solution,
       progress_percentage: progress_percentage,
+      isOneTwelfth: isOneTwelfth,
+      isTwoTwelfth: isTwoTwelfth,
+      isThreeTwelfth: isThreeTwelfth,
+      isFourTwelfth: isFourTwelfth,
+      isFiveTwelfth: isFiveTwelfth,
+      isSixTwelfth: isSixTwelfth,
+      isSevenTwelfth: isSevenTwelfth,
+      isEightTwelfth: isEightTwelfth,
+      isNineTwelfth: isNineTwelfth,
+      isTenTwelfth: isTenTwelfth,
+      isElevenTwelfth: isElevenTwelfth,
+      isTwelveTwelfth: isTwelveTwelfth,
       toggleShowPreferences: toggleShowPreferences,
       toggleShowSolution: toggleShowSolution,
       start: start,
@@ -24549,6 +24641,7 @@ __webpack_require__.r(__webpack_exports__);
       Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Link,
       reactive: vue__WEBPACK_IMPORTED_MODULE_1__.reactive,
       ref: vue__WEBPACK_IMPORTED_MODULE_1__.ref,
+      computed: vue__WEBPACK_IMPORTED_MODULE_1__.computed,
       JetCheckbox: _Jetstream_Checkbox_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
@@ -29502,10 +29595,10 @@ var _hoisted_15 = {
   "class": "flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold"
 };
 var _hoisted_16 = {
-  "class": "grid grid-cols-12 bg-yellow-400 rounded-full pt-2 pb-2 ml-1 mr-1 mt-4 lg:w-1/2"
+  "class": "grid grid-cols-12"
 };
 var _hoisted_17 = {
-  "class": "col-span-6 bg-yellow-200 rounded-full animate-pulse ml-1 mr-1 text-center font-bold text-2xl"
+  "class": "grid grid-cols-12 bg-yellow-400 rounded-full pt-2 pb-2 ml-1 mr-1 mt-4 col-start-1 col-span-12 md:col-start-5 md:col-end-9"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
@@ -29625,9 +29718,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, "Ik wist het!"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-1 animate-bounce",
     onClick: $setup.wrongAnswered
-  }, "Ik wist het niet ...")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.progress_percentage) + "%", 1
-  /* TEXT */
-  )])])], 64
+  }, "Ik wist het niet ...")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
+      'col-span-1': $setup.isOneTwelfth,
+      'col-span-2': $setup.isTwoTwelfth,
+      'col-span-3': $setup.isThreeTwelfth,
+      'col-span-4': $setup.isFourTwelfth,
+      'col-span-5': $setup.isFiveTwelfth,
+      'col-span-6': $setup.isSixTwelfth,
+      'col-span-7': $setup.isSevenTwelfth,
+      'col-span-8': $setup.isEightTwelfth,
+      'col-span-9': $setup.isNineTwelfth,
+      'col-span-10': $setup.isTenTwelfth,
+      'col-span-11': $setup.isElevenTwelfth,
+      'col-span-12': $setup.isTwelveTwelfth
+    }, "bg-yellow-200 rounded-full animate-pulse ml-1 mr-1 text-center font-bold text-2xl"])
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.progress_percentage.val) + "%", 3
+  /* TEXT, CLASS */
+  )])])])], 64
   /* STABLE_FRAGMENT */
   );
 }
