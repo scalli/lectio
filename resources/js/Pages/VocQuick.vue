@@ -52,6 +52,8 @@ var box2 = [];
 var box3 = [];
 var box4 = [];
 
+const box1_length = computed(() => box1.length);
+
 
 function toggleShowPreferences(event){
     this.show_preferences = !this.show_preferences;
@@ -61,43 +63,11 @@ function toggleShowSolution(event){
     show_solution.value = !show_solution.value;
 }
 
-// function start(event){
-//   exercises = [];
-//   checkedWords.value.forEach(function (word) {
-//         exercises.push(word);
-//     });
-//   //Shuffle array exercises
-//   exercises = exercises.sort((a, b) => 0.5 - Math.random());
-//   console.log(exercises);
-//   current_exercise.ex = exercises[0]["word"];
-//   current_solution.ex = exercises[0]["back"];
-//   current_phrase.ex = exercises[0]["phrase"];
-//   //Collapse the preferences menu
-//   show_preferences.value = false;
-//   show_solution.value = false;
-//   // count = 0;
-//   // console.log(show_solution.value);
-//   progress_percentage.val = 0;
-
-//   isOneTwelfth.value = false;
-//   isTwoTwelfth.value = false;
-//   isThreeTwelfth.value = false;
-//   isFourTwelfth.value = false;
-//   isFiveTwelfth.value = false;
-//   isSixTwelfth.value = false;
-//   isSevenTwelfth.value = false;
-//   isEightTwelfth.value = false;
-//   isNineTwelfth.value = false;
-//   isTenTwelfth.value = false;
-//   isElevenTwelfth.value = false;
-//   isTwelveTwelfth.value = false;
-// }
-
 function start(event){
-  box1 = [];
-  box2 = [];
-  box3 = [];
-  box4 = [];
+  // box1 = [];
+  // box2 = [];
+  // box3 = [];
+  // box4 = [];
 
   checkedWords.value.forEach(function (word) {
         box1.push(word);
@@ -170,72 +140,6 @@ function selectSecondHalf(event){
   checkedWords.value = secondHalf;
 }
 
-// function correctAnswered(){
-//   toggleShowSolution();
-//   console.log("here");
-//   console.log(exercises[0]);
-//   console.log(exercises);
-//   exercises[0]["corrects"] = exercises[0]["corrects"] + 1;
-//   exercises[0]["attempts"] = exercises[0]["attempts"] + 1;
-  
-//   //Pupil knows the word
-//   if((exercises[0]["corrects"] >= 2) && (exercises[0]["corrects"]/exercises[0]["attempts"] > 0.5)){
-//     //remove from list and update progress
-//     exercises.splice(0,1);
-//     progress_percentage.val = 100 - Math.floor((exercises.length/checkedWords.value.length)*100);
-//     console.log(exercises.length);
-//     console.log(checkedWords.value.length);
-//     console.log(progress_percentage);
-//   }
-//   //Swap the word with a random word in the array
-//   else{
-//     var random_index = Math.floor(Math.random() * (exercises.length-2)) + 1;
-//     var temp = exercises[0];
-//     exercises[0] = exercises[random_index];
-//     exercises[random_index] = temp;
-//   }
-
-//   if(progress_percentage.val > 0 && progress_percentage.val < 1*100/12){
-//     isOneTwelfth.value = true;
-//   }
-//   if(progress_percentage.val >= 1*100/12 && progress_percentage.val < 2*100/12){
-//     isTwoTwelfth.value = true;
-//   }
-//     if(progress_percentage.val >= 2*100/12 && progress_percentage.val < 3*100/12){
-//     isThreeTwelfth.value = true;
-//   }
-//     if(progress_percentage.val >= 3*100/12 && progress_percentage.val < 4*100/12){
-//     isFourTwelfth.value = true;
-//   }
-//   if(progress_percentage.val >= 4*100/12 && progress_percentage.val < 5*100/12){
-//     isFiveTwelfth.value = true;
-//   }
-//     if(progress_percentage.val >= 5*100/12 && progress_percentage.val < 6*100/12){
-//     isSixTwelfth.value = true;
-//   }
-//    if(progress_percentage.val >= 6*100/12 && progress_percentage.val < 7*100/12){
-//     isSevenTwelfth.value = true;
-//   }
-//   if(progress_percentage.val >= 7*100/12 && progress_percentage.val < 8*100/12){
-//     isEightTwelfth.value = true;
-//   }
-//     if(progress_percentage.val >= 8*100/12 && progress_percentage.val < 9*100/12){
-//     isNineTwelfth.value = true;
-//   }
-//     if(progress_percentage.val >= 9*100/12 && progress_percentage.val < 10*100/12){
-//     isTenTwelfth.value = true;
-//   }
-//   if(progress_percentage.val >= 10*100/12 && progress_percentage.val < 11*100/12){
-//     isElevenTwelfth.value = true;
-//   }
-//     if(progress_percentage.val >= 11*100/12 && progress_percentage.val <= 12*100/12){
-//     isTwelveTwelfth.value = true;
-//   }
-
-//   current_exercise.ex = exercises[0]["word"];
-//   current_solution.ex = exercises[0]["back"];
-//   current_phrase.ex = exercises[0]["phrase"];
-// }
 
 function moveFirstElementFromBox1ToBox2(box1, box2){
     box1[0]["corrects"] = box1[0]["corrects"] + 1;
@@ -283,21 +187,27 @@ function moveFirstElementFromBox2ToBox1(box2, box1){
 
 //Set following card to study
 function setNextCardToStudy(){
+  var boxNumbersContainingElements = [];
   if(box1.length > 0){
-    console.log(box1);
+    boxNumbersContainingElements.push(1);
+  }
+  if(box2.length > 0){
+    boxNumbersContainingElements.push(2);
+  }
+  if(box3.length > 0){
+    boxNumbersContainingElements.push(3);
+  }
+  //Pick random element from the array
+  const randomElement = boxNumbersContainingElements[Math.floor(Math.random() * boxNumbersContainingElements.length)];
+
+  if(randomElement == 1){
     current_exercise.ex = box1[0];
   }
-  else {
-    if(box2.length > 0) {
-      console.log(box2);
-      current_exercise.ex = box2[0];
-    }
-    else {
-      if(box3.length > 0) {
-      console.log(box3);
-      current_exercise.ex = box3[0];
-      }
-    }
+  if(randomElement == 2){
+    current_exercise.ex = box2[0];
+  }
+  if(randomElement == 3){
+    current_exercise.ex = box3[0];
   }
 }
 
@@ -316,11 +226,10 @@ function correctAnswered(){
       else {
           if(current_exercise.ex["box"] == 3){
           moveFirstElementFromBox3ToBox4(box3, box4);
-          //Pupil knows the word -> update progress
-          // progress_percentage.val = 100 - Math.floor(((box1.length + box2.length + box3.length)/checkedWords.value.length)*100);
           //No more words left to study
           if((box1.length + box2.length + box3.length) == 0){
             console.log("All words known!");
+            // console.log(box4.length);
           }
         }
       }//end of else 2
@@ -483,7 +392,7 @@ function shuffle(array) {
       </div>
 
       <div v-if="show_solution"  id="currentBack" @click="toggleShowSolution" class="flex justify-center bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
-        {{current_solution.ex["back"]}}
+        {{current_exercise.ex["back"]}}
       </div>
 
       <div v-if="show_solution"  id="evaluation" class="flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
@@ -498,6 +407,15 @@ function shuffle(array) {
             'col-span-7': isSevenTwelfth,  'col-span-8': isEightTwelfth, 'col-span-9': isNineTwelfth,
             'col-span-10': isTenTwelfth,  'col-span-11': isElevenTwelfth, 'col-span-12': isTwelveTwelfth}"
           class="bg-yellow-200 rounded-full animate-pulse ml-1 mr-1 text-center font-bold text-2xl ">{{progress_percentage.val}}%</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 pt-2 pb-2 ml-1 mr-1 mt-4">
+        <div class="grid grid-cols-4 gap-4 col-start-1 col-end-12 md:col-start-5 md:col-end-9">
+          <div class="bg-amber-500 text-zinc-100 border-4 border-red-500 border-t-0 text-center px-4 py-6 font-bold">{{box1.length}}</div>
+          <div class="bg-amber-500 text-zinc-100 border-4 border-orange-500 border-t-0 text-center px-4 py-6 font-bold">{{box2.length}}</div>
+          <div class="bg-amber-500 text-zinc-100 border-4 border-yellow-500 border-t-0 text-center px-4 py-6 font-bold">{{box3.length}}</div>
+          <div class="bg-amber-500 text-zinc-100 border-4 border-green-500 border-t-0 text-center px-4 py-6 font-bold">{{box4.length}}</div>
         </div>
       </div>
 
