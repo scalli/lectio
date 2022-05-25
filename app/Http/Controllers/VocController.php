@@ -104,6 +104,7 @@ class VocController extends Controller
                 $o->back = $vocword_back;
                 $o->attempts = 0;
                 $o->corrects = 0;
+                $o->box = 1;
 
                 // array_push($voc_back, $vocword_back);
 
