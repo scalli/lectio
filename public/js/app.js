@@ -24566,6 +24566,43 @@ __webpack_require__.r(__webpack_exports__);
 
 
     function setNextCardToStudy() {
+      if (!(box1.length + box2.length + box3.length) == 0) {
+        console.log("You know everything!"); //Splash screen here 
+      } //With over 50% probability, try to pick a card from most populated box first
+      else {
+        if (!getCardFromMostPopulatedBox()) {
+          getCardFromRandomBox();
+        }
+      }
+    }
+
+    function getCardFromMostPopulatedBox() {
+      var rand = Math.floor(Math.random() * 10);
+      console.log(rand);
+
+      if (rand > 2) {
+        var array = [box1.length, box2.length, box3.length];
+        var highestValue = array.indexOf(Math.max.apply(Math, array)); // var highestValue = Math.max(...array.map(o => o.y));
+
+        if (highestValue == 0) {
+          current_exercise.ex = box1[0];
+        }
+
+        if (highestValue == 1) {
+          current_exercise.ex = box2[0];
+        }
+
+        if (highestValue == 2) {
+          current_exercise.ex = box3[0];
+        }
+
+        return true;
+      }
+
+      return false;
+    }
+
+    function getCardFromRandomBox() {
       var boxNumbersContainingElements = [];
 
       if (box1.length > 0) {
@@ -24755,6 +24792,8 @@ __webpack_require__.r(__webpack_exports__);
       moveFirstElementFromBox3ToBox1: moveFirstElementFromBox3ToBox1,
       moveFirstElementFromBox2ToBox1: moveFirstElementFromBox2ToBox1,
       setNextCardToStudy: setNextCardToStudy,
+      getCardFromMostPopulatedBox: getCardFromMostPopulatedBox,
+      getCardFromRandomBox: getCardFromRandomBox,
       correctAnswered: correctAnswered,
       wrongAnswered: wrongAnswered,
       setProgress: setProgress,
@@ -29701,7 +29740,7 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_10 = {
-  "class": "text-center inline-block pr-1"
+  "class": "grid grid-cols-4 gap-2"
 };
 var _hoisted_11 = ["id", "value"];
 var _hoisted_12 = ["for"];
@@ -29809,8 +29848,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, "1e helft"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
     onClick: $setup.selectSecondHalf
-  }, "2e helft")]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.voc, function (word, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, "2e helft")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.voc, function (word, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       id: word.id,
       value: word,
       name: "word",
@@ -29828,10 +29867,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     )], 8
     /* PROPS */
-    , _hoisted_12)]);
+    , _hoisted_12)])]);
   }), 256
   /* UNKEYED_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "mb-2 flex justify-center pt-2 pb-2 pl-2 pr-2"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-green-700 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-1 ml-2 mr-2 mt-2 md:mx-auto",

@@ -187,6 +187,40 @@ function moveFirstElementFromBox2ToBox1(box2, box1){
 
 //Set following card to study
 function setNextCardToStudy(){
+  if(!(box1.length + box2.length + box3.length) == 0){
+    console.log("You know everything!");
+    //Splash screen here 
+  }
+  //With over 50% probability, try to pick a card from most populated box first
+  else { if(!getCardFromMostPopulatedBox()){
+    getCardFromRandomBox();
+    }
+  }
+}
+
+function getCardFromMostPopulatedBox(){
+  var rand = Math.floor(Math.random() * 10);
+  console.log(rand);
+  if(rand > 2){
+    var array = [box1.length, box2.length, box3.length];
+    var highestValue = array.indexOf(Math.max(...array));
+    // var highestValue = Math.max(...array.map(o => o.y));
+
+    if(highestValue == 0){
+      current_exercise.ex = box1[0];
+    }
+    if(highestValue == 1){
+      current_exercise.ex = box2[0];
+    }
+    if(highestValue == 2){
+      current_exercise.ex = box3[0];
+    }
+    return true;
+  }
+  return false;
+}
+
+function getCardFromRandomBox(){
   var boxNumbersContainingElements = [];
   if(box1.length > 0){
     boxNumbersContainingElements.push(1);
@@ -370,10 +404,13 @@ function shuffle(array) {
               <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="selectSecondHalf">2e helft</button>
             </div>
 
-            <div class="text-center inline-block pr-1" 
-                    v-for="(word, index) in voc" >
-               <input :id="word.id" :value="word" name="word" type="checkbox" v-model="checkedWords" class="pr-1" />
-               <label :for="word.id" class="pl-2 font-bold"><span>{{word["word"]}}</span></label> 
+            <div class="grid grid-cols-4 gap-2">
+              <div v-for="(word, index) in voc" >
+                 <div>
+                   <input :id="word.id" :value="word" name="word" type="checkbox" v-model="checkedWords" class="pr-1" />
+                   <label :for="word.id" class="pl-2 font-bold"><span>{{word["word"]}}</span></label> 
+                 </div>
+              </div>
             </div>
 
             <div class="mb-2 flex justify-center pt-2 pb-2 pl-2 pr-2">
