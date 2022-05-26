@@ -24381,6 +24381,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _Jetstream_Checkbox_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/Checkbox.vue */ "./resources/js/Jetstream/Checkbox.vue");
+/* harmony import */ var vue_confetti_explosion__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-confetti-explosion */ "./node_modules/vue-confetti-explosion/dist/confetti-explosion.esm.js");
+
 
 
 
@@ -24401,9 +24403,7 @@ __webpack_require__.r(__webpack_exports__);
     expose();
     var props = __props;
     var phrases = props.phrases;
-    var title = props.title; // const voc_front = props.voc_front;
-    // const voc_back = props.voc_back;
-
+    var title = props.title;
     var voc = props.voc;
     var checkedWords = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
     var exercises = [];
@@ -24442,6 +24442,14 @@ __webpack_require__.r(__webpack_exports__);
     var box1_length = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       return box1.length;
     });
+    var show_phrase = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(true);
+    var confetti = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var audio_on = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var box1To2 = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var box2To3 = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var box3To4 = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var box2To1 = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var box3To2 = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
 
     function toggleShowPreferences(event) {
       this.show_preferences = !this.show_preferences;
@@ -24452,10 +24460,11 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function start(event) {
-      // box1 = [];
-      // box2 = [];
-      // box3 = [];
-      // box4 = [];
+      //Empty all boxes for a fresh start
+      box1.length = 0;
+      box2.length = 0;
+      box3.length = 0;
+      box4.length = 0;
       checkedWords.value.forEach(function (word) {
         box1.push(word);
       }); //Shuffle array exercises
@@ -24485,6 +24494,7 @@ __webpack_require__.r(__webpack_exports__);
       isTenTwelfth.value = false;
       isElevenTwelfth.value = false;
       isTwelveTwelfth.value = false;
+      confetti.value = false;
     }
 
     function setSelected(event) {// console.log(checkedWords);
@@ -24566,9 +24576,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
     function setNextCardToStudy() {
-      if (!(box1.length + box2.length + box3.length) == 0) {
+      if (box1.length + box2.length + box3.length == 0) {
         console.log("You know everything!"); //Splash screen here 
-      } //With over 50% probability, try to pick a card from most populated box first
+      } //With over 80% probability, try to pick a card from most populated box first
       else {
         if (!getCardFromMostPopulatedBox()) {
           getCardFromRandomBox();
@@ -24633,22 +24643,41 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
 
+    function clearArrows() {
+      box1To2.value = false;
+      box2To3.value = false;
+      box3To4.value = false;
+      box2To1.value = false;
+      box3To2.value = false;
+    }
+
     function correctAnswered() {
+      if (audio_on.value) {
+        // var audio = new Audio('https://www.myinstants.com/media/sounds/ding-sound-effect_1.mp3');
+        var audio = new Audio('../../correct.mp3');
+        audio.play();
+      }
+
       toggleShowSolution();
+      clearArrows();
 
       if (current_exercise.ex["box"] == 1) {
+        box1To2.value = true;
         moveFirstElementFromBox1ToBox2(box1, box2);
         shuffle(box2);
       } else {
         if (current_exercise.ex["box"] == 2) {
+          box2To3.value = true;
           moveFirstElementFromBox2ToBox3(box2, box3);
           shuffle(box3);
         } else {
           if (current_exercise.ex["box"] == 3) {
+            box3To4.value = true;
             moveFirstElementFromBox3ToBox4(box3, box4); //No more words left to study
 
             if (box1.length + box2.length + box3.length == 0) {
-              console.log("All words known!"); // console.log(box4.length);
+              console.log("All words known!");
+              confetti.value = true; // console.log(box4.length);
             }
           }
         } //end of else 2
@@ -24662,12 +24691,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
     function wrongAnswered() {
+      if (audio_on.value) {
+        var audio = new Audio('../../wrong.wav');
+        audio.play();
+      }
+
       toggleShowSolution();
+      clearArrows();
 
       if (current_exercise.ex["box"] == 2) {
+        box2To1.value = true;
         moveFirstElementFromBox2ToBox1(box2, box1);
       } else {
         if (current_exercise.ex["box"] == 3) {
+          box2To1.value = true;
+          box3To2.value = true;
           moveFirstElementFromBox3ToBox1(box3, box1);
         }
       } //end of else
@@ -24778,6 +24816,14 @@ __webpack_require__.r(__webpack_exports__);
       box3: box3,
       box4: box4,
       box1_length: box1_length,
+      show_phrase: show_phrase,
+      confetti: confetti,
+      audio_on: audio_on,
+      box1To2: box1To2,
+      box2To3: box2To3,
+      box3To4: box3To4,
+      box2To1: box2To1,
+      box3To2: box3To2,
       toggleShowPreferences: toggleShowPreferences,
       toggleShowSolution: toggleShowSolution,
       start: start,
@@ -24794,6 +24840,7 @@ __webpack_require__.r(__webpack_exports__);
       setNextCardToStudy: setNextCardToStudy,
       getCardFromMostPopulatedBox: getCardFromMostPopulatedBox,
       getCardFromRandomBox: getCardFromRandomBox,
+      clearArrows: clearArrows,
       correctAnswered: correctAnswered,
       wrongAnswered: wrongAnswered,
       setProgress: setProgress,
@@ -24803,7 +24850,8 @@ __webpack_require__.r(__webpack_exports__);
       reactive: vue__WEBPACK_IMPORTED_MODULE_1__.reactive,
       ref: vue__WEBPACK_IMPORTED_MODULE_1__.ref,
       computed: vue__WEBPACK_IMPORTED_MODULE_1__.computed,
-      JetCheckbox: _Jetstream_Checkbox_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+      JetCheckbox: _Jetstream_Checkbox_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+      ConfettiExplosion: vue_confetti_explosion__WEBPACK_IMPORTED_MODULE_3__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -29707,7 +29755,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "bg-gray-100 dark:bg-gray-900 h-screen"
+  "class": "bg-gray-100 dark:bg-gray-900"
 };
 var _hoisted_2 = {
   key: 0,
@@ -29733,50 +29781,85 @@ var _hoisted_8 = {
   "class": "pt-2 pb-2 pl-2 pr-2 bg-white pt-2 pb-2 pl-2 pr-2 ml-2 mr-2 mt-2 md:w-1/2 lg:w-1/3 md:mx-auto"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "show_phrase",
+  "class": "pl-2 font-bold"
+}, "Toon woordgroepen", -1
+/* HOISTED */
+);
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "audio_on",
+  "class": "pl-2 font-bold"
+}, "Audio aan", -1
+/* HOISTED */
+);
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mb-2"
 }, " Selecteer de woorden die je wil oefenen. ", -1
 /* HOISTED */
 );
 
-var _hoisted_10 = {
-  "class": "grid grid-cols-4 gap-2"
+var _hoisted_12 = {
+  "class": "grid grid-cols-3 gap-1"
 };
-var _hoisted_11 = ["id", "value"];
-var _hoisted_12 = ["for"];
-var _hoisted_13 = {
+var _hoisted_13 = ["id", "value"];
+var _hoisted_14 = ["for"];
+var _hoisted_15 = {
   "class": "flex justify-center"
 };
-var _hoisted_14 = {
+var _hoisted_16 = {
+  key: 0,
   "class": "flex justify-center text-sm"
 };
-var _hoisted_15 = {
+var _hoisted_17 = {
   key: 4,
   id: "evaluation",
   "class": "flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold"
 };
-var _hoisted_16 = {
+var _hoisted_18 = {
   "class": "grid grid-cols-12"
 };
-var _hoisted_17 = {
+var _hoisted_19 = {
   "class": "grid grid-cols-12 bg-yellow-400 rounded-full pt-2 pb-2 ml-1 mr-1 mt-4 col-start-1 col-end-12 md:col-start-5 md:col-end-9"
 };
-var _hoisted_18 = {
+var _hoisted_20 = {
   "class": "grid grid-cols-12 pt-2 pb-2 ml-1 mr-1 mt-4"
 };
-var _hoisted_19 = {
-  "class": "grid grid-cols-4 gap-4 col-start-1 col-end-12 md:col-start-5 md:col-end-9"
-};
-var _hoisted_20 = {
-  "class": "bg-amber-500 text-zinc-100 border-4 border-red-500 border-t-0 text-center px-4 py-6 font-bold"
-};
 var _hoisted_21 = {
-  "class": "bg-amber-500 text-zinc-100 border-4 border-orange-500 border-t-0 text-center px-4 py-6 font-bold"
+  "class": "grid grid-cols-7 gap-1 col-start-1 col-span-12 md:col-start-3 md:col-end-10"
 };
 var _hoisted_22 = {
-  "class": "bg-amber-500 text-zinc-100 border-4 border-yellow-500 border-t-0 text-center px-4 py-6 font-bold"
+  "class": "relative bg-amber-500 text-zinc-100 border-4 border-red-500 border-t-0 text-center px-4 py-6 font-bold"
 };
 var _hoisted_23 = {
+  key: 0,
+  "class": "text-green-500 text-center text-3xl animate-ping font-bold"
+};
+var _hoisted_24 = {
+  key: 1,
+  "class": "text-red-500 text-center text-3xl animate-ping font-bold"
+};
+var _hoisted_25 = {
+  "class": "bg-amber-500 text-zinc-100 border-4 border-orange-500 border-t-0 text-center px-4 py-6 font-bold"
+};
+var _hoisted_26 = {
+  key: 0,
+  "class": "text-green-500 text-center text-3xl animate-ping font-bold"
+};
+var _hoisted_27 = {
+  key: 1,
+  "class": "text-red-500 text-center text-3xl animate-ping font-bold"
+};
+var _hoisted_28 = {
+  "class": "bg-amber-500 text-zinc-100 border-4 border-yellow-500 border-t-0 text-center px-4 py-6 font-bold"
+};
+var _hoisted_29 = {
+  key: 0,
+  "class": "text-green-500 text-center text-3xl animate-ping font-bold"
+};
+var _hoisted_30 = {
   "class": "bg-amber-500 text-zinc-100 border-4 border-green-500 border-t-0 text-center px-4 py-6 font-bold"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -29832,9 +29915,25 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $setup.toggleShowPreferences($event);
     })
-  }, " Er zijn momenteel " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.checkedWords.length) + " woorden geselecteerd. Klik hier om te wijzigen. ", 1
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(this.checkedWords.length) + " woorden geselecteerd. Klik hier om te wijzigen. ", 1
   /* TEXT */
-  ), $setup.show_preferences ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  ), $setup.show_preferences ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "checkbox",
+    id: "show_phrase",
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $setup.show_phrase = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.show_phrase]]), _hoisted_9]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "checkbox",
+    id: "audio_on",
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return $setup.audio_on = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.audio_on]]), _hoisted_10]), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "mb-2"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-1",
@@ -29848,26 +29947,26 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, "1e helft"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
     onClick: $setup.selectSecondHalf
-  }, "2e helft")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.voc, function (word, index) {
+  }, "2e helft")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.voc, function (word, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       id: word.id,
       value: word,
       name: "word",
       type: "checkbox",
-      "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
         return $setup.checkedWords = $event;
       }),
       "class": "pr-1"
     }, null, 8
     /* PROPS */
-    , _hoisted_11), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.checkedWords]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+    , _hoisted_13), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.checkedWords]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
       "for": word.id,
       "class": "pl-2 font-bold"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(word["word"]), 1
     /* TEXT */
     )], 8
     /* PROPS */
-    , _hoisted_12)])]);
+    , _hoisted_14)])]);
   }), 256
   /* UNKEYED_FRAGMENT */
   ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -29880,24 +29979,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "currentFront",
     onClick: $setup.toggleShowSolution,
     "class": "bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-3xl mx-auto font-bold"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex["word"]), 1
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex["word"]), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex["phrase"]), 1
+  ), $setup.show_phrase ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex["phrase"]), 1
   /* TEXT */
-  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.show_solution ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.show_solution ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
     key: 3,
     id: "currentBack",
     onClick: $setup.toggleShowSolution,
     "class": "flex justify-center bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold"
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex["back"]), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.show_solution ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.show_solution ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-1 animate-bounce",
     onClick: $setup.correctAnswered
   }, "Ik wist het!"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-1 animate-bounce",
     onClick: $setup.wrongAnswered
-  }, "Ik wist het niet ...")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  }, "Ik wist het niet ...")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       'col-span-1': $setup.isOneTwelfth,
       'col-span-2': $setup.isTwoTwelfth,
@@ -29914,15 +30013,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, "bg-yellow-200 rounded-full animate-pulse ml-1 mr-1 text-center font-bold text-2xl"])
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.progress_percentage.val) + "%", 3
   /* TEXT, CLASS */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box1.length), 1
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box1.length), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box2.length), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.box1To2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, "→")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.box2To1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_24, "←")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box2.length), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box3.length), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.box2To3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_26, "→")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.box3To2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_27, "←")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box3.length), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box4.length), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.box3To4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_29, "→")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box4.length), 1
   /* TEXT */
-  )])])])], 64
+  )])]), $setup.confetti ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ConfettiExplosion"], {
+    key: 5,
+    particleCount: 200
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -54811,6 +54913,323 @@ module.exports = function getSideChannel() {
 	};
 	return channel;
 };
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-confetti-explosion/dist/confetti-explosion.esm.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/vue-confetti-explosion/dist/confetti-explosion.esm.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ entry_esm)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+const ROTATION_SPEED_MIN = 200; // minimum possible duration of single particle full rotation
+
+const ROTATION_SPEED_MAX = 800; // maximum possible duration of single particle full rotation
+
+const CRAZY_PARTICLES_FREQUENCY = 0.1; // 0-1 frequency of crazy curvy unpredictable particles
+
+const CRAZY_PARTICLE_CRAZINESS = 0.3; // 0-1 how crazy these crazy particles are
+
+const BEZIER_MEDIAN = 0.5; // utility for mid-point bezier curves, to ensure smooth motion paths
+
+const FORCE = 0.5; // 0-1 roughly the vertical force at which particles initially explode
+
+const SIZE = 12; // max height for particle rectangles, diameter for particle circles
+
+const FLOOR_HEIGHT = 800; // pixels the particles will fall from initial explosion point
+
+const FLOOR_WIDTH = 1600; // horizontal spread of particles in pixels
+
+const PARTICLE_COUNT = 150;
+const DURATION = 3500;
+const COLORS = ["#FFC700", "#FF0000", "#2E3191", "#41BBC7"];
+var script = {
+  props: {
+    particleCount: {
+      type: Number,
+      default: PARTICLE_COUNT
+    },
+    particleSize: {
+      type: Number,
+      default: SIZE
+    },
+    duration: {
+      type: Number,
+      default: DURATION
+    },
+    colors: {
+      type: Array,
+      default: COLORS
+    },
+    force: {
+      type: Number,
+      default: FORCE
+    },
+    stageHeight: {
+      type: Number,
+      default: FLOOR_HEIGHT
+    },
+    stageWidth: {
+      type: Number,
+      default: FLOOR_WIDTH
+    },
+    shouldDestroyAfterDone: {
+      type: Boolean,
+      default: true
+    }
+  },
+
+  setup(props) {
+    const isVisible = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(true);
+
+    const setItemRef = (el, degree) => {
+      confettiStyles(el, {
+        degree
+      });
+    };
+
+    const particles = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => createParticles(props.particleCount, props.colors));
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.watchEffect)(() => {
+      props.particleCount > 300 && console.log("[VUE-CONFETTI-EXPLOSION] That's a lot of confetti, you sure about that? A lesser number" + " like 200 will still give off the party vibes while still not bricking the device 😉");
+    });
+    const isValid = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => validate(props.particleCount, props.duration, props.colors, props.particleSize, props.force, props.stageHeight, props.stageWidth));
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(async () => {
+      await waitFor(props.duration);
+
+      if (props.shouldDestroyAfterDone) {
+        isVisible.value = false;
+      }
+    });
+
+    const createParticles = (count, colors) => {
+      const increment = 360 / count;
+      return Array.from({
+        length: count
+      }, (_, i) => ({
+        color: colors[i % colors.length],
+        degree: i * increment
+      }));
+    };
+
+    const waitFor = ms => new Promise(resolve => setTimeout(resolve, ms)); // From here: https://stackoverflow.com/a/11832950
+
+
+    function round(num) {
+      let precision = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+      return Math.round((num + Number.EPSILON) * 10 ** precision) / 10 ** precision;
+    }
+
+    function arraysEqual(a, b) {
+      if (a === b) return true;
+      if (a == null || b == null) return false;
+      if (a.length !== b.length) return false;
+
+      for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return false;
+
+      return true;
+    }
+
+    const mapRange = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
+
+    const rotate = (degree, amount) => {
+      const result = degree + amount;
+      return result > 360 ? result - 360 : result;
+    };
+
+    const coinFlip = () => Math.random() > 0.5; // avoid this for circles, as it will have no visual effect
+
+
+    const zAxisRotation = [0, 0, 1];
+    const rotationTransforms = [// dual axis rotations (a bit more realistic)
+    [1, 1, 0], [1, 0, 1], [0, 1, 1], // single axis rotations (a bit dumber)
+    [1, 0, 0], [0, 1, 0], zAxisRotation];
+
+    const shouldBeCircle = rotationIndex => !arraysEqual(rotationTransforms[rotationIndex], zAxisRotation) && coinFlip();
+
+    const isUndefined = value => typeof value === "undefined";
+
+    const error = message => {
+      console.error(message);
+    };
+
+    function validate(particleCount, duration, colors, particleSize, force, floorHeight, floorWidth) {
+      const isSafeInteger = Number.isSafeInteger;
+
+      if (!isUndefined(particleCount) && isSafeInteger(particleCount) && particleCount < 0) {
+        error("particleCount must be a positive integer");
+        return false;
+      }
+
+      if (!isUndefined(duration) && isSafeInteger(duration) && duration < 0) {
+        error("duration must be a positive integer");
+        return false;
+      }
+
+      if (!isUndefined(colors) && !Array.isArray(colors)) {
+        error("colors must be an array of strings");
+        return false;
+      }
+
+      if (!isUndefined(particleSize) && isSafeInteger(particleSize) && particleSize < 0) {
+        error("particleSize must be a positive integer");
+        return false;
+      }
+
+      if (!isUndefined(force) && isSafeInteger(force) && (force < 0 || force > 1)) {
+        error("force must be a positive integer and should be within 0 and 1");
+        return false;
+      }
+
+      if (!isUndefined(floorHeight) && typeof floorHeight === "number" && isSafeInteger(floorHeight) && floorHeight < 0) {
+        error("floorHeight must be a positive integer");
+        return false;
+      }
+
+      if (!isUndefined(floorWidth) && typeof floorWidth === "number" && isSafeInteger(floorWidth) && floorWidth < 0) {
+        error("floorWidth must be a positive integer");
+        return false;
+      }
+
+      return true;
+    }
+
+    function confettiStyles(node, _ref) {
+      let {
+        degree
+      } = _ref;
+      // Get x landing point for it
+      const landingPoint = mapRange(Math.abs(rotate(degree, 90) - 180), 0, 180, -props.stageWidth / 2, props.stageWidth / 2); // Crazy calculations for generating styles
+
+      const rotation = Math.random() * (ROTATION_SPEED_MAX - ROTATION_SPEED_MIN) + ROTATION_SPEED_MIN;
+      const rotationIndex = Math.round(Math.random() * (rotationTransforms.length - 1));
+      const durationChaos = props.duration - Math.round(Math.random() * 1000);
+      const shouldBeCrazy = Math.random() < CRAZY_PARTICLES_FREQUENCY;
+      const isCircle = shouldBeCircle(rotationIndex); // x-axis disturbance, roughly the distance the particle will initially deviate from its target
+
+      const x1 = shouldBeCrazy ? round(Math.random() * CRAZY_PARTICLE_CRAZINESS, 2) : 0;
+      const x2 = x1 * -1;
+      const x3 = x1; // x-axis arc of explosion, so 90deg and 270deg particles have curve of 1, 0deg and 180deg have 0
+
+      const x4 = round(Math.abs(mapRange(Math.abs(rotate(degree, 90) - 180), 0, 180, -1, 1)), 4); // roughly how fast particle reaches end of its explosion curve
+
+      const y1 = round(Math.random() * BEZIER_MEDIAN, 4); // roughly maps to the distance particle goes before reaching free-fall
+
+      const y2 = round(Math.random() * props.force * (coinFlip() ? 1 : -1), 4); // roughly how soon the particle transitions from explosion to free-fall
+
+      const y3 = BEZIER_MEDIAN; // roughly the ease of free-fall
+
+      const y4 = round(Math.max(mapRange(Math.abs(degree - 180), 0, 180, props.force, -props.force), 0), 4);
+
+      const setCSSVar = (key, val) => node === null || node === void 0 ? void 0 : node.style.setProperty(key, val + "");
+
+      setCSSVar("--x-landing-point", `${landingPoint}px`);
+      setCSSVar("--duration-chaos", `${durationChaos}ms`);
+      setCSSVar("--x1", `${x1}`);
+      setCSSVar("--x2", `${x2}`);
+      setCSSVar("--x3", `${x3}`);
+      setCSSVar("--x4", `${x4}`);
+      setCSSVar("--y1", `${y1}`);
+      setCSSVar("--y2", `${y2}`);
+      setCSSVar("--y3", `${y3}`);
+      setCSSVar("--y4", `${y4}`); // set --width and --height here
+
+      setCSSVar("--width", `${isCircle ? props.particleSize : Math.round(Math.random() * 4) + props.particleSize / 2}px`);
+      setCSSVar("--height", (isCircle ? props.particleSize : Math.round(Math.random() * 2) + props.particleSize) + "px");
+      setCSSVar("--rotation", `${rotationTransforms[rotationIndex].join()}`);
+      setCSSVar("--rotation-duration", `${rotation}ms`);
+      setCSSVar("--border-radius", `${isCircle ? "50%" : "0"}`);
+    }
+
+    return {
+      isVisible,
+      isValid,
+      stageHeight: props.stageHeight,
+      particles,
+      setItemRef
+    };
+  }
+
+};
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return $setup.isVisible && $setup.isValid ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+    key: 0,
+    class: "container",
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)(`--floor-height: ${$setup.stageHeight}px;`)
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.particles, _ref => {
+    let {
+      color,
+      degree
+    } = _ref;
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: degree,
+      class: "particle",
+      ref: el => $setup.setItemRef(el, degree)
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+      style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)(`--bgcolor: ${color};`)
+    }, null, 4)], 512);
+  }), 128))], 4)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("", true);
+}
+
+function styleInject(css, ref) {
+  if ( ref === void 0 ) ref = {};
+  var insertAt = ref.insertAt;
+
+  if (!css || typeof document === 'undefined') { return; }
+
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
+
+  if (insertAt === 'top') {
+    if (head.firstChild) {
+      head.insertBefore(style, head.firstChild);
+    } else {
+      head.appendChild(style);
+    }
+  } else {
+    head.appendChild(style);
+  }
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var css_248z = "\n@keyframes y-axis {\nto {\n    transform: translate3d(0, var(--floor-height), 0);\n}\n}\n@keyframes x-axis {\nto {\n    transform: translate3d(var(--x-landing-point), 0, 0);\n}\n}\n@keyframes rotation {\nto {\n    transform: rotate3d(var(--rotation), 360deg);\n}\n}\n.container {\n  width: 0;\n  height: 0;\n  overflow: visible;\n  position: relative;\n  transform: translate3d(var(--x, 0), var(--y, 0), 0);\n  z-index: 1200;\n}\n.particle {\n  animation: x-axis var(--duration-chaos) forwards\n    cubic-bezier(var(--x1), var(--x2), var(--x3), var(--x4));\n}\n.particle div {\n  position: absolute;\n  top: 0;\n  left: 0;\n  animation: y-axis var(--duration-chaos) forwards\n    cubic-bezier(var(--y1), var(--y2), var(--y3), var(--y4));\n  width: var(--width);\n  height: var(--height);\n}\n.particle div:before {\n  display: block;\n  height: 100%;\n  width: 100%;\n  content: \"\";\n  background-color: var(--bgcolor);\n  animation: rotation var(--rotation-duration) infinite linear;\n  border-radius: var(--border-radius);\n}\n";
+styleInject(css_248z);
+
+script.render = render;
+
+// Import vue component
+// IIFE injects install function into component, allowing component
+// to be registered via Vue.use() as well as Vue.component(),
+
+var entry_esm = /*#__PURE__*/(() => {
+  // Assign InstallableComponent type
+  const installable = script; // Attach install function executed by Vue.use()
+
+  installable.install = app => {
+    app.component("ConfettiExplosion", installable);
+  };
+
+  return installable;
+})(); // It's possible to expose named exports when writing components that can
+// also be used as directives, etc. - eg. import { RollupDemoDirective } from 'rollup-demo';
+// export const RollupDemoDirective = directive;
+
+
 
 
 /***/ }),

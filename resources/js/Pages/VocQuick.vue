@@ -2,6 +2,7 @@
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import { reactive, ref, computed } from 'vue';
 import JetCheckbox from '@/Jetstream/Checkbox.vue';
+import ConfettiExplosion from "vue-confetti-explosion";
 
 const props = defineProps({
     canLogin: Boolean,
@@ -17,8 +18,6 @@ const props = defineProps({
 
 const phrases = props.phrases;
 const title = props.title;
-// const voc_front = props.voc_front;
-// const voc_back = props.voc_back;
 const voc = props.voc;
 
 const checkedWords = ref([]);
@@ -54,6 +53,17 @@ var box4 = [];
 
 const box1_length = computed(() => box1.length);
 
+const show_phrase = ref(true);
+
+const confetti = ref(false);
+
+const audio_on = ref(false);
+
+const box1To2 = ref(false);
+const box2To3 = ref(false);
+const box3To4 = ref(false);
+const box2To1 = ref(false);
+const box3To2 = ref(false);
 
 function toggleShowPreferences(event){
     this.show_preferences = !this.show_preferences;
@@ -64,10 +74,11 @@ function toggleShowSolution(event){
 }
 
 function start(event){
-  // box1 = [];
-  // box2 = [];
-  // box3 = [];
-  // box4 = [];
+  //Empty all boxes for a fresh start
+  box1.length = 0;
+  box2.length = 0;
+  box3.length = 0;
+  box4.length = 0;
 
   checkedWords.value.forEach(function (word) {
         box1.push(word);
@@ -97,6 +108,8 @@ function start(event){
   isTenTwelfth.value = false;
   isElevenTwelfth.value = false;
   isTwelveTwelfth.value = false;
+
+  confetti.value = false;
 }
 
 function setSelected(event) {
@@ -187,11 +200,11 @@ function moveFirstElementFromBox2ToBox1(box2, box1){
 
 //Set following card to study
 function setNextCardToStudy(){
-  if(!(box1.length + box2.length + box3.length) == 0){
+  if((box1.length + box2.length + box3.length) == 0){
     console.log("You know everything!");
     //Splash screen here 
   }
-  //With over 50% probability, try to pick a card from most populated box first
+  //With over 80% probability, try to pick a card from most populated box first
   else { if(!getCardFromMostPopulatedBox()){
     getCardFromRandomBox();
     }
@@ -245,24 +258,44 @@ function getCardFromRandomBox(){
   }
 }
 
+function clearArrows(){
+  box1To2.value = false;
+  box2To3.value = false;
+  box3To4.value = false;
+  box2To1.value = false;
+  box3To2.value = false;
+}
+
 function correctAnswered(){
+  if(audio_on.value){
+    // var audio = new Audio('https://www.myinstants.com/media/sounds/ding-sound-effect_1.mp3');
+    var audio = new Audio('../../correct.mp3');
+    audio.play();
+  }
+  
   toggleShowSolution();
 
+  clearArrows();
+
   if(current_exercise.ex["box"] == 1){
+    box1To2.value = true;
     moveFirstElementFromBox1ToBox2(box1, box2);
     shuffle(box2);
   }
   else{
       if(current_exercise.ex["box"] == 2){
+        box2To3.value = true;
         moveFirstElementFromBox2ToBox3(box2, box3);
         shuffle(box3);
       }
       else {
           if(current_exercise.ex["box"] == 3){
-          moveFirstElementFromBox3ToBox4(box3, box4);
+            box3To4.value = true;
+            moveFirstElementFromBox3ToBox4(box3, box4);
           //No more words left to study
           if((box1.length + box2.length + box3.length) == 0){
             console.log("All words known!");
+            confetti.value = true;
             // console.log(box4.length);
           }
         }
@@ -277,14 +310,24 @@ function correctAnswered(){
 }//end of correctAnswered
 
 function wrongAnswered(){
+   if(audio_on.value){
+    var audio = new Audio('../../wrong.wav');
+    audio.play();
+   } 
+    
   toggleShowSolution();
 
+  clearArrows();
+
   if(current_exercise.ex["box"] == 2){
+    box2To1.value = true;
     moveFirstElementFromBox2ToBox1(box2, box1);
   }
   else {
       if(current_exercise.ex["box"] == 3){
-      moveFirstElementFromBox3ToBox1(box3, box1);
+        box2To1.value = true;
+        box3To2.value = true;
+        moveFirstElementFromBox3ToBox1(box3, box1);
       }
   }//end of else
   shuffle(box1);
@@ -360,7 +403,7 @@ function shuffle(array) {
 <template>
     <Head title="Lees Latijn in cola" />
 
-    <div class="bg-gray-100 dark:bg-gray-900 h-screen">
+    <div class="bg-gray-100 dark:bg-gray-900">
         <div v-if="canLogin" class="px-6 py-4">
             <Link v-if="$page.props.user" :href="route('dashboard')" class="text-sm text-gray-700 underline">
                 Dashboard
@@ -390,9 +433,19 @@ function shuffle(array) {
                   &#8595 Instellingen &#8595
       </div>
       <div class="flex justify-center pt-2 pb-2 pl-2 pr-2 text-sm bg-zinc-200 text-amber-500 pl-2 pr-2 ml-2 mr-2   md:w-1/2 lg:w-1/3 md:mx-auto font-bold" @click="toggleShowPreferences($event)">
-                  Er zijn momenteel {{this.checkedWords.length}} woorden geselecteerd. Klik hier om te wijzigen.
+                  {{this.checkedWords.length}} woorden geselecteerd. Klik hier om te wijzigen.
       </div>
       <div v-if="show_preferences" class="pt-2 pb-2 pl-2 pr-2 bg-white pt-2 pb-2 pl-2 pr-2 ml-2 mr-2 mt-2 md:w-1/2 lg:w-1/3 md:mx-auto">
+
+           <div>
+              <input type="checkbox" id="show_phrase" v-model="show_phrase" />
+              <label for="show_phrase" class="pl-2 font-bold">Toon woordgroepen</label>
+           </div>
+
+           <div>
+              <input type="checkbox" id="audio_on" v-model="audio_on" />
+              <label for="audio_on" class="pl-2 font-bold">Audio aan</label>
+           </div>
 
             <div class="mb-2">
               Selecteer de woorden die je wil oefenen.
@@ -404,7 +457,7 @@ function shuffle(array) {
               <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="selectSecondHalf">2e helft</button>
             </div>
 
-            <div class="grid grid-cols-4 gap-2">
+            <div class="grid grid-cols-3 gap-1">
               <div v-for="(word, index) in voc" >
                  <div>
                    <input :id="word.id" :value="word" name="word" type="checkbox" v-model="checkedWords" class="pr-1" />
@@ -423,7 +476,7 @@ function shuffle(array) {
         <div class="flex justify-center">
           {{current_exercise.ex["word"]}}
         </div>
-        <div class="flex justify-center text-sm">
+        <div v-if="show_phrase" class="flex justify-center text-sm">
          {{current_exercise.ex["phrase"]}}
         </div> 
       </div>
@@ -448,14 +501,28 @@ function shuffle(array) {
       </div>
 
       <div class="grid grid-cols-12 pt-2 pb-2 ml-1 mr-1 mt-4">
-        <div class="grid grid-cols-4 gap-4 col-start-1 col-end-12 md:col-start-5 md:col-end-9">
-          <div class="bg-amber-500 text-zinc-100 border-4 border-red-500 border-t-0 text-center px-4 py-6 font-bold">{{box1.length}}</div>
+        <div class="grid grid-cols-7 gap-1 col-start-1 col-span-12 md:col-start-3 md:col-end-10">
+          <div class="relative bg-amber-500 text-zinc-100 border-4 border-red-500 border-t-0 text-center px-4 py-6 font-bold">
+            {{box1.length}}
+          </div>
+          <div>
+            <div class="text-green-500 text-center text-3xl animate-ping font-bold" v-if="box1To2">&#8594;</div>
+            <div class="text-red-500 text-center text-3xl animate-ping font-bold" v-if="box2To1">&#8592;</div>
+          </div>
           <div class="bg-amber-500 text-zinc-100 border-4 border-orange-500 border-t-0 text-center px-4 py-6 font-bold">{{box2.length}}</div>
+          <div>
+            <div class="text-green-500 text-center text-3xl animate-ping font-bold" v-if="box2To3">&#8594;</div>
+            <div class="text-red-500 text-center text-3xl animate-ping font-bold" v-if="box3To2">&#8592;</div>
+          </div>
           <div class="bg-amber-500 text-zinc-100 border-4 border-yellow-500 border-t-0 text-center px-4 py-6 font-bold">{{box3.length}}</div>
+          <div>
+            <div class="text-green-500 text-center text-3xl animate-ping font-bold" v-if="box3To4">&#8594;</div>
+          </div>
           <div class="bg-amber-500 text-zinc-100 border-4 border-green-500 border-t-0 text-center px-4 py-6 font-bold">{{box4.length}}</div>
         </div>
       </div>
 
+      <ConfettiExplosion v-if="confetti" :particleCount="200"/>
 
     </div>
 
