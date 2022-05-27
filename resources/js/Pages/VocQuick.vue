@@ -7,7 +7,7 @@ import ConfettiExplosion from "vue-confetti-explosion";
 const props = defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
-    phrases: Object,
+    // phrases: Object,
     // voc_front: Array,
     // voc_back: Array,
     voc: Array,
@@ -16,7 +16,7 @@ const props = defineProps({
     // corrects: Number
 });
 
-const phrases = props.phrases;
+// const phrases = props.phrases;
 const title = props.title;
 const voc = props.voc;
 
@@ -81,12 +81,17 @@ function start(event){
   box4.length = 0;
 
   checkedWords.value.forEach(function (word) {
-        box1.push(word);
+        word["corrects"] = 0;
+        word["attempts"] = 0;
+        word["box"] = 1
+;       box1.push(word);
     });
   //Shuffle array exercises
   box1 = box1.sort((a, b) => 0.5 - Math.random());
   console.log(box1);
   current_exercise.ex = box1[0];
+  console.log("current excercise");
+  console.log(current_exercise.ex);
   // current_solution.ex = box1[0]["back"];
   // current_phrase.ex = box1[0]["phrase"];
   //Collapse the preferences menu
@@ -294,9 +299,11 @@ function correctAnswered(){
             moveFirstElementFromBox3ToBox4(box3, box4);
           //No more words left to study
           if((box1.length + box2.length + box3.length) == 0){
-            console.log("All words known!");
+             if(audio_on.value){ 
+              var audio = new Audio('../../applause.mp3');
+              audio.play();
+            }
             confetti.value = true;
-            // console.log(box4.length);
           }
         }
       }//end of else 2
@@ -401,9 +408,9 @@ function shuffle(array) {
 </script>
 
 <template>
-    <Head title="Lees Latijn in cola" />
+    <Head title="Voc. oefenen" />
 
-    <div class="bg-gray-100 dark:bg-gray-900">
+    <div class="bg-gray-100 dark:bg-gray-900 h-screen">
         <div v-if="canLogin" class="px-6 py-4">
             <Link v-if="$page.props.user" :href="route('dashboard')" class="text-sm text-gray-700 underline">
                 Dashboard

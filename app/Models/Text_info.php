@@ -15,6 +15,9 @@ class Text_info extends Model
     'chapter',
     'grade',
     'extra_info',
+    'author',
+    'work',
+    'passage',
     'contributor'
     ];
 }

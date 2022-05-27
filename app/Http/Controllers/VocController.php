@@ -106,6 +106,10 @@ class VocController extends Controller
                 $o->corrects = 0;
                 $o->box = 1;
 
+                //Add the complete word to check different meanings and stamtijden when profound excercise
+                if($layout == "profound"){
+                    $o->word_complete = $word;;
+                }
                 // array_push($voc_back, $vocword_back);
 
                 array_push($voc, $o );
@@ -128,7 +132,7 @@ class VocController extends Controller
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'title' => $title[0]->text_title,
-        'phrases' => $phrases,
+        // 'phrases' => $phrases,
         'voc' => $voc
         // 'voc_front' => $voc_front,
         // 'voc_back' => $voc_back

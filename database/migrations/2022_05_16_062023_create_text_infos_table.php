@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('chapter');
             $table->integer('grade');
             $table->string('extra_info');
+            $table->string('author');
+            $table->string('work');
+            $table->string('passage');
             $table->integer('contributor');
             $table->timestamps();
         });

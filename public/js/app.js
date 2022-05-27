@@ -24390,7 +24390,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     canLogin: Boolean,
     canRegister: Boolean,
-    phrases: Object,
+    // phrases: Object,
     // voc_front: Array,
     // voc_back: Array,
     voc: Array,
@@ -24401,8 +24401,8 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
-    var props = __props;
-    var phrases = props.phrases;
+    var props = __props; // const phrases = props.phrases;
+
     var title = props.title;
     var voc = props.voc;
     var checkedWords = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
@@ -24466,6 +24466,9 @@ __webpack_require__.r(__webpack_exports__);
       box3.length = 0;
       box4.length = 0;
       checkedWords.value.forEach(function (word) {
+        word["corrects"] = 0;
+        word["attempts"] = 0;
+        word["box"] = 1;
         box1.push(word);
       }); //Shuffle array exercises
 
@@ -24473,7 +24476,9 @@ __webpack_require__.r(__webpack_exports__);
         return 0.5 - Math.random();
       });
       console.log(box1);
-      current_exercise.ex = box1[0]; // current_solution.ex = box1[0]["back"];
+      current_exercise.ex = box1[0];
+      console.log("current excercise");
+      console.log(current_exercise.ex); // current_solution.ex = box1[0]["back"];
       // current_phrase.ex = box1[0]["phrase"];
       //Collapse the preferences menu
 
@@ -24676,8 +24681,12 @@ __webpack_require__.r(__webpack_exports__);
             moveFirstElementFromBox3ToBox4(box3, box4); //No more words left to study
 
             if (box1.length + box2.length + box3.length == 0) {
-              console.log("All words known!");
-              confetti.value = true; // console.log(box4.length);
+              if (audio_on.value) {
+                var audio = new Audio('../../applause.mp3');
+                audio.play();
+              }
+
+              confetti.value = true;
             }
           }
         } //end of else 2
@@ -24788,7 +24797,6 @@ __webpack_require__.r(__webpack_exports__);
 
     var __returned__ = {
       props: props,
-      phrases: phrases,
       title: title,
       voc: voc,
       checkedWords: checkedWords,
@@ -29755,7 +29763,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "bg-gray-100 dark:bg-gray-900"
+  "class": "bg-gray-100 dark:bg-gray-900 h-screen"
 };
 var _hoisted_2 = {
   key: 0,
@@ -29864,7 +29872,7 @@ var _hoisted_30 = {
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
-    title: "Lees Latijn in cola"
+    title: "Voc. oefenen"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [$props.canLogin ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [_ctx.$page.props.user ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Link"], {
     key: 0,
     href: _ctx.route('dashboard'),
