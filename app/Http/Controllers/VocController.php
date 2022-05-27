@@ -108,7 +108,7 @@ class VocController extends Controller
 
                 //Add the complete word to check different meanings and stamtijden when profound excercise
                 if($layout == "profound"){
-                    $o->word_complete = $word;;
+                    $o->word_complete = $word;
                 }
                 // array_push($voc_back, $vocword_back);
 

@@ -65,6 +65,8 @@ const box3To4 = ref(false);
 const box2To1 = ref(false);
 const box3To2 = ref(false);
 
+const wordinfo1CorrectExists = ref(false);
+
 function toggleShowPreferences(event){
     this.show_preferences = !this.show_preferences;
 }
@@ -92,6 +94,13 @@ function start(event){
   current_exercise.ex = box1[0];
   console.log("current excercise");
   console.log(current_exercise.ex);
+  console.log(current_exercise.ex['word_complete']['wordinfo1']);
+  if(current_exercise.ex['word_complete']['wordinfo1'] != null){
+    wordinfo1CorrectExists.value = true;
+  }
+  else{
+    wordinfo1CorrectExists.value = false;
+  }
   // current_solution.ex = box1[0]["back"];
   // current_phrase.ex = box1[0]["phrase"];
   //Collapse the preferences menu
@@ -405,6 +414,10 @@ function shuffle(array) {
   return array;
 }
 
+function evaluate(){
+
+}
+
 </script>
 
 <template>
@@ -492,9 +505,15 @@ function shuffle(array) {
         {{current_exercise.ex["back"]}}
       </div>
 
-      <div v-if="show_solution"  id="evaluation" class="flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
-        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-1  animate-bounce" @click="correctAnswered">Ik wist het!</button>
-        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-1 animate-bounce" @click="wrongAnswered" >Ik wist het niet ...</button>
+
+      <div>{{current_exercise.ex["word"]}}</div>
+      <form>
+      <input v-if="wordinfo1CorrectExists" type="text" id="wordinfo1Answer" v-model="wordinfo1Answer" />
+      </form>
+
+
+      <div  id="evaluation" class="flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
+        <button class="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-1" @click="evaluate">Controleer!</button>
       </div>
 
 
