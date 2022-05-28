@@ -65,7 +65,23 @@ const box3To4 = ref(false);
 const box2To1 = ref(false);
 const box3To2 = ref(false);
 
-const wordinfo1CorrectExists = ref(false);
+const wordinfo1CorrectExists = computed(() => {
+    return (current_exercise.ex['word_complete'] !== undefined && current_exercise.ex['word_complete']['wordinfo1'] != null );
+});
+const wordinfo2CorrectExists = computed(() => {
+    return (current_exercise.ex['word_complete'] !== undefined && current_exercise.ex['word_complete']['wordinfo2'] != null );
+});
+const wordinfo3CorrectExists = computed(() => {
+    return (current_exercise.ex['word_complete'] !== undefined && current_exercise.ex['word_complete']['wordinfo3'] != null );
+});
+const wordinfo4CorrectExists = computed(() => {
+    return (current_exercise.ex['word_complete'] !== undefined && current_exercise.ex['word_complete']['wordinfo4'] != null );
+});
+
+
+// const wordinfo1Size = computed(() => {
+//     return current_exercise.ex['word']['wordinfo1'].length;
+// });
 
 function toggleShowPreferences(event){
     this.show_preferences = !this.show_preferences;
@@ -95,12 +111,12 @@ function start(event){
   console.log("current excercise");
   console.log(current_exercise.ex);
   console.log(current_exercise.ex['word_complete']['wordinfo1']);
-  if(current_exercise.ex['word_complete']['wordinfo1'] != null){
-    wordinfo1CorrectExists.value = true;
-  }
-  else{
-    wordinfo1CorrectExists.value = false;
-  }
+  // if(current_exercise.ex['word_complete']['wordinfo1'] != null){
+  //   wordinfo1CorrectExists.value = true;
+  // }
+  // else{
+  //   wordinfo1CorrectExists.value = false;
+  // }
   // current_solution.ex = box1[0]["back"];
   // current_phrase.ex = box1[0]["phrase"];
   //Collapse the preferences menu
@@ -505,11 +521,35 @@ function evaluate(){
         {{current_exercise.ex["back"]}}
       </div>
 
+      <div class="flex justify-center bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
+        <form>
+          <div>{{current_exercise.ex["word"]}}</div>
+          
+          <div class="mb-2 mr-1 mt-1 relative">  
+            <input v-if="wordinfo1CorrectExists" type="text" id="wordinfo1Answer" v-model="wordinfo1Answer" />
+            <span v-if="wordinfo2CorrectExists" class="absolute bottom-0 right-1 ">,</span>
+            <span v-if="!wordinfo2CorrectExists" class="absolute bottom-0 right-1 ">:</span>
+          </div>
 
-      <div>{{current_exercise.ex["word"]}}</div>
-      <form>
-      <input v-if="wordinfo1CorrectExists" type="text" id="wordinfo1Answer" v-model="wordinfo1Answer" />
-      </form>
+          <div class="mb-2 mr-1 mt-1 relative">  
+            <input v-if="wordinfo2CorrectExists" type="text" id="wordinfo2Answer" v-model="wordinfo2Answer" />
+            <span v-if="wordinfo3CorrectExists" class="absolute bottom-0 right-1 ">,</span>
+            <span v-if="wordinfo2CorrectExists && !wordinfo3CorrectExists" class="absolute bottom-0 right-1 ">:</span>
+          </div>
+          
+          <div class="mb-2 mr-1 mt-1 relative">  
+            <input v-if="wordinfo3CorrectExists" type="text" id="wordinfo3Answer" v-model="wordinfo3Answer" />
+            <span v-if="wordinfo4CorrectExists" class="absolute bottom-0 right-1 ">,</span>
+            <span v-if="wordinfo3CorrectExists && !wordinfo4CorrectExists" class="absolute bottom-0 right-1 ">:</span>
+          </div>
+
+          <div class="mb-2 mr-1 mt-1 relative">
+            <input v-if="wordinfo4CorrectExists" type="text" id="wordinfo4Answer" v-model="wordinfo4Answer" />
+            <span v-if="wordinfo4CorrectExists">:</span>
+          </div>
+          <input type="text" id="meaningAnswer" v-model="meaningAnswer" />
+        </form>
+      </div>
 
 
       <div  id="evaluation" class="flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">

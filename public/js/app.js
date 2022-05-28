@@ -24450,7 +24450,20 @@ __webpack_require__.r(__webpack_exports__);
     var box3To4 = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
     var box2To1 = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
     var box3To2 = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
-    var wordinfo1CorrectExists = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var wordinfo1CorrectExists = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
+      return current_exercise.ex['word_complete'] !== undefined && current_exercise.ex['word_complete']['wordinfo1'] != null;
+    });
+    var wordinfo2CorrectExists = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
+      return current_exercise.ex['word_complete'] !== undefined && current_exercise.ex['word_complete']['wordinfo2'] != null;
+    });
+    var wordinfo3CorrectExists = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
+      return current_exercise.ex['word_complete'] !== undefined && current_exercise.ex['word_complete']['wordinfo3'] != null;
+    });
+    var wordinfo4CorrectExists = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
+      return current_exercise.ex['word_complete'] !== undefined && current_exercise.ex['word_complete']['wordinfo4'] != null;
+    }); // const wordinfo1Size = computed(() => {
+    //     return current_exercise.ex['word']['wordinfo1'].length;
+    // });
 
     function toggleShowPreferences(event) {
       this.show_preferences = !this.show_preferences;
@@ -24480,16 +24493,15 @@ __webpack_require__.r(__webpack_exports__);
       current_exercise.ex = box1[0];
       console.log("current excercise");
       console.log(current_exercise.ex);
-      console.log(current_exercise.ex['word_complete']['wordinfo1']);
-
-      if (current_exercise.ex['word_complete']['wordinfo1'] != null) {
-        wordinfo1CorrectExists.value = true;
-      } else {
-        wordinfo1CorrectExists.value = false;
-      } // current_solution.ex = box1[0]["back"];
+      console.log(current_exercise.ex['word_complete']['wordinfo1']); // if(current_exercise.ex['word_complete']['wordinfo1'] != null){
+      //   wordinfo1CorrectExists.value = true;
+      // }
+      // else{
+      //   wordinfo1CorrectExists.value = false;
+      // }
+      // current_solution.ex = box1[0]["back"];
       // current_phrase.ex = box1[0]["phrase"];
       //Collapse the preferences menu
-
 
       show_preferences.value = false;
       show_solution.value = false; // count = 0;
@@ -24844,6 +24856,9 @@ __webpack_require__.r(__webpack_exports__);
       box2To1: box2To1,
       box3To2: box3To2,
       wordinfo1CorrectExists: wordinfo1CorrectExists,
+      wordinfo2CorrectExists: wordinfo2CorrectExists,
+      wordinfo3CorrectExists: wordinfo3CorrectExists,
+      wordinfo4CorrectExists: wordinfo4CorrectExists,
       toggleShowPreferences: toggleShowPreferences,
       toggleShowSolution: toggleShowSolution,
       start: start,
@@ -30339,59 +30354,101 @@ var _hoisted_16 = {
   "class": "flex justify-center text-sm"
 };
 var _hoisted_17 = {
-  "class": "grid grid-cols-12"
+  "class": "flex justify-center bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold"
 };
 var _hoisted_18 = {
-  "class": "grid grid-cols-12 bg-yellow-400 rounded-full pt-2 pb-2 ml-1 mr-1 mt-4 col-start-1 col-end-12 md:col-start-5 md:col-end-9"
+  "class": "mb-2 mr-1 mt-1 relative"
 };
 var _hoisted_19 = {
-  "class": "grid grid-cols-12 pt-2 pb-2 ml-1 mr-1 mt-4"
+  key: 1,
+  "class": "absolute bottom-0 right-1"
 };
 var _hoisted_20 = {
-  "class": "grid grid-cols-7 gap-1 col-start-1 col-span-12 md:col-start-3 md:col-end-10"
+  key: 2,
+  "class": "absolute bottom-0 right-1"
 };
 var _hoisted_21 = {
-  "class": "bg-amber-500 text-zinc-100 border-4 border-red-500 border-t-0 text-center px-4 py-6 font-bold"
+  "class": "mb-2 mr-1 mt-1 relative"
 };
 var _hoisted_22 = {
-  key: 0,
-  "class": "text-center text-blue-500 text-3xl"
+  key: 1,
+  "class": "absolute bottom-0 right-1"
 };
 var _hoisted_23 = {
-  key: 0,
-  "class": "text-green-500 text-center text-3xl animate-ping font-bold"
+  key: 2,
+  "class": "absolute bottom-0 right-1"
 };
 var _hoisted_24 = {
-  key: 1,
-  "class": "text-red-500 text-center text-3xl animate-ping font-bold"
+  "class": "mb-2 mr-1 mt-1 relative"
 };
 var _hoisted_25 = {
-  "class": "bg-amber-500 text-zinc-100 border-4 border-orange-500 border-t-0 text-center px-4 py-6 font-bold"
+  key: 1,
+  "class": "absolute bottom-0 right-1"
 };
 var _hoisted_26 = {
+  key: 2,
+  "class": "absolute bottom-0 right-1"
+};
+var _hoisted_27 = {
+  "class": "mb-2 mr-1 mt-1 relative"
+};
+var _hoisted_28 = {
+  key: 1
+};
+var _hoisted_29 = {
+  "class": "grid grid-cols-12"
+};
+var _hoisted_30 = {
+  "class": "grid grid-cols-12 bg-yellow-400 rounded-full pt-2 pb-2 ml-1 mr-1 mt-4 col-start-1 col-end-12 md:col-start-5 md:col-end-9"
+};
+var _hoisted_31 = {
+  "class": "grid grid-cols-12 pt-2 pb-2 ml-1 mr-1 mt-4"
+};
+var _hoisted_32 = {
+  "class": "grid grid-cols-7 gap-1 col-start-1 col-span-12 md:col-start-3 md:col-end-10"
+};
+var _hoisted_33 = {
+  "class": "bg-amber-500 text-zinc-100 border-4 border-red-500 border-t-0 text-center px-4 py-6 font-bold"
+};
+var _hoisted_34 = {
   key: 0,
   "class": "text-center text-blue-500 text-3xl"
 };
-var _hoisted_27 = {
+var _hoisted_35 = {
   key: 0,
   "class": "text-green-500 text-center text-3xl animate-ping font-bold"
 };
-var _hoisted_28 = {
+var _hoisted_36 = {
   key: 1,
   "class": "text-red-500 text-center text-3xl animate-ping font-bold"
 };
-var _hoisted_29 = {
-  "class": "bg-amber-500 text-zinc-100 border-4 border-yellow-500 border-t-0 text-center px-4 py-6 font-bold"
+var _hoisted_37 = {
+  "class": "bg-amber-500 text-zinc-100 border-4 border-orange-500 border-t-0 text-center px-4 py-6 font-bold"
 };
-var _hoisted_30 = {
+var _hoisted_38 = {
   key: 0,
   "class": "text-center text-blue-500 text-3xl"
 };
-var _hoisted_31 = {
+var _hoisted_39 = {
   key: 0,
   "class": "text-green-500 text-center text-3xl animate-ping font-bold"
 };
-var _hoisted_32 = {
+var _hoisted_40 = {
+  key: 1,
+  "class": "text-red-500 text-center text-3xl animate-ping font-bold"
+};
+var _hoisted_41 = {
+  "class": "bg-amber-500 text-zinc-100 border-4 border-yellow-500 border-t-0 text-center px-4 py-6 font-bold"
+};
+var _hoisted_42 = {
+  key: 0,
+  "class": "text-center text-blue-500 text-3xl"
+};
+var _hoisted_43 = {
+  key: 0,
+  "class": "text-green-500 text-center text-3xl animate-ping font-bold"
+};
+var _hoisted_44 = {
   "class": "bg-amber-500 text-zinc-100 border-4 border-green-500 border-t-0 text-center px-4 py-6 font-bold"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -30522,9 +30579,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "flex justify-center bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold"
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex["back"]), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex["word"]), 1
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex["word"]), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [$setup.wordinfo1CorrectExists ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [$setup.wordinfo1CorrectExists ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
     key: 0,
     type: "text",
     id: "wordinfo1Answer",
@@ -30533,13 +30590,48 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 512
   /* NEED_PATCH */
-  )), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.wordinfo1Answer]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  )), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.wordinfo1Answer]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.wordinfo2CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_19, ",")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.wordinfo2CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_20, ":")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [$setup.wordinfo2CorrectExists ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
+    key: 0,
+    type: "text",
+    id: "wordinfo2Answer",
+    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+      return _ctx.wordinfo2Answer = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  )), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.wordinfo2Answer]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.wordinfo3CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_22, ",")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.wordinfo2CorrectExists && !$setup.wordinfo3CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_23, ":")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [$setup.wordinfo3CorrectExists ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
+    key: 0,
+    type: "text",
+    id: "wordinfo3Answer",
+    "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+      return _ctx.wordinfo3Answer = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  )), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.wordinfo3Answer]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.wordinfo4CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_25, ",")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.wordinfo3CorrectExists && !$setup.wordinfo4CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_26, ":")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [$setup.wordinfo4CorrectExists ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
+    key: 0,
+    type: "text",
+    id: "wordinfo4Answer",
+    "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
+      return _ctx.wordinfo4Answer = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  )), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.wordinfo4Answer]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.wordinfo4CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_28, ":")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "text",
+    id: "meaningAnswer",
+    "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
+      return _ctx.meaningAnswer = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.meaningAnswer]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     id: "evaluation",
     "class": "flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-1",
     onClick: $setup.evaluate
-  }, "Controleer!")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  }, "Controleer!")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       'col-span-1': $setup.isOneTwelfth,
       'col-span-2': $setup.isTwoTwelfth,
@@ -30556,13 +30648,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, "bg-yellow-200 rounded-full animate-pulse ml-1 mr-1 text-center font-bold text-2xl"])
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.progress_percentage.val) + "%", 3
   /* TEXT, CLASS */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box1.length), 1
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box1.length), 1
   /* TEXT */
-  ), $setup.current_exercise.ex['box'] == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_22, "*")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.box1To2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, "→")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.box2To1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_24, "←")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box2.length), 1
+  ), $setup.current_exercise.ex['box'] == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_34, "*")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.box1To2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_35, "→")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.box2To1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_36, "←")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box2.length), 1
   /* TEXT */
-  ), $setup.current_exercise.ex['box'] == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_26, "*")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.box2To3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_27, "→")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.box3To2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_28, "←")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box3.length), 1
+  ), $setup.current_exercise.ex['box'] == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_38, "*")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.box2To3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_39, "→")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.box3To2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_40, "←")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box3.length), 1
   /* TEXT */
-  ), $setup.current_exercise.ex['box'] == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_30, "*")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.box3To4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_31, "→")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box4.length), 1
+  ), $setup.current_exercise.ex['box'] == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_42, "*")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.box3To4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_43, "→")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box4.length), 1
   /* TEXT */
   )])])]), $setup.confetti ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ConfettiExplosion"], {
     key: 4,
