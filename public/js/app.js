@@ -24494,12 +24494,23 @@ __webpack_require__.r(__webpack_exports__);
     var wordinfo4IsWrong = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       return wordinfo4CorrectExists && current_exercise.ex['word_complete']["wordinfo4"] != wordinfo4Answer.value && controlPressed.value;
     });
-    var meaningIsCorrect = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
-      return wordmeaningCorrectExists && (current_exercise.ex['word_complete']["meaning1"] == meaningAnswer.value || current_exercise.ex['word_complete']["meaning2"] == meaningAnswer.value || current_exercise.ex['word_complete']["meaning3"] == meaningAnswer.value || current_exercise.ex['word_complete']["meaning4"] == meaningAnswer.value) && controlPressed.value;
-    });
-    var meaningIsWrong = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
-      return wordmeaningCorrectExists && current_exercise.ex['word_complete']["meaning1"] != meaningAnswer.value && current_exercise.ex['word_complete']["meaning2"] != meaningAnswer.value && current_exercise.ex['word_complete']["meaning3"] != meaningAnswer.value && current_exercise.ex['word_complete']["meaning4"] != meaningAnswer.value && controlPressed.value;
-    });
+    var meaningIsCorrect = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var meaningIsWrong = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false); //No idea why this is not working like wordinfo1IsCorrect etc...
+    // const meaningIsCorrect = computed(() => {
+    //     return (wordmeaningCorrectExists && (current_exercise.ex['word_complete']["meaning1"] == meaningAnswer.value
+    //       || current_exercise.ex['word_complete']["meaning2"] == meaningAnswer.value 
+    //       || current_exercise.ex['word_complete']["meaning3"] == meaningAnswer.value 
+    //       || current_exercise.ex['word_complete']["meaning4"] == meaningAnswer.value) 
+    //       && controlPressed.value);
+    // });
+    //No idea why this is not working like wordinfo1IsWrong etc...
+    // const meaningIsWrong = computed(() => {
+    //     return (wordmeaningCorrectExists && (current_exercise.ex['word_complete']["meaning1"] != meaningAnswer.value
+    //       && current_exercise.ex['word_complete']["meaning2"] != meaningAnswer.value 
+    //       && current_exercise.ex['word_complete']["meaning3"] != meaningAnswer.value 
+    //       && current_exercise.ex['word_complete']["meaning4"] != meaningAnswer.value) 
+    //       && controlPressed.value);
+    // });
 
     function toggleShowPreferences(event) {
       this.show_preferences = !this.show_preferences;
@@ -24855,6 +24866,41 @@ __webpack_require__.r(__webpack_exports__);
     function evaluate() {
       controlPressed.value = true;
       show_solution.value = true;
+      checkIfMeaningIsCorrectOrWrong();
+      console.log(wordinfo1Answer.value);
+      console.log(wordinfo2Answer.value);
+      console.log(wordinfo3Answer.value);
+      console.log(wordinfo4Answer.value);
+      console.log(current_exercise.ex['word_complete']);
+      console.log(wordinfo2IsCorrect.value);
+      console.log(wordinfo2IsWrong.value);
+    }
+
+    function checkIfMeaningIsCorrectOrWrong() {
+      var arr_meaning = ["meaning1", "meaning2", "meaning3", "meaning4"];
+      var i = 0;
+
+      for (i = 0; i < arr_meaning.length; i++) {
+        console.log(current_exercise.ex['word_complete'][arr_meaning[i]]);
+
+        if (wordmeaningCorrectExists) {
+          if (current_exercise.ex['word_complete'][arr_meaning[i]] == meaningAnswer.value) {
+            meaningIsCorrect.value = true;
+          }
+
+          if (current_exercise.ex['word_complete'][arr_meaning[i]] !== null && current_exercise.ex['word_complete'][arr_meaning[i]].substring(3) == meaningAnswer.value) {
+            meaningIsCorrect.value = true;
+          }
+
+          if (current_exercise.ex['word_complete'][arr_meaning[i]] !== null && current_exercise.ex['word_complete'][arr_meaning[i]].substring(4) == meaningAnswer.value) {
+            meaningIsCorrect.value = true;
+          }
+        }
+      }
+
+      if (!meaningIsCorrect.value) {
+        meaningIsWrong.value = true;
+      }
     }
 
     var __returned__ = {
@@ -24936,6 +24982,7 @@ __webpack_require__.r(__webpack_exports__);
       setProgress: setProgress,
       shuffle: shuffle,
       evaluate: evaluate,
+      checkIfMeaningIsCorrectOrWrong: checkIfMeaningIsCorrectOrWrong,
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Head,
       Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Link,
       reactive: vue__WEBPACK_IMPORTED_MODULE_1__.reactive,
@@ -30666,7 +30713,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.wordinfo2Answer = $event;
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      'border-green-500 : wordInfo2IsCorrect, border-4 : wordInfo2IsCorrect, text-green-500': _ctx.wordInfo2IsCorrect,
+      'border-green-500 : wordinfo2IsCorrect, border-4 : wordinfo2IsCorrect, text-green-500': $setup.wordinfo2IsCorrect,
       'border-red-500 : wordinfo2IsWrong, border-4 : wordinfo2IsWrong, text-red-500': $setup.wordinfo2IsWrong
     }),
     disabled: $setup.controlPressed
@@ -30680,7 +30727,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.wordinfo3Answer = $event;
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      'border-green-500 : wordInfo3IsCorrect, border-4 : wordInfo3IsCorrect, text-green-500': _ctx.wordInfo3IsCorrect,
+      'border-green-500 : wordinfo3IsCorrect, border-4 : wordinfo3IsCorrect, text-green-500': $setup.wordinfo3IsCorrect,
       'border-red-500 : wordinfo3IsWrong, border-4 : wordinfo3IsWrong, text-red-500': $setup.wordinfo3IsWrong
     }),
     disabled: $setup.controlPressed

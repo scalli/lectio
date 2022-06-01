@@ -114,21 +114,26 @@ const wordinfo4IsWrong = computed(() => {
     return (wordinfo4CorrectExists && current_exercise.ex['word_complete']["wordinfo4"] != wordinfo4Answer.value&& controlPressed.value);
 });
 
-const meaningIsCorrect = computed(() => {
-    return (wordmeaningCorrectExists && (current_exercise.ex['word_complete']["meaning1"] == meaningAnswer.value
-      || current_exercise.ex['word_complete']["meaning2"] == meaningAnswer.value 
-      || current_exercise.ex['word_complete']["meaning3"] == meaningAnswer.value 
-      || current_exercise.ex['word_complete']["meaning4"] == meaningAnswer.value) 
-      && controlPressed.value);
-});
+const meaningIsCorrect = ref(false);
+const meaningIsWrong = ref(false);
 
-const meaningIsWrong = computed(() => {
-    return (wordmeaningCorrectExists && (current_exercise.ex['word_complete']["meaning1"] != meaningAnswer.value
-      && current_exercise.ex['word_complete']["meaning2"] != meaningAnswer.value 
-      && current_exercise.ex['word_complete']["meaning3"] != meaningAnswer.value 
-      && current_exercise.ex['word_complete']["meaning4"] != meaningAnswer.value) 
-      && controlPressed.value);
-});
+//No idea why this is not working like wordinfo1IsCorrect etc...
+// const meaningIsCorrect = computed(() => {
+//     return (wordmeaningCorrectExists && (current_exercise.ex['word_complete']["meaning1"] == meaningAnswer.value
+//       || current_exercise.ex['word_complete']["meaning2"] == meaningAnswer.value 
+//       || current_exercise.ex['word_complete']["meaning3"] == meaningAnswer.value 
+//       || current_exercise.ex['word_complete']["meaning4"] == meaningAnswer.value) 
+//       && controlPressed.value);
+// });
+
+//No idea why this is not working like wordinfo1IsWrong etc...
+// const meaningIsWrong = computed(() => {
+//     return (wordmeaningCorrectExists && (current_exercise.ex['word_complete']["meaning1"] != meaningAnswer.value
+//       && current_exercise.ex['word_complete']["meaning2"] != meaningAnswer.value 
+//       && current_exercise.ex['word_complete']["meaning3"] != meaningAnswer.value 
+//       && current_exercise.ex['word_complete']["meaning4"] != meaningAnswer.value) 
+//       && controlPressed.value);
+// });
 
 function toggleShowPreferences(event){
     this.show_preferences = !this.show_preferences;
@@ -481,6 +486,41 @@ function evaluate(){
 
     controlPressed.value = true;
     show_solution.value = true;
+
+    checkIfMeaningIsCorrectOrWrong();
+
+    console.log(wordinfo1Answer.value);
+    console.log(wordinfo2Answer.value);
+    console.log(wordinfo3Answer.value);
+    console.log(wordinfo4Answer.value);
+    console.log(current_exercise.ex['word_complete']);
+    console.log(wordinfo2IsCorrect.value);
+    console.log(wordinfo2IsWrong.value);
+    
+}
+
+function checkIfMeaningIsCorrectOrWrong(){
+  var arr_meaning = ["meaning1", "meaning2", "meaning3", "meaning4"];
+  var i = 0;
+
+  for(i=0; i<arr_meaning.length;i++){
+      console.log(current_exercise.ex['word_complete'][arr_meaning[i]]);
+      if(wordmeaningCorrectExists){
+        if((current_exercise.ex['word_complete'][arr_meaning[i]] == meaningAnswer.value)){
+          meaningIsCorrect.value = true;
+        }
+        if((current_exercise.ex['word_complete'][arr_meaning[i]] !== null) && (current_exercise.ex['word_complete'][arr_meaning[i]].substring(3) == meaningAnswer.value)){
+          meaningIsCorrect.value = true;
+        }
+        if((current_exercise.ex['word_complete'][arr_meaning[i]] !== null) && (current_exercise.ex['word_complete'][arr_meaning[i]].substring(4) == meaningAnswer.value)){
+          meaningIsCorrect.value = true;
+        }
+      }
+  }
+
+  if(!meaningIsCorrect.value){
+    meaningIsWrong.value = true;
+  }
 }
 
 </script>
@@ -583,7 +623,7 @@ function evaluate(){
 
           <div class="mb-2 mr-1 mt-1 relative">  
             <input v-if="wordinfo2CorrectExists" type="text" id="wordinfo2Answer" v-model="wordinfo2Answer"
-            :class="{ 'border-green-500 : wordInfo2IsCorrect, border-4 : wordInfo2IsCorrect, text-green-500': wordInfo2IsCorrect, 'border-red-500 : wordinfo2IsWrong, border-4 : wordinfo2IsWrong, text-red-500': wordinfo2IsWrong }" 
+            :class="{ 'border-green-500 : wordinfo2IsCorrect, border-4 : wordinfo2IsCorrect, text-green-500': wordinfo2IsCorrect, 'border-red-500 : wordinfo2IsWrong, border-4 : wordinfo2IsWrong, text-red-500': wordinfo2IsWrong }" 
               :disabled="controlPressed"/>
             <span v-if="wordinfo3CorrectExists" class="absolute bottom-0 right-1 ">,</span>
             <span v-if="wordinfo2CorrectExists && !wordinfo3CorrectExists" class="absolute bottom-0 right-1 ">:</span>
@@ -591,7 +631,7 @@ function evaluate(){
           
           <div class="mb-2 mr-1 mt-1 relative">  
             <input v-if="wordinfo3CorrectExists" type="text" id="wordinfo3Answer" v-model="wordinfo3Answer" 
-            :class="{ 'border-green-500 : wordInfo3IsCorrect, border-4 : wordInfo3IsCorrect, text-green-500': wordInfo3IsCorrect, 'border-red-500 : wordinfo3IsWrong, border-4 : wordinfo3IsWrong, text-red-500': wordinfo3IsWrong }"
+            :class="{ 'border-green-500 : wordinfo3IsCorrect, border-4 : wordinfo3IsCorrect, text-green-500': wordinfo3IsCorrect, 'border-red-500 : wordinfo3IsWrong, border-4 : wordinfo3IsWrong, text-red-500': wordinfo3IsWrong }"
               :disabled="controlPressed"/>
             <span v-if="wordinfo4CorrectExists" class="absolute bottom-0 right-1 ">,</span>
             <span v-if="wordinfo3CorrectExists && !wordinfo4CorrectExists" class="absolute bottom-0 right-1 ">:</span>
