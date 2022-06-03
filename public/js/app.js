@@ -24469,48 +24469,19 @@ __webpack_require__.r(__webpack_exports__);
     var wordinfo2Answer = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
     var wordinfo3Answer = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
     var wordinfo4Answer = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
-    var wordinfo1IsCorrect = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
-      return wordinfo1CorrectExists && current_exercise.ex['word_complete']["wordinfo1"] == wordinfo1Answer.value && controlPressed.value;
-    });
-    var wordinfo2IsCorrect = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
-      return wordinfo2CorrectExists && current_exercise.ex['word_complete']["wordinfo2"] == wordinfo2Answer.value && controlPressed.value;
-    });
-    var wordinfo3IsCorrect = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
-      return wordinfo3CorrectExists && current_exercise.ex['word_complete']["wordinfo3"] == wordinfo3Answer.value && controlPressed.value;
-    });
-    var wordinfo4IsCorrect = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
-      return wordinfo4CorrectExists && current_exercise.ex['word_complete']["wordinfo4"] == wordinfo4Answer.value && controlPressed.value;
-    });
-    var controlPressed = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
-    var wordinfo1IsWrong = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
-      return wordinfo1CorrectExists && current_exercise.ex['word_complete']["wordinfo1"] != wordinfo1Answer.value && controlPressed.value;
-    });
-    var wordinfo2IsWrong = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
-      return wordinfo2CorrectExists && current_exercise.ex['word_complete']["wordinfo2"] != wordinfo2Answer.value && controlPressed.value;
-    });
-    var wordinfo3IsWrong = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
-      return wordinfo3CorrectExists && current_exercise.ex['word_complete']["wordinfo3"] != wordinfo3Answer.value && controlPressed.value;
-    });
-    var wordinfo4IsWrong = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
-      return wordinfo4CorrectExists && current_exercise.ex['word_complete']["wordinfo4"] != wordinfo4Answer.value && controlPressed.value;
-    });
+    var meaningAnswer = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
+    var wordinfo1IsCorrect = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var wordinfo1IsWrong = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var wordinfo2IsCorrect = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var wordinfo2IsWrong = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var wordinfo3IsCorrect = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var wordinfo3IsWrong = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var wordinfo4IsCorrect = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var wordinfo4IsWrong = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
     var meaningIsCorrect = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
-    var meaningIsWrong = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false); //No idea why this is not working like wordinfo1IsCorrect etc...
-    // const meaningIsCorrect = computed(() => {
-    //     return (wordmeaningCorrectExists && (current_exercise.ex['word_complete']["meaning1"] == meaningAnswer.value
-    //       || current_exercise.ex['word_complete']["meaning2"] == meaningAnswer.value 
-    //       || current_exercise.ex['word_complete']["meaning3"] == meaningAnswer.value 
-    //       || current_exercise.ex['word_complete']["meaning4"] == meaningAnswer.value) 
-    //       && controlPressed.value);
-    // });
-    //No idea why this is not working like wordinfo1IsWrong etc...
-    // const meaningIsWrong = computed(() => {
-    //     return (wordmeaningCorrectExists && (current_exercise.ex['word_complete']["meaning1"] != meaningAnswer.value
-    //       && current_exercise.ex['word_complete']["meaning2"] != meaningAnswer.value 
-    //       && current_exercise.ex['word_complete']["meaning3"] != meaningAnswer.value 
-    //       && current_exercise.ex['word_complete']["meaning4"] != meaningAnswer.value) 
-    //       && controlPressed.value);
-    // });
+    var meaningIsWrong = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var controlPressed = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var newPressed = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(true);
 
     function toggleShowPreferences(event) {
       this.show_preferences = !this.show_preferences;
@@ -24580,11 +24551,6 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function selectAll(event) {
-      // var selected = [];
-      // console.log(voc);
-      // voc.forEach(function (word) {
-      //     selected.push(word);
-      // });
       checkedWords.value = voc;
       console.log(checkedWords);
     }
@@ -24663,7 +24629,7 @@ __webpack_require__.r(__webpack_exports__);
       var rand = Math.floor(Math.random() * 10);
       console.log(rand);
 
-      if (rand > 6) {
+      if (rand > 2) {
         var array = [box1.length, box2.length, box3.length];
         var highestValue = array.indexOf(Math.max.apply(Math, array)); // var highestValue = Math.max(...array.map(o => o.y));
 
@@ -24725,12 +24691,11 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function correctAnswered() {
-      if (audio_on.value) {
-        // var audio = new Audio('https://www.myinstants.com/media/sounds/ding-sound-effect_1.mp3');
-        var audio = new Audio('../../correct.mp3');
-        audio.play();
-      }
-
+      // if(audio_on.value){
+      //   // var audio = new Audio('https://www.myinstants.com/media/sounds/ding-sound-effect_1.mp3');
+      //   var audio = new Audio('../../correct.mp3');
+      //   audio.play();
+      // }
       toggleShowSolution();
       clearArrows();
 
@@ -24768,11 +24733,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
     function wrongAnswered() {
-      if (audio_on.value) {
-        var audio = new Audio('../../wrong.wav');
-        audio.play();
-      }
-
+      // if(audio_on.value){
+      //  var audio = new Audio('../../wrong.wav');
+      //  audio.play();
+      // } 
       toggleShowSolution();
       clearArrows();
 
@@ -24863,20 +24827,89 @@ __webpack_require__.r(__webpack_exports__);
       return array;
     }
 
-    function evaluate() {
-      controlPressed.value = true;
-      show_solution.value = true;
-      checkIfMeaningIsCorrectOrWrong();
-      console.log(wordinfo1Answer.value);
-      console.log(wordinfo2Answer.value);
-      console.log(wordinfo3Answer.value);
-      console.log(wordinfo4Answer.value);
-      console.log(current_exercise.ex['word_complete']);
-      console.log(wordinfo2IsCorrect.value);
-      console.log(wordinfo2IsWrong.value);
+    function newExercise() {
+      controlPressed.value = false;
+      newPressed.value = true;
+
+      if ((wordinfo1IsCorrect.value || !wordinfo1CorrectExists.value) && (wordinfo2IsCorrect.value || !wordinfo2CorrectExists.value) && (wordinfo3IsCorrect.value || !wordinfo3CorrectExists.value) && (wordinfo4IsCorrect.value || !wordinfo4CorrectExists.value) && meaningIsCorrect.value) {
+        correctAnswered();
+      } else {
+        wrongAnswered();
+      }
+
+      wordinfo1Answer.value = "";
+      wordinfo2Answer.value = "";
+      wordinfo3Answer.value = "";
+      wordinfo4Answer.value = "";
+      meaningAnswer.value = "";
+      wordinfo1IsCorrect.value = false;
+      wordinfo2IsCorrect.value = false;
+      wordinfo3IsCorrect.value = false;
+      wordinfo4IsCorrect.value = false;
+      wordinfo1IsWrong.value = false;
+      wordinfo2IsWrong.value = false;
+      wordinfo3IsWrong.value = false;
+      wordinfo4IsWrong.value = false;
+      meaningIsCorrect.value = false;
+      meaningIsWrong.value = false;
     }
 
-    function checkIfMeaningIsCorrectOrWrong() {
+    function evaluate() {
+      controlPressed.value = true;
+      newPressed.value = false;
+      show_solution.value = true;
+      checkIfMeaningIsCorrect();
+      checkIfWordinfoIsCorrect();
+
+      if ((wordinfo1IsCorrect.value || !wordinfo1CorrectExists.value) && (wordinfo2IsCorrect.value || !wordinfo2CorrectExists.value) && (wordinfo3IsCorrect.value || !wordinfo3CorrectExists.value) && (wordinfo4IsCorrect.value || !wordinfo4CorrectExists.value) && meaningIsCorrect.value) {
+        playCorrectSound();
+      } else {
+        playWrongSoud();
+      }
+    }
+
+    function playCorrectSound() {
+      if (audio_on.value) {
+        // var audio = new Audio('https://www.myinstants.com/media/sounds/ding-sound-effect_1.mp3');
+        var audio = new Audio('../../correct.mp3');
+        audio.play();
+      }
+    }
+
+    function playWrongSoud() {
+      if (audio_on.value) {
+        var audio = new Audio('../../wrong.wav');
+        audio.play();
+      }
+    }
+
+    function checkIfWordinfoIsCorrect() {
+      if (wordinfo1CorrectExists && current_exercise.ex['word_complete']["wordinfo1"] == wordinfo1Answer.value) {
+        wordinfo1IsCorrect.value = true;
+      } else {
+        wordinfo1IsWrong.value = true;
+      }
+
+      if (wordinfo2CorrectExists && current_exercise.ex['word_complete']["wordinfo2"] == wordinfo2Answer.value) {
+        wordinfo2IsCorrect.value = true;
+      } else {
+        wordinfo2IsWrong.value = true;
+      }
+
+      if (wordinfo3CorrectExists && current_exercise.ex['word_complete']["wordinfo3"] == wordinfo3Answer.value) {
+        wordinfo3IsCorrect.value = true;
+      } else {
+        wordinfo3IsWrong.value = true;
+      }
+
+      if (wordinfo4CorrectExists && current_exercise.ex['word_complete']["wordinfo4"] == wordinfo4Answer.value) {
+        wordinfo4IsCorrect.value = true;
+      } else {
+        wordinfo4IsWrong.value = true;
+      }
+    }
+
+    function checkIfMeaningIsCorrect() {
       var arr_meaning = ["meaning1", "meaning2", "meaning3", "meaning4"];
       var i = 0;
 
@@ -24949,17 +24982,19 @@ __webpack_require__.r(__webpack_exports__);
       wordinfo2Answer: wordinfo2Answer,
       wordinfo3Answer: wordinfo3Answer,
       wordinfo4Answer: wordinfo4Answer,
+      meaningAnswer: meaningAnswer,
       wordinfo1IsCorrect: wordinfo1IsCorrect,
-      wordinfo2IsCorrect: wordinfo2IsCorrect,
-      wordinfo3IsCorrect: wordinfo3IsCorrect,
-      wordinfo4IsCorrect: wordinfo4IsCorrect,
-      controlPressed: controlPressed,
       wordinfo1IsWrong: wordinfo1IsWrong,
+      wordinfo2IsCorrect: wordinfo2IsCorrect,
       wordinfo2IsWrong: wordinfo2IsWrong,
+      wordinfo3IsCorrect: wordinfo3IsCorrect,
       wordinfo3IsWrong: wordinfo3IsWrong,
+      wordinfo4IsCorrect: wordinfo4IsCorrect,
       wordinfo4IsWrong: wordinfo4IsWrong,
       meaningIsCorrect: meaningIsCorrect,
       meaningIsWrong: meaningIsWrong,
+      controlPressed: controlPressed,
+      newPressed: newPressed,
       toggleShowPreferences: toggleShowPreferences,
       toggleShowSolution: toggleShowSolution,
       start: start,
@@ -24981,8 +25016,12 @@ __webpack_require__.r(__webpack_exports__);
       wrongAnswered: wrongAnswered,
       setProgress: setProgress,
       shuffle: shuffle,
+      newExercise: newExercise,
       evaluate: evaluate,
-      checkIfMeaningIsCorrectOrWrong: checkIfMeaningIsCorrectOrWrong,
+      playCorrectSound: playCorrectSound,
+      playWrongSoud: playWrongSoud,
+      checkIfWordinfoIsCorrect: checkIfWordinfoIsCorrect,
+      checkIfMeaningIsCorrect: checkIfMeaningIsCorrect,
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Head,
       Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Link,
       reactive: vue__WEBPACK_IMPORTED_MODULE_1__.reactive,
@@ -30449,91 +30488,96 @@ var _hoisted_12 = {
 var _hoisted_13 = ["id", "value"];
 var _hoisted_14 = ["for"];
 var _hoisted_15 = {
-  "class": "flex justify-center"
+  key: 2,
+  id: "currentFront",
+  "class": "bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-3xl mx-auto font-bold"
 };
 var _hoisted_16 = {
+  "class": "flex justify-center"
+};
+var _hoisted_17 = {
   key: 0,
   "class": "flex justify-center text-sm"
 };
-var _hoisted_17 = {
+var _hoisted_18 = {
+  key: 3,
+  id: "currentBack",
   "class": "flex justify-center bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold"
 };
-var _hoisted_18 = {
+var _hoisted_19 = {
+  "class": "flex justify-center bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold"
+};
+var _hoisted_20 = {
   "class": "mb-2 mr-1 mt-1 font-bold relative"
 };
-var _hoisted_19 = ["disabled"];
-var _hoisted_20 = {
-  key: 1,
-  "class": "absolute bottom-0 right-1"
-};
-var _hoisted_21 = {
-  key: 2,
-  "class": "absolute bottom-0 right-1"
-};
+var _hoisted_21 = ["disabled"];
 var _hoisted_22 = {
-  "class": "mb-2 mr-1 mt-1 relative"
+  key: 1,
+  "class": "absolute bottom-0 right-1"
 };
-var _hoisted_23 = ["disabled"];
+var _hoisted_23 = {
+  key: 2,
+  "class": "absolute bottom-0 right-1"
+};
 var _hoisted_24 = {
-  key: 1,
-  "class": "absolute bottom-0 right-1"
+  "class": "mb-2 mr-1 mt-1 relative"
 };
-var _hoisted_25 = {
-  key: 2,
-  "class": "absolute bottom-0 right-1"
-};
+var _hoisted_25 = ["disabled"];
 var _hoisted_26 = {
-  "class": "mb-2 mr-1 mt-1 relative"
-};
-var _hoisted_27 = ["disabled"];
-var _hoisted_28 = {
   key: 1,
   "class": "absolute bottom-0 right-1"
 };
-var _hoisted_29 = {
+var _hoisted_27 = {
   key: 2,
   "class": "absolute bottom-0 right-1"
 };
-var _hoisted_30 = {
+var _hoisted_28 = {
   "class": "mb-2 mr-1 mt-1 relative"
 };
-var _hoisted_31 = ["disabled"];
+var _hoisted_29 = ["disabled"];
+var _hoisted_30 = {
+  key: 1,
+  "class": "absolute bottom-0 right-1"
+};
+var _hoisted_31 = {
+  key: 2,
+  "class": "absolute bottom-0 right-1"
+};
 var _hoisted_32 = {
+  "class": "mb-2 mr-1 mt-1 relative"
+};
+var _hoisted_33 = ["disabled"];
+var _hoisted_34 = {
   key: 1
 };
-var _hoisted_33 = {
+var _hoisted_35 = {
   "class": "mb-2 mr-1 mt-1 relative"
 };
-var _hoisted_34 = ["disabled"];
-var _hoisted_35 = {
-  "class": "grid grid-cols-12"
-};
-var _hoisted_36 = {
-  "class": "grid grid-cols-12 bg-yellow-400 rounded-full pt-2 pb-2 ml-1 mr-1 mt-4 col-start-1 col-end-12 md:col-start-5 md:col-end-9"
-};
+var _hoisted_36 = ["disabled"];
 var _hoisted_37 = {
-  "class": "grid grid-cols-12 pt-2 pb-2 ml-1 mr-1 mt-4"
+  key: 4,
+  id: "evaluation",
+  "class": "flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold"
 };
 var _hoisted_38 = {
-  "class": "grid grid-cols-7 gap-1 col-start-1 col-span-12 md:col-start-3 md:col-end-10"
+  key: 5,
+  id: "new",
+  "class": "flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold"
 };
 var _hoisted_39 = {
-  "class": "bg-amber-500 text-zinc-100 border-4 border-red-500 border-t-0 text-center px-4 py-6 font-bold"
+  "class": "grid grid-cols-12"
 };
 var _hoisted_40 = {
-  key: 0,
-  "class": "text-center text-blue-500 text-3xl"
+  "class": "grid grid-cols-12 bg-yellow-400 rounded-full pt-2 pb-2 ml-1 mr-1 mt-4 col-start-1 col-end-12 md:col-start-5 md:col-end-9"
 };
 var _hoisted_41 = {
-  key: 0,
-  "class": "text-green-500 text-center text-3xl animate-ping font-bold"
+  "class": "grid grid-cols-12 pt-2 pb-2 ml-1 mr-1 mt-4"
 };
 var _hoisted_42 = {
-  key: 1,
-  "class": "text-red-500 text-center text-3xl animate-ping font-bold"
+  "class": "grid grid-cols-7 gap-1 col-start-1 col-span-12 md:col-start-3 md:col-end-10"
 };
 var _hoisted_43 = {
-  "class": "bg-amber-500 text-zinc-100 border-4 border-orange-500 border-t-0 text-center px-4 py-6 font-bold"
+  "class": "bg-amber-500 text-zinc-100 border-4 border-red-500 border-t-0 text-center px-4 py-6 font-bold"
 };
 var _hoisted_44 = {
   key: 0,
@@ -30548,7 +30592,7 @@ var _hoisted_46 = {
   "class": "text-red-500 text-center text-3xl animate-ping font-bold"
 };
 var _hoisted_47 = {
-  "class": "bg-amber-500 text-zinc-100 border-4 border-yellow-500 border-t-0 text-center px-4 py-6 font-bold"
+  "class": "bg-amber-500 text-zinc-100 border-4 border-orange-500 border-t-0 text-center px-4 py-6 font-bold"
 };
 var _hoisted_48 = {
   key: 0,
@@ -30559,6 +30603,21 @@ var _hoisted_49 = {
   "class": "text-green-500 text-center text-3xl animate-ping font-bold"
 };
 var _hoisted_50 = {
+  key: 1,
+  "class": "text-red-500 text-center text-3xl animate-ping font-bold"
+};
+var _hoisted_51 = {
+  "class": "bg-amber-500 text-zinc-100 border-4 border-yellow-500 border-t-0 text-center px-4 py-6 font-bold"
+};
+var _hoisted_52 = {
+  key: 0,
+  "class": "text-center text-blue-500 text-3xl"
+};
+var _hoisted_53 = {
+  key: 0,
+  "class": "text-green-500 text-center text-3xl animate-ping font-bold"
+};
+var _hoisted_54 = {
   "class": "bg-amber-500 text-zinc-100 border-4 border-green-500 border-t-0 text-center px-4 py-6 font-bold"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -30673,25 +30732,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-green-700 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-1 ml-2 mr-2 mt-2 md:mx-auto",
     onClick: $setup.start
-  }, "START")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.show_solution ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-    key: 2,
-    id: "currentFront",
-    onClick: $setup.toggleShowSolution,
-    "class": "bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-3xl mx-auto font-bold"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex["word"]), 1
+  }, "START")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.show_solution ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex["word"]), 1
   /* TEXT */
-  ), $setup.show_phrase ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex["phrase"]), 1
+  ), $setup.show_phrase ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex["phrase"]), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.show_solution ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-    key: 3,
-    id: "currentBack",
-    onClick: $setup.toggleShowSolution,
-    "class": "flex justify-center bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold"
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex["back"]), 1
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.show_solution ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex["back"]), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex["word"]), 1
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.current_exercise.ex["word"]), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [$setup.wordinfo1CorrectExists ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [$setup.wordinfo1CorrectExists ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
     key: 0,
     type: "text",
     id: "wordinfo1Answer",
@@ -30699,13 +30748,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.wordinfo1Answer = $event;
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      'border-green-500 : wordinfo1IsCorrect, border-4 : wordinfo1IsCorrect, text-green-500': $setup.wordinfo1IsCorrect,
-      'border-red-500 : wordinfo1IsWrong, border-4 : wordinfo1IsWrong, text-red-500': $setup.wordinfo1IsWrong
+      'border-2': $setup.controlPressed,
+      'font-bold': $setup.controlPressed,
+      'border-green-500': $setup.wordinfo1IsCorrect,
+      'text-green-500': $setup.wordinfo1IsCorrect,
+      'border-red-500': $setup.wordinfo1IsWrong,
+      'text-red-500': $setup.wordinfo1IsWrong
     }),
     disabled: $setup.controlPressed
   }, null, 10
   /* CLASS, PROPS */
-  , _hoisted_19)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.wordinfo1Answer]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.wordinfo2CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_20, ",")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.wordinfo2CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_21, ":")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [$setup.wordinfo2CorrectExists ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
+  , _hoisted_21)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.wordinfo1Answer]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.wordinfo2CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_22, ",")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.wordinfo2CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_23, ":")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [$setup.wordinfo2CorrectExists ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
     key: 0,
     type: "text",
     id: "wordinfo2Answer",
@@ -30713,13 +30766,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.wordinfo2Answer = $event;
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      'border-green-500 : wordinfo2IsCorrect, border-4 : wordinfo2IsCorrect, text-green-500': $setup.wordinfo2IsCorrect,
-      'border-red-500 : wordinfo2IsWrong, border-4 : wordinfo2IsWrong, text-red-500': $setup.wordinfo2IsWrong
+      'border-2': $setup.controlPressed,
+      'font-bold': $setup.controlPressed,
+      'border-green-500': $setup.wordinfo2IsCorrect,
+      'text-green-500': $setup.wordinfo2IsCorrect,
+      'border-red-500': $setup.wordinfo2IsWrong,
+      'text-red-500': $setup.wordinfo2IsWrong
     }),
     disabled: $setup.controlPressed
   }, null, 10
   /* CLASS, PROPS */
-  , _hoisted_23)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.wordinfo2Answer]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.wordinfo3CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_24, ",")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.wordinfo2CorrectExists && !$setup.wordinfo3CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_25, ":")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [$setup.wordinfo3CorrectExists ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
+  , _hoisted_25)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.wordinfo2Answer]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.wordinfo3CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_26, ",")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.wordinfo2CorrectExists && !$setup.wordinfo3CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_27, ":")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [$setup.wordinfo3CorrectExists ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
     key: 0,
     type: "text",
     id: "wordinfo3Answer",
@@ -30727,13 +30784,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.wordinfo3Answer = $event;
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      'border-green-500 : wordinfo3IsCorrect, border-4 : wordinfo3IsCorrect, text-green-500': $setup.wordinfo3IsCorrect,
-      'border-red-500 : wordinfo3IsWrong, border-4 : wordinfo3IsWrong, text-red-500': $setup.wordinfo3IsWrong
+      'border-2': $setup.controlPressed,
+      'font-bold': $setup.controlPressed,
+      'border-green-500': $setup.wordinfo3IsCorrect,
+      'text-green-500': $setup.wordinfo3IsCorrect,
+      'border-red-500': $setup.wordinfo3IsWrong,
+      'text-red-500': $setup.wordinfo3IsWrong
     }),
     disabled: $setup.controlPressed
   }, null, 10
   /* CLASS, PROPS */
-  , _hoisted_27)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.wordinfo3Answer]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.wordinfo4CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_28, ",")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.wordinfo3CorrectExists && !$setup.wordinfo4CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_29, ":")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [$setup.wordinfo4CorrectExists ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
+  , _hoisted_29)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.wordinfo3Answer]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.wordinfo4CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_30, ",")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.wordinfo3CorrectExists && !$setup.wordinfo4CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_31, ":")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [$setup.wordinfo4CorrectExists ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
     key: 0,
     type: "text",
     id: "wordinfo4Answer",
@@ -30741,32 +30802,40 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.wordinfo4Answer = $event;
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      'border-green-500 : wordInfo4IsCorrect, border-4 : wordInfo4IsCorrect, text-green-500': _ctx.wordInfo4IsCorrect,
-      'border-red-500 : wordinfo4IsWrong, border-4 : wordinfo4IsWrong, text-red-500': $setup.wordinfo4IsWrong
+      'border-2': $setup.controlPressed,
+      'font-bold': $setup.controlPressed,
+      'border-green-500': $setup.wordinfo4IsCorrect,
+      'text-green-500': $setup.wordinfo4IsCorrect,
+      'border-red-500': $setup.wordinfo4IsWrong,
+      'text-red-500': $setup.wordinfo4IsWrong
     }),
     disabled: $setup.controlPressed
   }, null, 10
   /* CLASS, PROPS */
-  , _hoisted_31)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.wordinfo4Answer]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.wordinfo4CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_32, ":")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  , _hoisted_33)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.wordinfo4Answer]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.wordinfo4CorrectExists ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_34, ":")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     id: "meaningAnswer",
     "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
-      return _ctx.meaningAnswer = $event;
+      return $setup.meaningAnswer = $event;
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)({
-      'border-green-500 : meaningIsCorrect, border-4 : meaningIsCorrect, text-green-500': $setup.meaningIsCorrect,
-      'border-red-500 : meaningIsWrong, border-4 : meaningIsWrong, text-red-500': $setup.meaningIsWrong
+      'border-2': $setup.controlPressed,
+      'font-bold': $setup.controlPressed,
+      'border-green-500': $setup.meaningIsCorrect,
+      'text-green-500': $setup.meaningIsCorrect,
+      'border-red-500': $setup.meaningIsWrong,
+      'text-red-500': $setup.meaningIsWrong
     }),
     disabled: $setup.controlPressed
   }, null, 10
   /* CLASS, PROPS */
-  , _hoisted_34), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.meaningAnswer]])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    id: "evaluation",
-    "class": "flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-1",
+  , _hoisted_36), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.meaningAnswer]])])])]), $setup.newPressed ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-1",
     onClick: $setup.evaluate
-  }, "Controleer!")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  }, "Controleer!")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.controlPressed ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-1",
+    onClick: $setup.newExercise
+  }, "Volgende")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       'col-span-1': $setup.isOneTwelfth,
       'col-span-2': $setup.isTwoTwelfth,
@@ -30783,16 +30852,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, "bg-yellow-200 rounded-full animate-pulse ml-1 mr-1 text-center font-bold text-2xl"])
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.progress_percentage.val) + "%", 3
   /* TEXT, CLASS */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box1.length), 1
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box1.length), 1
   /* TEXT */
-  ), $setup.current_exercise.ex['box'] == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_40, "*")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.box1To2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_41, "→")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.box2To1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_42, "←")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box2.length), 1
+  ), $setup.current_exercise.ex['box'] == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_44, "*")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.box1To2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_45, "→")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.box2To1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_46, "←")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box2.length), 1
   /* TEXT */
-  ), $setup.current_exercise.ex['box'] == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_44, "*")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.box2To3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_45, "→")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.box3To2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_46, "←")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box3.length), 1
+  ), $setup.current_exercise.ex['box'] == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_48, "*")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.box2To3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_49, "→")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.box3To2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_50, "←")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box3.length), 1
   /* TEXT */
-  ), $setup.current_exercise.ex['box'] == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_48, "*")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.box3To4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_49, "→")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_50, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box4.length), 1
+  ), $setup.current_exercise.ex['box'] == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_52, "*")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.box3To4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_53, "→")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.box4.length), 1
   /* TEXT */
   )])])]), $setup.confetti ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["ConfettiExplosion"], {
-    key: 4,
+    key: 6,
     particleCount: 200
   })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64
   /* STABLE_FRAGMENT */

@@ -85,55 +85,22 @@ const wordinfo1Answer = ref("");
 const wordinfo2Answer = ref("");
 const wordinfo3Answer = ref("");
 const wordinfo4Answer = ref("");
+const meaningAnswer = ref("");
 
-const wordinfo1IsCorrect = computed(() => {
-    return (wordinfo1CorrectExists && current_exercise.ex['word_complete']["wordinfo1"] == wordinfo1Answer.value&& controlPressed.value);
-});
-const wordinfo2IsCorrect = computed(() => {
-    return (wordinfo2CorrectExists && current_exercise.ex['word_complete']["wordinfo2"] == wordinfo2Answer.value&& controlPressed.value);
-});
-const wordinfo3IsCorrect = computed(() => {
-    return (wordinfo3CorrectExists && current_exercise.ex['word_complete']["wordinfo3"] == wordinfo3Answer.value&& controlPressed.value);
-});
-const wordinfo4IsCorrect = computed(() => {
-    return (wordinfo4CorrectExists && current_exercise.ex['word_complete']["wordinfo4"] == wordinfo4Answer.value&& controlPressed.value);
-});
-
-const controlPressed = ref(false);
-
-const wordinfo1IsWrong = computed(() => {
-    return (wordinfo1CorrectExists && current_exercise.ex['word_complete']["wordinfo1"] != wordinfo1Answer.value&& controlPressed.value);
-});
-const wordinfo2IsWrong = computed(() => {
-    return (wordinfo2CorrectExists && current_exercise.ex['word_complete']["wordinfo2"] != wordinfo2Answer.value&& controlPressed.value);
-});
-const wordinfo3IsWrong = computed(() => {
-    return (wordinfo3CorrectExists && current_exercise.ex['word_complete']["wordinfo3"] != wordinfo3Answer.value&& controlPressed.value);
-});
-const wordinfo4IsWrong = computed(() => {
-    return (wordinfo4CorrectExists && current_exercise.ex['word_complete']["wordinfo4"] != wordinfo4Answer.value&& controlPressed.value);
-});
-
+const wordinfo1IsCorrect = ref(false);
+const wordinfo1IsWrong = ref(false);
+const wordinfo2IsCorrect = ref(false);
+const wordinfo2IsWrong = ref(false);
+const wordinfo3IsCorrect = ref(false);
+const wordinfo3IsWrong = ref(false);
+const wordinfo4IsCorrect = ref(false);
+const wordinfo4IsWrong = ref(false);
 const meaningIsCorrect = ref(false);
 const meaningIsWrong = ref(false);
 
-//No idea why this is not working like wordinfo1IsCorrect etc...
-// const meaningIsCorrect = computed(() => {
-//     return (wordmeaningCorrectExists && (current_exercise.ex['word_complete']["meaning1"] == meaningAnswer.value
-//       || current_exercise.ex['word_complete']["meaning2"] == meaningAnswer.value 
-//       || current_exercise.ex['word_complete']["meaning3"] == meaningAnswer.value 
-//       || current_exercise.ex['word_complete']["meaning4"] == meaningAnswer.value) 
-//       && controlPressed.value);
-// });
+const controlPressed = ref(false);
+const newPressed = ref(true);
 
-//No idea why this is not working like wordinfo1IsWrong etc...
-// const meaningIsWrong = computed(() => {
-//     return (wordmeaningCorrectExists && (current_exercise.ex['word_complete']["meaning1"] != meaningAnswer.value
-//       && current_exercise.ex['word_complete']["meaning2"] != meaningAnswer.value 
-//       && current_exercise.ex['word_complete']["meaning3"] != meaningAnswer.value 
-//       && current_exercise.ex['word_complete']["meaning4"] != meaningAnswer.value) 
-//       && controlPressed.value);
-// });
 
 function toggleShowPreferences(event){
     this.show_preferences = !this.show_preferences;
@@ -205,13 +172,6 @@ function setSelected(event) {
 }
 
 function selectAll(event) {
-    // var selected = [];
-    // console.log(voc);
-
-    // voc.forEach(function (word) {
-    //     selected.push(word);
-    // });
-
     checkedWords.value = voc;
     console.log(checkedWords);
 }
@@ -296,7 +256,7 @@ function setNextCardToStudy(){
 function getCardFromMostPopulatedBox(){
   var rand = Math.floor(Math.random() * 10);
   console.log(rand);
-  if(rand > 6){
+  if(rand > 2){
     var array = [box1.length, box2.length, box3.length];
     var highestValue = array.indexOf(Math.max(...array));
     // var highestValue = Math.max(...array.map(o => o.y));
@@ -349,11 +309,11 @@ function clearArrows(){
 }
 
 function correctAnswered(){
-  if(audio_on.value){
-    // var audio = new Audio('https://www.myinstants.com/media/sounds/ding-sound-effect_1.mp3');
-    var audio = new Audio('../../correct.mp3');
-    audio.play();
-  }
+  // if(audio_on.value){
+  //   // var audio = new Audio('https://www.myinstants.com/media/sounds/ding-sound-effect_1.mp3');
+  //   var audio = new Audio('../../correct.mp3');
+  //   audio.play();
+  // }
   
   toggleShowSolution();
 
@@ -394,10 +354,10 @@ function correctAnswered(){
 }//end of correctAnswered
 
 function wrongAnswered(){
-   if(audio_on.value){
-    var audio = new Audio('../../wrong.wav');
-    audio.play();
-   } 
+   // if(audio_on.value){
+   //  var audio = new Audio('../../wrong.wav');
+   //  audio.play();
+   // } 
     
   toggleShowSolution();
 
@@ -482,24 +442,108 @@ function shuffle(array) {
   return array;
 }
 
+function newExercise(){
+    controlPressed.value = false;
+    newPressed.value = true;
+
+    if((wordinfo1IsCorrect.value || !wordinfo1CorrectExists.value) && 
+      (wordinfo2IsCorrect.value || !wordinfo2CorrectExists.value) &&
+      (wordinfo3IsCorrect.value || !wordinfo3CorrectExists.value) && 
+      (wordinfo4IsCorrect.value || !wordinfo4CorrectExists.value) && 
+      (meaningIsCorrect.value)){
+        correctAnswered();
+    }
+    else{
+        wrongAnswered();
+    }
+
+    wordinfo1Answer.value = "";
+    wordinfo2Answer.value = "";
+    wordinfo3Answer.value = "";
+    wordinfo4Answer.value = "";
+    meaningAnswer.value = "";
+    wordinfo1IsCorrect.value = false;
+    wordinfo2IsCorrect.value = false;
+    wordinfo3IsCorrect.value = false;
+    wordinfo4IsCorrect.value = false;
+    wordinfo1IsWrong.value = false;
+    wordinfo2IsWrong.value = false;
+    wordinfo3IsWrong.value = false;
+    wordinfo4IsWrong.value = false;
+    meaningIsCorrect.value = false;
+    meaningIsWrong.value = false;
+}
+
 function evaluate(){
 
     controlPressed.value = true;
+    newPressed.value = false;
     show_solution.value = true;
 
-    checkIfMeaningIsCorrectOrWrong();
+    checkIfMeaningIsCorrect();
+    checkIfWordinfoIsCorrect();
 
-    console.log(wordinfo1Answer.value);
-    console.log(wordinfo2Answer.value);
-    console.log(wordinfo3Answer.value);
-    console.log(wordinfo4Answer.value);
-    console.log(current_exercise.ex['word_complete']);
-    console.log(wordinfo2IsCorrect.value);
-    console.log(wordinfo2IsWrong.value);
-    
+    if((wordinfo1IsCorrect.value || !wordinfo1CorrectExists.value) && 
+      (wordinfo2IsCorrect.value || !wordinfo2CorrectExists.value) &&
+      (wordinfo3IsCorrect.value || !wordinfo3CorrectExists.value) && 
+      (wordinfo4IsCorrect.value || !wordinfo4CorrectExists.value) && 
+      (meaningIsCorrect.value)){
+        playCorrectSound();
+    }
+    else{
+        playWrongSoud();
+    }    
 }
 
-function checkIfMeaningIsCorrectOrWrong(){
+function playCorrectSound(){
+    if(audio_on.value){
+      // var audio = new Audio('https://www.myinstants.com/media/sounds/ding-sound-effect_1.mp3');
+      var audio = new Audio('../../correct.mp3');
+      audio.play();
+    }
+}
+
+function playWrongSoud(){
+  if(audio_on.value){
+    var audio = new Audio('../../wrong.wav');
+    audio.play();
+  } 
+}
+
+function checkIfWordinfoIsCorrect(){
+    if(wordinfo1CorrectExists && current_exercise.ex['word_complete']["wordinfo1"] == wordinfo1Answer.value)
+    {
+      wordinfo1IsCorrect.value = true;
+    }
+    else{
+      wordinfo1IsWrong.value = true;
+    }
+
+    if(wordinfo2CorrectExists && current_exercise.ex['word_complete']["wordinfo2"] == wordinfo2Answer.value)
+    {
+      wordinfo2IsCorrect.value = true;
+    }
+    else{
+      wordinfo2IsWrong.value = true;
+    }
+
+    if(wordinfo3CorrectExists && current_exercise.ex['word_complete']["wordinfo3"] == wordinfo3Answer.value)
+    {
+      wordinfo3IsCorrect.value = true;
+    }
+    else{
+      wordinfo3IsWrong.value = true;
+    }
+    if(wordinfo4CorrectExists && current_exercise.ex['word_complete']["wordinfo4"] == wordinfo4Answer.value)
+    {
+      wordinfo4IsCorrect.value = true;
+    }
+    else{
+      wordinfo4IsWrong.value = true;
+    }
+}
+
+function checkIfMeaningIsCorrect(){
   var arr_meaning = ["meaning1", "meaning2", "meaning3", "meaning4"];
   var i = 0;
 
@@ -597,7 +641,7 @@ function checkIfMeaningIsCorrectOrWrong(){
       </div>
 
 
-      <div v-if="!show_solution"  id="currentFront" @click="toggleShowSolution" class="bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-3xl mx-auto font-bold">
+      <div v-if="!show_solution"  id="currentFront" class="bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-3xl mx-auto font-bold">
         <div class="flex justify-center">
           {{current_exercise.ex["word"]}}
         </div>
@@ -606,7 +650,7 @@ function checkIfMeaningIsCorrectOrWrong(){
         </div> 
       </div>
 
-      <div v-if="show_solution"  id="currentBack" @click="toggleShowSolution" class="flex justify-center bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
+      <div v-if="show_solution"  id="currentBack" class="flex justify-center bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
         {{current_exercise.ex["back"]}}
       </div>
 
@@ -615,7 +659,9 @@ function checkIfMeaningIsCorrectOrWrong(){
           <div>{{current_exercise.ex["word"]}}</div>
           
           <div class="mb-2 mr-1 mt-1 font-bold relative">  
-            <input v-if="wordinfo1CorrectExists" type="text" id="wordinfo1Answer" v-model="wordinfo1Answer" :class="{ 'border-green-500 : wordinfo1IsCorrect, border-4 : wordinfo1IsCorrect, text-green-500': wordinfo1IsCorrect, 'border-red-500 : wordinfo1IsWrong, border-4 : wordinfo1IsWrong, text-red-500': wordinfo1IsWrong }"
+            <input v-if="wordinfo1CorrectExists" type="text" id="wordinfo1Answer" v-model="wordinfo1Answer" :class="{ 'border-2' : controlPressed, 'font-bold' : controlPressed, 
+                        'border-green-500' : wordinfo1IsCorrect,'text-green-500': wordinfo1IsCorrect,
+                        'border-red-500' : wordinfo1IsWrong, 'text-red-500': wordinfo1IsWrong }"
               :disabled="controlPressed"/>
             <span v-if="wordinfo2CorrectExists" class="absolute bottom-0 right-1 ">,</span>
             <span v-if="!wordinfo2CorrectExists" class="absolute bottom-0 right-1 ">:</span>
@@ -623,7 +669,9 @@ function checkIfMeaningIsCorrectOrWrong(){
 
           <div class="mb-2 mr-1 mt-1 relative">  
             <input v-if="wordinfo2CorrectExists" type="text" id="wordinfo2Answer" v-model="wordinfo2Answer"
-            :class="{ 'border-green-500 : wordinfo2IsCorrect, border-4 : wordinfo2IsCorrect, text-green-500': wordinfo2IsCorrect, 'border-red-500 : wordinfo2IsWrong, border-4 : wordinfo2IsWrong, text-red-500': wordinfo2IsWrong }" 
+            :class="{ 'border-2' : controlPressed, 'font-bold' : controlPressed, 
+                        'border-green-500' : wordinfo2IsCorrect,'text-green-500': wordinfo2IsCorrect,
+                        'border-red-500' : wordinfo2IsWrong, 'text-red-500': wordinfo2IsWrong }" 
               :disabled="controlPressed"/>
             <span v-if="wordinfo3CorrectExists" class="absolute bottom-0 right-1 ">,</span>
             <span v-if="wordinfo2CorrectExists && !wordinfo3CorrectExists" class="absolute bottom-0 right-1 ">:</span>
@@ -631,7 +679,9 @@ function checkIfMeaningIsCorrectOrWrong(){
           
           <div class="mb-2 mr-1 mt-1 relative">  
             <input v-if="wordinfo3CorrectExists" type="text" id="wordinfo3Answer" v-model="wordinfo3Answer" 
-            :class="{ 'border-green-500 : wordinfo3IsCorrect, border-4 : wordinfo3IsCorrect, text-green-500': wordinfo3IsCorrect, 'border-red-500 : wordinfo3IsWrong, border-4 : wordinfo3IsWrong, text-red-500': wordinfo3IsWrong }"
+            :class="{ 'border-2' : controlPressed, 'font-bold' : controlPressed, 
+                        'border-green-500' : wordinfo3IsCorrect,'text-green-500': wordinfo3IsCorrect,
+                        'border-red-500' : wordinfo3IsWrong, 'text-red-500': wordinfo3IsWrong }"
               :disabled="controlPressed"/>
             <span v-if="wordinfo4CorrectExists" class="absolute bottom-0 right-1 ">,</span>
             <span v-if="wordinfo3CorrectExists && !wordinfo4CorrectExists" class="absolute bottom-0 right-1 ">:</span>
@@ -639,22 +689,29 @@ function checkIfMeaningIsCorrectOrWrong(){
 
           <div class="mb-2 mr-1 mt-1 relative">
             <input v-if="wordinfo4CorrectExists" type="text" id="wordinfo4Answer" v-model="wordinfo4Answer" 
-            :class="{ 'border-green-500 : wordInfo4IsCorrect, border-4 : wordInfo4IsCorrect, text-green-500': wordInfo4IsCorrect, 'border-red-500 : wordinfo4IsWrong, border-4 : wordinfo4IsWrong, text-red-500': wordinfo4IsWrong }"
+            :class="{ 'border-2' : controlPressed, 'font-bold' : controlPressed, 
+                        'border-green-500' : wordinfo4IsCorrect,'text-green-500': wordinfo4IsCorrect,
+                        'border-red-500' : wordinfo4IsWrong, 'text-red-500': wordinfo4IsWrong }"
               :disabled="controlPressed"/>
             <span v-if="wordinfo4CorrectExists">:</span>
           </div>
           
           <div class="mb-2 mr-1 mt-1 relative">
             <input type="text" id="meaningAnswer" v-model="meaningAnswer" 
-            :class="{ 'border-green-500 : meaningIsCorrect, border-4 : meaningIsCorrect, text-green-500': meaningIsCorrect, 'border-red-500 : meaningIsWrong, border-4 : meaningIsWrong, text-red-500': meaningIsWrong }"
+            :class="{ 'border-2' : controlPressed, 'font-bold' : controlPressed,                        'border-green-500' : meaningIsCorrect,'text-green-500': meaningIsCorrect,
+              'border-red-500' : meaningIsWrong, 'text-red-500': meaningIsWrong }"
               :disabled="controlPressed"/>
           </div>
         </form>
       </div>
 
 
-      <div  id="evaluation" class="flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
-        <button class="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-1" @click="evaluate">Controleer!</button>
+      <div v-if="newPressed"  id="evaluation" class="flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
+        <button class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-1" @click="evaluate">Controleer!</button>
+      </div>
+
+      <div v-if="controlPressed"  id="new" class="flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
+        <button class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-1" @click="newExercise">Volgende</button>
       </div>
 
 
