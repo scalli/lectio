@@ -33,12 +33,16 @@ class ReadTextController extends Controller
         $phrases = array_fill(1, $max_index, "");//array containing all phrases
         $questions = array_fill(1, $max_index, "");//array containing all supporting questions per phrase
         $voc = array_fill(1, $max_index, []);//array containing all voc per phrase
+        $phrase_supports = array_fill(1, $max_index, "");//array containing all support per phrase
         
         foreach($text_words as $word) {
             $index = $word->phrase_number;
             $phrases[$index] = $phrases[$index] . " " . $word->text_word;
             if($word->supporting_question != null){
                 $questions[$index] = $questions[$index] . $word->supporting_question;
+            }
+            if($word->phrase_support != null){
+                $phrase_supports[$index] = $phrase_supports[$index] . $word->phrase_support;
             }
         
             $vocword = "";
@@ -89,6 +93,7 @@ class ReadTextController extends Controller
         // dd($phrases);
         // dd($questions);
         // dd($voc);
+        // dd($phrase_supports);
 
         if($layout == "classic"){
             $page_to_render = 'TextClassic';
@@ -103,6 +108,7 @@ class ReadTextController extends Controller
         'title' => $title[0]->text_title,
         'phrases' => $phrases,
         'questions' => $questions,
+        'phrase_supports' => $phrase_supports,
         'voc' => $voc
         ]);
 

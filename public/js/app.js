@@ -24127,6 +24127,7 @@ __webpack_require__.r(__webpack_exports__);
     phpVersion: String,
     phrases: Object,
     questions: Object,
+    phrase_supports: Object,
     voc: Object,
     title: String
   },
@@ -24138,9 +24139,11 @@ __webpack_require__.r(__webpack_exports__);
       index: 0
     });
     var questions = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)(props.questions);
+    var phrase_supports = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)(props.phrase_supports);
     var voc = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)(props.voc);
     var title = props.title;
     var selected_question = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
+    var selected_phrase_support = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
     var selected_voc = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
     var helper_questions = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(true); //show the supporting questions
 
@@ -24151,13 +24154,20 @@ __webpack_require__.r(__webpack_exports__);
     var show_preferences = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
 
     function setSelected(event) {
-      selected.index = event.target.id; // console.log(selected);
-      // console.log(this.questions);
+      console.log(selected);
+      console.log(phrase_supports);
+      selected.index = event.target.id; // console.log(this.questions);
 
       if (this.helper_questions) {
         this.selected_question = this.questions[this.selected.index];
       } else {
         this.selected_question = "-";
+      }
+
+      if (this.phrase_supports[this.selected.index] !== undefined && this.phrase_supports[this.selected.index] !== null) {
+        this.selected_phrase_support = this.phrase_supports[this.selected.index];
+      } else {
+        this.selected_phrase_support = "";
       }
 
       this.selected_voc = [];
@@ -24182,9 +24192,11 @@ __webpack_require__.r(__webpack_exports__);
       props: props,
       selected: selected,
       questions: questions,
+      phrase_supports: phrase_supports,
       voc: voc,
       title: title,
       selected_question: selected_question,
+      selected_phrase_support: selected_phrase_support,
       selected_voc: selected_voc,
       helper_questions: helper_questions,
       helper_voc: helper_voc,
@@ -24230,6 +24242,7 @@ __webpack_require__.r(__webpack_exports__);
     phpVersion: String,
     phrases: Object,
     questions: Object,
+    phrase_supports: Object,
     voc: Object,
     title: String
   },
@@ -24241,6 +24254,7 @@ __webpack_require__.r(__webpack_exports__);
       index: 0
     });
     var questions = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)(props.questions);
+    var phrase_supports = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)(props.phrase_supports);
     var voc = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)(props.voc);
     var title = props.title;
     var selected_question = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
@@ -24254,9 +24268,12 @@ __webpack_require__.r(__webpack_exports__);
     var show_preferences = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
 
     function setSelected(event) {
-      selected.index = event.target.id; // console.log(selected);
-      // console.log(this.questions);
-      // console.log(voc);
+      selected.index = event.target.id;
+      console.log(selected.index);
+      console.log("test");
+      console.log(this.questions); // console.log(voc);
+
+      console.log(phrase_supports);
 
       if (this.helper_questions) {
         this.selected_question = this.questions[this.selected.index];
@@ -24280,12 +24297,14 @@ __webpack_require__.r(__webpack_exports__);
 
     function toggleShowPreferences(event) {
       this.show_preferences = !this.show_preferences;
+      console.log("test");
     }
 
     var __returned__ = {
       props: props,
       selected: selected,
       questions: questions,
+      phrase_supports: phrase_supports,
       voc: voc,
       title: title,
       selected_question: selected_question,
@@ -29967,15 +29986,22 @@ var _hoisted_18 = {
 };
 var _hoisted_19 = ["id"];
 var _hoisted_20 = {
-  "class": "ml-2 mr-2 md:w-3/4 lg:w-1/3 md:mx-auto"
+  key: 2,
+  "class": "ml-2 mr-2 md:w-1/2 lg:w-1/3 md:mx-auto"
 };
 var _hoisted_21 = {
-  "class": "mt-4 pt-2 pb-2 pl-2 pr-2 bg-white text-center text-blue-700 font-bold"
+  "class": "mt-4 pt-2 pb-2 pl-2 pr-2 bg-white text-center text-sm italic"
 };
 var _hoisted_22 = {
-  "class": "mt-2 ml-2 mr-2 md:w-3/4 lg:w-1/3 md:mx-auto"
+  "class": "ml-2 mr-2 md:w-3/4 lg:w-1/3 md:mx-auto"
 };
 var _hoisted_23 = {
+  "class": "mt-4 pt-2 pb-2 pl-2 pr-2 bg-white text-center text-blue-700 font-bold"
+};
+var _hoisted_24 = {
+  "class": "mt-2 ml-2 mr-2 md:w-3/4 lg:w-1/3 md:mx-auto"
+};
+var _hoisted_25 = {
   "class": "pt-2 pb-2 pl-2 pr-2 bg-white text-amber-500 font-bold"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -30073,10 +30099,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_19);
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.selected_question), 1
+  ))]), $setup.selected_phrase_support != '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.selected_phrase_support), 1
   /* TEXT */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.selected_voc, function (voc_word, index) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(voc_word), 1
+  )])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.selected_question), 1
+  /* TEXT */
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.selected_voc, function (voc_word, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(voc_word), 1
     /* TEXT */
     );
   }), 256

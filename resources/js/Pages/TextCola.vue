@@ -9,12 +9,14 @@ const props = defineProps({
     phpVersion: String,
     phrases: Object,
     questions: Object,
+    phrase_supports: Object,
     voc: Object,
     title: String
 });
 
 const selected = reactive({ index: 0 });
 const questions = reactive(props.questions);
+const phrase_supports = reactive(props.phrase_supports);
 const voc = reactive(props.voc);
 const title = props.title;
 const selected_question = ref("") ;
@@ -26,9 +28,11 @@ const show_preferences= ref(false);
 
 function setSelected(event) {
   selected.index = event.target.id;
-  // console.log(selected);
-  // console.log(this.questions);
+  console.log(selected.index);
+  console.log("test");
+  console.log(this.questions);
   // console.log(voc);
+  console.log(phrase_supports);
   if(this.helper_questions){
       this.selected_question = this.questions[this.selected.index];
   }
@@ -49,6 +53,7 @@ function setSelected(event) {
 
 function toggleShowPreferences(event){
     this.show_preferences = !this.show_preferences;
+    console.log("test");
 }
 
 </script>

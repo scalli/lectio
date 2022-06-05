@@ -1,6 +1,8 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import { reactive, ref } from 'vue';
+/* add fontawesome core */
+import { library } from '@fortawesome/fontawesome-svg-core'
 
 const props = defineProps({
     canLogin: Boolean,
@@ -9,15 +11,18 @@ const props = defineProps({
     phpVersion: String,
     phrases: Object,
     questions: Object,
+    phrase_supports: Object,
     voc: Object,
     title: String
 });
 
 const selected = reactive({ index: 0 });
 const questions = reactive(props.questions);
+const phrase_supports = reactive(props.phrase_supports);
 const voc = reactive(props.voc);
 const title = props.title;
 const selected_question = ref("") ;
+const selected_phrase_support = ref("") ;
 const selected_voc = ref([]);
 const helper_questions = ref(true);//show the supporting questions
 const helper_voc = ref(true);//show the vocabulary that you don't have to know by heart
@@ -25,8 +30,9 @@ const helper_voc_to_know = ref(true);//show the vocabulary that you should have 
 const show_preferences= ref(false);
 
 function setSelected(event) {
+  console.log(selected);
+  console.log(phrase_supports);
   selected.index = event.target.id;
-  // console.log(selected);
   // console.log(this.questions);
   if(this.helper_questions){
       this.selected_question = this.questions[this.selected.index];
@@ -34,6 +40,14 @@ function setSelected(event) {
   else{
     this.selected_question = "-";
   }
+
+  if(this.phrase_supports[this.selected.index] !== undefined && this.phrase_supports[this.selected.index] !== null){
+    this.selected_phrase_support = this.phrase_supports[this.selected.index];
+  }
+  else{
+    this.selected_phrase_support = "";
+  }
+    
 
   this.selected_voc = [];
   for (let i = 0; i < this.props.voc[selected.index].length; i += 1) {
@@ -112,6 +126,12 @@ function toggleShowPreferences(event){
             <div @click="setSelected($event)" :id="index" class="inline-block pr-2" 
                     v-bind:class="{ 'text-blue-700 font-bold': (index == selected.index) }" 
                     v-for="(phrase, index) in phrases">{{phrase}}</div>
+        </div>
+
+        <div v-if="selected_phrase_support != ''" class="ml-2 mr-2 md:w-1/2 lg:w-1/3 md:mx-auto">
+            <div class="mt-4 pt-2 pb-2 pl-2 pr-2 bg-white text-center text-sm italic">
+                  <p><span><i class="fa-regular fa-lightbulb"></i></span>{{selected_phrase_support}}</p>
+            </div>
         </div>
 
         <div class="ml-2 mr-2 md:w-3/4 lg:w-1/3 md:mx-auto">
