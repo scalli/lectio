@@ -549,7 +549,8 @@ function checkIfMeaningIsCorrect(){
 
   for(i=0; i<arr_meaning.length;i++){
       console.log(current_exercise.ex['word_complete'][arr_meaning[i]]);
-      if(wordmeaningCorrectExists){
+      console.log(meaningAnswer.value);
+      if(wordmeaningCorrectExists && meaningAnswer.value != ""){
         if((current_exercise.ex['word_complete'][arr_meaning[i]] == meaningAnswer.value)){
           meaningIsCorrect.value = true;
         }
@@ -640,83 +641,8 @@ function checkIfMeaningIsCorrect(){
             </div>
       </div>
 
-
-      <div v-if="!show_solution"  id="currentFront" class="bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-3xl mx-auto font-bold">
-        <div class="flex justify-center">
-          {{current_exercise.ex["word"]}}
-        </div>
-        <div v-if="show_phrase" class="flex justify-center text-sm">
-         {{current_exercise.ex["phrase"]}}
-        </div> 
-      </div>
-
-      <div v-if="show_solution"  id="currentBack" class="flex justify-center bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
-        {{current_exercise.ex["back"]}}
-      </div>
-
-      <div class="flex justify-center bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
-        <form>
-          <div>{{current_exercise.ex["word"]}}</div>
-          
-          <div class="mb-2 mr-1 mt-1 font-bold relative">  
-            <input v-if="wordinfo1CorrectExists" type="text" id="wordinfo1Answer" v-model="wordinfo1Answer" :class="{ 'border-2' : controlPressed, 'font-bold' : controlPressed, 
-                        'border-green-500' : wordinfo1IsCorrect,'text-green-500': wordinfo1IsCorrect,
-                        'border-red-500' : wordinfo1IsWrong, 'text-red-500': wordinfo1IsWrong }"
-              :disabled="controlPressed"/>
-            <span v-if="wordinfo2CorrectExists" class="absolute bottom-0 right-1 ">,</span>
-            <span v-if="!wordinfo2CorrectExists" class="absolute bottom-0 right-1 ">:</span>
-          </div>
-
-          <div class="mb-2 mr-1 mt-1 relative">  
-            <input v-if="wordinfo2CorrectExists" type="text" id="wordinfo2Answer" v-model="wordinfo2Answer"
-            :class="{ 'border-2' : controlPressed, 'font-bold' : controlPressed, 
-                        'border-green-500' : wordinfo2IsCorrect,'text-green-500': wordinfo2IsCorrect,
-                        'border-red-500' : wordinfo2IsWrong, 'text-red-500': wordinfo2IsWrong }" 
-              :disabled="controlPressed"/>
-            <span v-if="wordinfo3CorrectExists" class="absolute bottom-0 right-1 ">,</span>
-            <span v-if="wordinfo2CorrectExists && !wordinfo3CorrectExists" class="absolute bottom-0 right-1 ">:</span>
-          </div>
-          
-          <div class="mb-2 mr-1 mt-1 relative">  
-            <input v-if="wordinfo3CorrectExists" type="text" id="wordinfo3Answer" v-model="wordinfo3Answer" 
-            :class="{ 'border-2' : controlPressed, 'font-bold' : controlPressed, 
-                        'border-green-500' : wordinfo3IsCorrect,'text-green-500': wordinfo3IsCorrect,
-                        'border-red-500' : wordinfo3IsWrong, 'text-red-500': wordinfo3IsWrong }"
-              :disabled="controlPressed"/>
-            <span v-if="wordinfo4CorrectExists" class="absolute bottom-0 right-1 ">,</span>
-            <span v-if="wordinfo3CorrectExists && !wordinfo4CorrectExists" class="absolute bottom-0 right-1 ">:</span>
-          </div>
-
-          <div class="mb-2 mr-1 mt-1 relative">
-            <input v-if="wordinfo4CorrectExists" type="text" id="wordinfo4Answer" v-model="wordinfo4Answer" 
-            :class="{ 'border-2' : controlPressed, 'font-bold' : controlPressed, 
-                        'border-green-500' : wordinfo4IsCorrect,'text-green-500': wordinfo4IsCorrect,
-                        'border-red-500' : wordinfo4IsWrong, 'text-red-500': wordinfo4IsWrong }"
-              :disabled="controlPressed"/>
-            <span v-if="wordinfo4CorrectExists">:</span>
-          </div>
-          
-          <div class="mb-2 mr-1 mt-1 relative">
-            <input type="text" id="meaningAnswer" v-model="meaningAnswer" 
-            :class="{ 'border-2' : controlPressed, 'font-bold' : controlPressed,                        'border-green-500' : meaningIsCorrect,'text-green-500': meaningIsCorrect,
-              'border-red-500' : meaningIsWrong, 'text-red-500': meaningIsWrong }"
-              :disabled="controlPressed"/>
-          </div>
-        </form>
-      </div>
-
-
-      <div v-if="newPressed"  id="evaluation" class="flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
-        <button class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-1" @click="evaluate">Controleer!</button>
-      </div>
-
-      <div v-if="controlPressed"  id="new" class="flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
-        <button class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-1" @click="newExercise">Volgende</button>
-      </div>
-
-
-      <div class="grid grid-cols-12">
-        <div class="grid grid-cols-12 bg-yellow-400 rounded-full pt-2 pb-2 ml-1 mr-1 mt-4 col-start-1 col-end-12 md:col-start-5 md:col-end-9">
+<div class="grid grid-cols-12 ml-1 mr-1 mt-4">
+        <div class="grid grid-cols-12 bg-yellow-400 rounded-full pt-2 pb-2  col-start-1 col-span-12 md:col-start-5 md:col-end-9">
           <div :class="{ 'col-span-1': isOneTwelfth,  'col-span-2': isTwoTwelfth, 'col-span-3': isThreeTwelfth, 'col-span-4': isFourTwelfth,  'col-span-5': isFiveTwelfth, 'col-span-6': isSixTwelfth, 
             'col-span-7': isSevenTwelfth,  'col-span-8': isEightTwelfth, 'col-span-9': isNineTwelfth,
             'col-span-10': isTenTwelfth,  'col-span-11': isElevenTwelfth, 'col-span-12': isTwelveTwelfth}"
@@ -762,6 +688,87 @@ function checkIfMeaningIsCorrect(){
             </div>
           </div>
       </div>
+
+      <div v-if="!show_solution"  id="currentFront" class="bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-3xl mx-auto font-bold">
+        <div class="flex justify-center">
+          {{current_exercise.ex["word"]}}
+        </div>
+        <div v-if="show_phrase" class="flex justify-center text-sm">
+         {{current_exercise.ex["phrase"]}}
+        </div> 
+      </div>
+
+      <div v-if="show_solution"  id="currentBack" class="flex justify-center bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
+        {{current_exercise.ex["back"]}}
+      </div>
+
+      <div class="flex justify-center bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
+        <form>
+          <div>{{current_exercise.ex["word"]}}</div>
+          
+          <div class="mb-2 mr-1 mt-1 font-bold relative">  
+            <input v-if="wordinfo1CorrectExists" type="text" id="wordinfo1Answer" v-model="wordinfo1Answer" :class="{ 'border-2' : controlPressed, 'font-bold' : controlPressed, 
+                        'border-green-500' : wordinfo1IsCorrect,'text-green-500': wordinfo1IsCorrect,
+                        'border-red-500' : wordinfo1IsWrong, 'text-red-500': wordinfo1IsWrong }"
+              :disabled="controlPressed"
+              v-on:keyup.enter="evaluate"/>
+            <span v-if="wordinfo2CorrectExists" class="absolute bottom-0 right-1 ">,</span>
+            <span v-if="!wordinfo2CorrectExists" class="absolute bottom-0 right-1 ">:</span>
+          </div>
+
+          <div class="mb-2 mr-1 mt-1 relative">  
+            <input v-if="wordinfo2CorrectExists" type="text" id="wordinfo2Answer" v-model="wordinfo2Answer"
+            :class="{ 'border-2' : controlPressed, 'font-bold' : controlPressed, 
+                        'border-green-500' : wordinfo2IsCorrect,'text-green-500': wordinfo2IsCorrect,
+                        'border-red-500' : wordinfo2IsWrong, 'text-red-500': wordinfo2IsWrong }" 
+              :disabled="controlPressed"
+              v-on:keyup.enter="evaluate"/>
+            <span v-if="wordinfo3CorrectExists" class="absolute bottom-0 right-1 ">,</span>
+            <span v-if="wordinfo2CorrectExists && !wordinfo3CorrectExists" class="absolute bottom-0 right-1 ">:</span>
+          </div>
+          
+          <div class="mb-2 mr-1 mt-1 relative">  
+            <input v-if="wordinfo3CorrectExists" type="text" id="wordinfo3Answer" v-model="wordinfo3Answer" 
+            :class="{ 'border-2' : controlPressed, 'font-bold' : controlPressed, 
+                        'border-green-500' : wordinfo3IsCorrect,'text-green-500': wordinfo3IsCorrect,
+                        'border-red-500' : wordinfo3IsWrong, 'text-red-500': wordinfo3IsWrong }"
+              :disabled="controlPressed"
+              v-on:keyup.enter="evaluate"/>
+            <span v-if="wordinfo4CorrectExists" class="absolute bottom-0 right-1 ">,</span>
+            <span v-if="wordinfo3CorrectExists && !wordinfo4CorrectExists" class="absolute bottom-0 right-1 ">:</span>
+          </div>
+
+          <div class="mb-2 mr-1 mt-1 relative">
+            <input v-if="wordinfo4CorrectExists" type="text" id="wordinfo4Answer" v-model="wordinfo4Answer" 
+            :class="{ 'border-2' : controlPressed, 'font-bold' : controlPressed, 
+                        'border-green-500' : wordinfo4IsCorrect,'text-green-500': wordinfo4IsCorrect,
+                        'border-red-500' : wordinfo4IsWrong, 'text-red-500': wordinfo4IsWrong }"
+              :disabled="controlPressed"
+              v-on:keyup.enter="evaluate"/>
+            <span v-if="wordinfo4CorrectExists">:</span>
+          </div>
+          
+          <div class="mb-2 mr-1 mt-1 relative">
+            <input type="text" id="meaningAnswer" v-model="meaningAnswer" 
+            :class="{ 'border-2' : controlPressed, 'font-bold' : controlPressed,                        'border-green-500' : meaningIsCorrect,'text-green-500': meaningIsCorrect,
+              'border-red-500' : meaningIsWrong, 'text-red-500': meaningIsWrong }"
+              :disabled="controlPressed"
+              v-on:keyup.enter="evaluate"/>
+          </div>
+        </form>
+      </div>
+
+
+      <div v-if="newPressed"  id="evaluation" class="flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
+        <button class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-1" @click="evaluate">Controleer!</button>
+      </div>
+
+      <div v-if="controlPressed"  id="new" class="flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
+        <button class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-1" @click="newExercise">Volgende</button>
+      </div>
+
+
+      
 
       <ConfettiExplosion v-if="confetti" :particleCount="200"/>
 

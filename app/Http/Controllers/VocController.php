@@ -20,6 +20,7 @@ class VocController extends Controller
             ->join('vocs', 'texts.word_voc', '=', 'vocs.id')
             ->select('*')
             ->where('text_info_id', '=', $id)
+ //           ->groupBy('vocs.id') //to select distinct words --> trouble with phrases
             ->get();
 
         $title = DB::table('text_infos')
@@ -111,8 +112,9 @@ class VocController extends Controller
                     $o->word_complete = $word;
                 }
                 // array_push($voc_back, $vocword_back);
-
-                array_push($voc, $o );
+                if(!$this->isInVocAlready($voc,$o->id)){
+                    array_push($voc, $o );
+                }
             }//end of if memorize
 
         }//end of foreach $word
@@ -137,5 +139,14 @@ class VocController extends Controller
         // 'voc_front' => $voc_front,
         // 'voc_back' => $voc_back
         ]);
+    }
+
+    private function isInVocAlready(array $myArray, $id) {
+        foreach ($myArray as $element) {
+            if ($element->id == $id) {
+                    return true;
+                }
+        }
+        return false;
     }
 }
