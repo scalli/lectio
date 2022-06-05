@@ -130,7 +130,7 @@ function toggleShowPreferences(event){
 
         <div v-if="selected_phrase_support != ''" class="ml-2 mr-2 md:w-1/2 lg:w-1/3 md:mx-auto">
             <div class="mt-4 pt-2 pb-2 pl-2 pr-2 bg-white text-center text-sm italic">
-                  <p><span><i class="fa-regular fa-lightbulb"></i></span>{{selected_phrase_support}}</p>
+                  <p><img src="././lamp.png" class="max-h-7 inline-block mr-1"  />{{selected_phrase_support}}</p>
             </div>
         </div>
 
