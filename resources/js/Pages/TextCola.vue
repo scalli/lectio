@@ -20,6 +20,7 @@ const phrase_supports = reactive(props.phrase_supports);
 const voc = reactive(props.voc);
 const title = props.title;
 const selected_question = ref("") ;
+const selected_phrase_support = ref("") ;
 const selected_voc = ref([]);
 const helper_questions = ref(true);//show the supporting questions
 const helper_voc = ref(true);//show the vocabulary that you don't have to know by heart
@@ -38,6 +39,13 @@ function setSelected(event) {
   }
   else{
     this.selected_question = "-";
+  }
+
+ if(this.phrase_supports[this.selected.index] !== undefined && this.phrase_supports[this.selected.index] !== null){
+    this.selected_phrase_support = this.phrase_supports[this.selected.index];
+  }
+  else{
+    this.selected_phrase_support = "";
   }
 
   this.selected_voc = [];
@@ -62,7 +70,7 @@ function toggleShowPreferences(event){
 <template>
     <Head title="Lees Latijn in cola" />
 
-    <div class="bg-gray-100 dark:bg-gray-900 h-screen">
+    <div class="bg-gray-100 dark:bg-gray-900 h-screen overflow-auto">
         <div v-if="canLogin" class="px-6 py-4">
             <Link v-if="$page.props.user" :href="route('dashboard')" class="text-sm text-gray-700 underline">
                 Dashboard
@@ -111,10 +119,14 @@ function toggleShowPreferences(event){
 
         <div class="pt-2 pb-2 pl-2 pr-2 bg-white pt-2 pb-2 pl-2 pr-2 ml-2 mr-2 mt-2 md:w-1/2 lg:w-1/3 md:mx-auto">
             <div @click="setSelected($event)" :id="index" class="text-center"
-                    v-bind:class="{ 'text-blue-700 text-xl font-bold bg-zinc-200': (index == selected.index) }" 
+                    v-bind:class="{ 'bg-blue-700 text-white text-xl font-bold': (index == selected.index) }" 
                     v-for="(phrase, index) in phrases" >
                 {{phrase}}
-                <div class="pl-2 pr-2 bg-zinc-100 text-amber-500 text-sm font-light" v-if="index == selected.index" v-for="(voc_word, index) in selected_voc">
+                <div class="pl-2 pr-2 bg-zinc-100 text-blue-700 text-center text-sm italic" 
+                    v-if="(index == selected.index) && (phrase_supports[selected.index] != '')">
+                    <img src="././lamp.png" class="max-h-7 inline-block mr-1"  /> {{phrase_supports[selected.index]}}
+                </div>
+                <div class="pl-2 pr-2 bg-zinc-200 text-blue-700 text-sm border-none" v-if="index == selected.index" v-for="(voc_word, index) in selected_voc">
                     {{voc_word}}
                 </div>
             </div>

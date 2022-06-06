@@ -36,7 +36,9 @@ class ReadTextController extends Controller
         $phrase_supports = array_fill(1, $max_index, "");//array containing all support per phrase
         
         foreach($text_words as $word) {
+            // console.log($word);
             $index = $word->phrase_number;
+
             $phrases[$index] = $phrases[$index] . " " . $word->text_word;
             if($word->supporting_question != null){
                 $questions[$index] = $questions[$index] . $word->supporting_question;

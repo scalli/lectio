@@ -149,4 +149,22 @@ class VocController extends Controller
         }
         return false;
     }
+
+    public function repetitioStep1(){
+        
+        $text_infos = DB::table('text_infos')
+        ->select('*')
+        ->get();
+
+         $systematisches = DB::table('systematisches')
+        ->select('*')
+        ->get();
+
+        return Inertia::render('Repetitio1', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'text_infos' => $text_infos,
+        'systematisches' => $systematisches,
+        ]);
+    }
 }

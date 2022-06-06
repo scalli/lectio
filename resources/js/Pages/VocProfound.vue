@@ -573,7 +573,7 @@ function checkIfMeaningIsCorrect(){
 <template>
     <Head title="Voc. oefenen" />
 
-    <div class="bg-gray-100 dark:bg-gray-900 h-screen">
+    <div class="bg-gray-100 dark:bg-gray-900 h-screen overflow-auto">
         <div v-if="canLogin" class="px-6 py-4">
             <Link v-if="$page.props.user" :href="route('dashboard')" class="text-sm text-gray-700 underline">
                 Dashboard

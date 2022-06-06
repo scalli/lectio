@@ -27,6 +27,7 @@ Route::get('/', function () {
 Route::get('/text/{layout}/{id}', 'App\Http\Controllers\ReadTextController@show');
 
 Route::get('/voc/{layout}/{id}', 'App\Http\Controllers\VocController@show');
+Route::get('/voc/repetitio/step/1', 'App\Http\Controllers\VocController@repetitioStep1');
 
 Route::get('/overview', 'App\Http\Controllers\TextInfoController@show');
 
