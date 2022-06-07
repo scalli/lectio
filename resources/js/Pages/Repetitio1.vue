@@ -20,6 +20,8 @@ const checkedSystematisches = ref(systematisches);
 const show_texts= ref(false);
 const show_systematic= ref(false);
 
+const layout = ref('quick')
+
 function toggleShowTexts(event){
     this.show_texts = !this.show_texts;
 }
@@ -84,5 +86,21 @@ function selectNone(event) {
         </div>
     
     </div>
+
+    <div>
+
+        <input type="radio" id="one" value="quick" v-model="layout" />
+        <label for="one">Snel oefenen</label>
+
+        <input type="radio" id="two" value="profound" v-model="layout" />
+        <label for="two">Intensief oefenen</label>
+    </div>
+
+
+     <div id="start" class="flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
+        <button class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-1" >
+            <Link href="/voc/repetitio/step/2" method="post" :data="{ systematisches: checkedSystematisches, textinfos : checkedTextInfos, layout : layout }">Start!</Link>
+        </button>
+      </div>
 
 </template>

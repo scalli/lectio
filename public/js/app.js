@@ -27086,6 +27086,7 @@ __webpack_require__.r(__webpack_exports__);
     var checkedSystematisches = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(systematisches);
     var show_texts = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
     var show_systematic = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var layout = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('quick');
 
     function toggleShowTexts(event) {
       this.show_texts = !this.show_texts;
@@ -27113,6 +27114,7 @@ __webpack_require__.r(__webpack_exports__);
       checkedSystematisches: checkedSystematisches,
       show_texts: show_texts,
       show_systematic: show_systematic,
+      layout: layout,
       toggleShowTexts: toggleShowTexts,
       toggleShowSystematic: toggleShowSystematic,
       selectAll: selectAll,
@@ -32980,6 +32982,29 @@ var _hoisted_8 = {
 };
 var _hoisted_9 = ["id", "value"];
 var _hoisted_10 = ["for"];
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "one"
+}, "Snel oefenen", -1
+/* HOISTED */
+);
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "two"
+}, "Intensief oefenen", -1
+/* HOISTED */
+);
+
+var _hoisted_13 = {
+  id: "start",
+  "class": "flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold"
+};
+var _hoisted_14 = {
+  "class": "bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-1"
+};
+
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Start!");
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
     title: "Repetio voc step 1"
@@ -33059,7 +33084,42 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_10)])]);
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
+  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "radio",
+    id: "one",
+    value: "quick",
+    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+      return $setup.layout = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $setup.layout]]), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "radio",
+    id: "two",
+    value: "profound",
+    "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+      return $setup.layout = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelRadio, $setup.layout]]), _hoisted_12]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+    href: "/voc/repetitio/step/2",
+    method: "post",
+    data: {
+      systematisches: $setup.checkedSystematisches,
+      textinfos: $setup.checkedTextInfos,
+      layout: $setup.layout
+    }
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_15];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["data"])])])], 64
   /* STABLE_FRAGMENT */
   );
 }
