@@ -158,6 +158,27 @@ function selectSecondHalf(event){
   checkedWords.value = secondHalf;
 }
 
+//Check 10 extra random words to practise
+function plus10(){
+  console.log(voc);
+  console.log(checkedWords.value);
+
+  const possibleWordsToAdd = [];
+
+  voc.forEach(function (word) {
+    if(!checkedWords.value.includes(word)){
+      possibleWordsToAdd.push(word);
+    }
+  });
+  possibleWordsToAdd.value = shuffle(possibleWordsToAdd);
+
+  for(var i=0;i<10;i++) {
+    if(checkedWords.value.length < voc.length){
+        checkedWords.value.push(possibleWordsToAdd[i]);
+    }
+  } 
+}
+
 
 function moveFirstElementFromBox1ToBox2(box1, box2){
     box1[0]["corrects"] = box1[0]["corrects"] + 1;
@@ -462,6 +483,7 @@ function shuffle(array) {
               <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-1" @click="selectNone">Niets</button>
               <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-1" @click="selectFirstHalf">1e helft</button>
               <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="selectSecondHalf">2e helft</button>
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-1 rounded" @click="plus10">+10</button>
             </div>
 
             <div class="grid grid-cols-3 gap-1">

@@ -27669,6 +27669,25 @@ __webpack_require__.r(__webpack_exports__);
       var half = Math.ceil(voc.length / 2);
       var secondHalf = voc.slice(-half);
       checkedWords.value = secondHalf;
+    } //Check 10 extra random words to practise
+
+
+    function plus10() {
+      console.log(voc);
+      console.log(checkedWords.value);
+      var possibleWordsToAdd = [];
+      voc.forEach(function (word) {
+        if (!checkedWords.value.includes(word)) {
+          possibleWordsToAdd.push(word);
+        }
+      });
+      possibleWordsToAdd.value = shuffle(possibleWordsToAdd);
+
+      for (var i = 0; i < 10; i++) {
+        if (checkedWords.value.length < voc.length) {
+          checkedWords.value.push(possibleWordsToAdd[i]);
+        }
+      }
     }
 
     function moveFirstElementFromBox1ToBox2(box1, box2) {
@@ -28103,6 +28122,7 @@ __webpack_require__.r(__webpack_exports__);
       selectNone: selectNone,
       selectFirstHalf: selectFirstHalf,
       selectSecondHalf: selectSecondHalf,
+      plus10: plus10,
       moveFirstElementFromBox1ToBox2: moveFirstElementFromBox1ToBox2,
       moveFirstElementFromBox2ToBox3: moveFirstElementFromBox2ToBox3,
       moveFirstElementFromBox3ToBox4: moveFirstElementFromBox3ToBox4,
@@ -28309,6 +28329,25 @@ __webpack_require__.r(__webpack_exports__);
       var half = Math.ceil(voc.length / 2);
       var secondHalf = voc.slice(-half);
       checkedWords.value = secondHalf;
+    } //Check 10 extra random words to practise
+
+
+    function plus10() {
+      console.log(voc);
+      console.log(checkedWords.value);
+      var possibleWordsToAdd = [];
+      voc.forEach(function (word) {
+        if (!checkedWords.value.includes(word)) {
+          possibleWordsToAdd.push(word);
+        }
+      });
+      possibleWordsToAdd.value = shuffle(possibleWordsToAdd);
+
+      for (var i = 0; i < 10; i++) {
+        if (checkedWords.value.length < voc.length) {
+          checkedWords.value.push(possibleWordsToAdd[i]);
+        }
+      }
     }
 
     function moveFirstElementFromBox1ToBox2(box1, box2) {
@@ -28613,6 +28652,7 @@ __webpack_require__.r(__webpack_exports__);
       selectNone: selectNone,
       selectFirstHalf: selectFirstHalf,
       selectSecondHalf: selectSecondHalf,
+      plus10: plus10,
       moveFirstElementFromBox1ToBox2: moveFirstElementFromBox1ToBox2,
       moveFirstElementFromBox2ToBox3: moveFirstElementFromBox2ToBox3,
       moveFirstElementFromBox3ToBox4: moveFirstElementFromBox3ToBox4,
@@ -34024,7 +34064,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, "1e helft"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
     onClick: $setup.selectSecondHalf
-  }, "2e helft")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.voc, function (word, index) {
+  }, "2e helft"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-1 rounded",
+    onClick: $setup.plus10
+  }, "+10")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.voc, function (word, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       id: word.id,
       value: word,
@@ -34412,7 +34455,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, "1e helft"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded",
     onClick: $setup.selectSecondHalf
-  }, "2e helft")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.voc, function (word, index) {
+  }, "2e helft"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-1 rounded",
+    onClick: $setup.plus10
+  }, "+10")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.voc, function (word, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       id: word.id,
       value: word,

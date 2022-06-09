@@ -229,10 +229,13 @@ class VocController extends Controller
         $voc_back = array();
         $voc = array();
         
+
         foreach($text_words as $word) {
             $index = $word->phrase_number;
             $phrases[$index] = $phrases[$index] . " " . $word->text_word;
         }
+
+        // dd($phrases);
 
         foreach($text_words as $word) {
             // $index = $word->phrase_number;
@@ -247,7 +250,7 @@ class VocController extends Controller
                 //TODO
                 $o->phrase = "";
                 if($o->phrase_number>1){
-                    $o->phrase = $o->phrase . $phrases[$o->phrase_number-1];
+                    $o->phrase = $phrases[$o->phrase_number-1] . $o->phrase;
                 }
                 $o->phrase = $o->phrase . $phrases[$o->phrase_number];
                 if($o->phrase_number != count($phrases)){
