@@ -1,19 +1,19 @@
 <script setup>
-import { Head, Link } from '@inertiajs/inertia-vue3';
-import { reactive, ref, computed } from 'vue';
-import JetCheckbox from '@/Jetstream/Checkbox.vue';
+import { Head, Link } from "@inertiajs/inertia-vue3";
+import { reactive, ref, computed } from "vue";
+import JetCheckbox from "@/Jetstream/Checkbox.vue";
 import ConfettiExplosion from "vue-confetti-explosion";
 
 const props = defineProps({
-    canLogin: Boolean,
-    canRegister: Boolean,
-    // phrases: Object,
-    // voc_front: Array,
-    // voc_back: Array,
-    voc: Array,
-    title: String,
-    // attempts: Number,
-    // corrects: Number
+  canLogin: Boolean,
+  canRegister: Boolean,
+  // phrases: Object,
+  // voc_front: Array,
+  // voc_back: Array,
+  voc: Array,
+  title: String,
+  // attempts: Number,
+  // corrects: Number
 });
 
 // const phrases = props.phrases;
@@ -22,14 +22,14 @@ const voc = props.voc;
 
 const checkedWords = ref([]);
 var exercises = [];
-const current_exercise = reactive({ex : ""});
-const current_solution = reactive({ex : ""});
-const current_phrase = reactive({ex : ""});
+const current_exercise = reactive({ ex: "" });
+const current_solution = reactive({ ex: "" });
+const current_phrase = reactive({ ex: "" });
 
-const show_preferences= ref(false);
+const show_preferences = ref(false);
 const show_solution = ref(false);
 
-const progress_percentage = reactive({val : 0});
+const progress_percentage = reactive({ val: 0 });
 // const word_count = computed(() => checkedWords.value.length);
 // const progress_percentage = computed(() => 100 - Math.floor((exercises.length/word_count)*100));
 
@@ -66,19 +66,34 @@ const box2To1 = ref(false);
 const box3To2 = ref(false);
 
 const wordinfo1CorrectExists = computed(() => {
-    return (current_exercise.ex['word_complete'] !== undefined && current_exercise.ex['word_complete']['wordinfo1'] != null );
+  return (
+    current_exercise.ex["word_complete"] !== undefined &&
+    current_exercise.ex["word_complete"]["wordinfo1"] != null
+  );
 });
 const wordinfo2CorrectExists = computed(() => {
-    return (current_exercise.ex['word_complete'] !== undefined && current_exercise.ex['word_complete']['wordinfo2'] != null );
+  return (
+    current_exercise.ex["word_complete"] !== undefined &&
+    current_exercise.ex["word_complete"]["wordinfo2"] != null
+  );
 });
 const wordinfo3CorrectExists = computed(() => {
-    return (current_exercise.ex['word_complete'] !== undefined && current_exercise.ex['word_complete']['wordinfo3'] != null );
+  return (
+    current_exercise.ex["word_complete"] !== undefined &&
+    current_exercise.ex["word_complete"]["wordinfo3"] != null
+  );
 });
 const wordinfo4CorrectExists = computed(() => {
-    return (current_exercise.ex['word_complete'] !== undefined && current_exercise.ex['word_complete']['wordinfo4'] != null );
+  return (
+    current_exercise.ex["word_complete"] !== undefined &&
+    current_exercise.ex["word_complete"]["wordinfo4"] != null
+  );
 });
 const wordmeaningCorrectExists = computed(() => {
-    return (current_exercise.ex['word_complete'] !== undefined && current_exercise.ex['word_complete']['meaning1'] != null );
+  return (
+    current_exercise.ex["word_complete"] !== undefined &&
+    current_exercise.ex["word_complete"]["meaning1"] != null
+  );
 });
 
 const wordinfo1Answer = ref("");
@@ -101,16 +116,15 @@ const meaningIsWrong = ref(false);
 const controlPressed = ref(false);
 const newPressed = ref(true);
 
-
-function toggleShowPreferences(event){
-    this.show_preferences = !this.show_preferences;
+function toggleShowPreferences(event) {
+  this.show_preferences = !this.show_preferences;
 }
 
-function toggleShowSolution(event){
-    show_solution.value = !show_solution.value;
+function toggleShowSolution(event) {
+  show_solution.value = !show_solution.value;
 }
 
-function start(event){
+function start(event) {
   //Empty all boxes for a fresh start
   box1.length = 0;
   box2.length = 0;
@@ -118,18 +132,18 @@ function start(event){
   box4.length = 0;
 
   checkedWords.value.forEach(function (word) {
-        word["corrects"] = 0;
-        word["attempts"] = 0;
-        word["box"] = 1
-;       box1.push(word);
-    });
+    word["corrects"] = 0;
+    word["attempts"] = 0;
+    word["box"] = 1;
+    box1.push(word);
+  });
   //Shuffle array exercises
   box1 = box1.sort((a, b) => 0.5 - Math.random());
   console.log(box1);
   current_exercise.ex = box1[0];
   console.log("current excercise");
   console.log(current_exercise.ex);
-  console.log(current_exercise.ex['word_complete']['wordinfo1']);
+  console.log(current_exercise.ex["word_complete"]["wordinfo1"]);
   // if(current_exercise.ex['word_complete']['wordinfo1'] != null){
   //   wordinfo1CorrectExists.value = true;
   // }
@@ -172,23 +186,23 @@ function setSelected(event) {
 }
 
 function selectAll(event) {
-    checkedWords.value = voc;
-    console.log(checkedWords);
+  checkedWords.value = voc;
+  console.log(checkedWords);
 }
 
 function selectNone(event) {
-    checkedWords.value = [];
-    console.log(checkedWords);
+  checkedWords.value = [];
+  console.log(checkedWords);
 }
 
-function selectFirstHalf(event){
+function selectFirstHalf(event) {
   const half = Math.ceil(voc.length / 2);
-  const firstHalf = voc.slice(0, half)
+  const firstHalf = voc.slice(0, half);
 
   checkedWords.value = firstHalf;
 }
 
-function selectSecondHalf(event){
+function selectSecondHalf(event) {
   const half = Math.ceil(voc.length / 2);
   const secondHalf = voc.slice(-half);
 
@@ -196,99 +210,99 @@ function selectSecondHalf(event){
 }
 
 //Check 10 extra random words to practise
-function plus10(){
+function plus10() {
   console.log(voc);
   console.log(checkedWords.value);
 
   const possibleWordsToAdd = [];
 
   voc.forEach(function (word) {
-    if(!checkedWords.value.includes(word)){
+    if (!checkedWords.value.includes(word)) {
       possibleWordsToAdd.push(word);
     }
   });
   possibleWordsToAdd.value = shuffle(possibleWordsToAdd);
 
-  for(var i=0;i<10;i++) {
-    if(checkedWords.value.length < voc.length){
-        checkedWords.value.push(possibleWordsToAdd[i]);
+  for (var i = 0; i < 10; i++) {
+    if (checkedWords.value.length < voc.length) {
+      checkedWords.value.push(possibleWordsToAdd[i]);
     }
-  } 
+  }
 }
 
-
-function moveFirstElementFromBox1ToBox2(box1, box2){
-    box1[0]["corrects"] = box1[0]["corrects"] + 1;
-    box1[0]["attempts"] = box1[0]["attempts"] + 1;
-    box1[0]["box"] = 2;
-    box2.push(box1[0]);
-    box1.splice(0,1);
-    // console.log(box1);
-    // console.log(box2);
+function moveFirstElementFromBox1ToBox2(box1, box2) {
+  box1[0]["corrects"] = box1[0]["corrects"] + 1;
+  box1[0]["attempts"] = box1[0]["attempts"] + 1;
+  box1[0]["box"] = 2;
+  box2.push(box1[0]);
+  box1.splice(0, 1);
+  // console.log(box1);
+  // console.log(box2);
 }
 
-function moveFirstElementFromBox2ToBox3(box2, box3){
-    box2[0]["corrects"] = box2[0]["corrects"] + 1;
-    box2[0]["attempts"] = box2[0]["attempts"] + 1;
-    box2[0]["box"] = 3;
-    box3.push(box2[0]);
-    box2.splice(0,1);
-    // console.log(box2);
-    // console.log(box3);
+function moveFirstElementFromBox2ToBox3(box2, box3) {
+  box2[0]["corrects"] = box2[0]["corrects"] + 1;
+  box2[0]["attempts"] = box2[0]["attempts"] + 1;
+  box2[0]["box"] = 3;
+  box3.push(box2[0]);
+  box2.splice(0, 1);
+  // console.log(box2);
+  // console.log(box3);
 }
 
-function moveFirstElementFromBox3ToBox4(box3, box4){
-    box3[0]["corrects"] = box3[0]["corrects"] + 1;
-    box3[0]["attempts"] = box3[0]["attempts"] + 1;
-    box3[0]["box"] = 4;
-    box4.push(box3[0]);
-    box3.splice(0,1);
-    // console.log(box1);
-    // console.log(box2);
+function moveFirstElementFromBox3ToBox4(box3, box4) {
+  box3[0]["corrects"] = box3[0]["corrects"] + 1;
+  box3[0]["attempts"] = box3[0]["attempts"] + 1;
+  box3[0]["box"] = 4;
+  box4.push(box3[0]);
+  box3.splice(0, 1);
+  // console.log(box1);
+  // console.log(box2);
 }
 
-function moveFirstElementFromBox3ToBox1(box3, box1){
-    box3[0]["attempts"] = box3[0]["attempts"] + 1;
-    box3[0]["box"] = 1;
-    box1.push(box3[0]);
-    box3.splice(0,1);
+function moveFirstElementFromBox3ToBox1(box3, box1) {
+  box3[0]["attempts"] = box3[0]["attempts"] + 1;
+  box3[0]["box"] = 1;
+  box1.push(box3[0]);
+  box3.splice(0, 1);
 }
 
-function moveFirstElementFromBox2ToBox1(box2, box1){
-    box2[0]["attempts"] = box2[0]["attempts"] + 1;
-    box2[0]["box"] = 1;
-    box1.push(box2[0]);
-    box2.splice(0,1);
+function moveFirstElementFromBox2ToBox1(box2, box1) {
+  box2[0]["attempts"] = box2[0]["attempts"] + 1;
+  box2[0]["box"] = 1;
+  box1.push(box2[0]);
+  box2.splice(0, 1);
 }
 
 //Set following card to study
-function setNextCardToStudy(){
-  if((box1.length + box2.length + box3.length) == 0){
+function setNextCardToStudy() {
+  if (box1.length + box2.length + box3.length == 0) {
     console.log("You know everything!");
-    //Splash screen here 
+    //Splash screen here
   }
   //With over 80% probability, try to pick a card from most populated box first
-  else { if(!getCardFromMostPopulatedBox()){
-    getCardFromRandomBox();
+  else {
+    if (!getCardFromMostPopulatedBox()) {
+      getCardFromRandomBox();
     }
   }
 }
 
-function getCardFromMostPopulatedBox(){
+function getCardFromMostPopulatedBox() {
   var rand = Math.floor(Math.random() * 10);
   console.log(rand);
-  if(rand > 2){
+  if (rand > 2) {
     var array = [box1.length, box2.length, box3.length];
     var highestValue = array.indexOf(Math.max(...array));
     // var highestValue = Math.max(...array.map(o => o.y));
 
-    if(highestValue == 0){
+    if (highestValue == 0) {
       current_exercise.ex = box1[0];
     }
-    if(highestValue == 1){
+    if (highestValue == 1) {
       current_exercise.ex = box2[0];
     }
-    if(highestValue == 2){
+    if (highestValue == 2) {
       current_exercise.ex = box3[0];
     }
     return true;
@@ -296,32 +310,35 @@ function getCardFromMostPopulatedBox(){
   return false;
 }
 
-function getCardFromRandomBox(){
+function getCardFromRandomBox() {
   var boxNumbersContainingElements = [];
-  if(box1.length > 0){
+  if (box1.length > 0) {
     boxNumbersContainingElements.push(1);
   }
-  if(box2.length > 0){
+  if (box2.length > 0) {
     boxNumbersContainingElements.push(2);
   }
-  if(box3.length > 0){
+  if (box3.length > 0) {
     boxNumbersContainingElements.push(3);
   }
   //Pick random element from the array
-  const randomElement = boxNumbersContainingElements[Math.floor(Math.random() * boxNumbersContainingElements.length)];
+  const randomElement =
+    boxNumbersContainingElements[
+      Math.floor(Math.random() * boxNumbersContainingElements.length)
+    ];
 
-  if(randomElement == 1){
+  if (randomElement == 1) {
     current_exercise.ex = box1[0];
   }
-  if(randomElement == 2){
+  if (randomElement == 2) {
     current_exercise.ex = box2[0];
   }
-  if(randomElement == 3){
+  if (randomElement == 3) {
     current_exercise.ex = box3[0];
   }
 }
 
-function clearArrows(){
+function clearArrows() {
   box1To2.value = false;
   box2To3.value = false;
   box3To4.value = false;
@@ -329,262 +346,311 @@ function clearArrows(){
   box3To2.value = false;
 }
 
-function correctAnswered(){
+function correctAnswered() {
   // if(audio_on.value){
   //   // var audio = new Audio('https://www.myinstants.com/media/sounds/ding-sound-effect_1.mp3');
   //   var audio = new Audio('../../correct.mp3');
   //   audio.play();
   // }
-  
+
   toggleShowSolution();
 
   clearArrows();
 
-  if(current_exercise.ex["box"] == 1){
+  if (current_exercise.ex["box"] == 1) {
     box1To2.value = true;
     moveFirstElementFromBox1ToBox2(box1, box2);
     shuffle(box2);
-  }
-  else{
-      if(current_exercise.ex["box"] == 2){
-        box2To3.value = true;
-        moveFirstElementFromBox2ToBox3(box2, box3);
-        shuffle(box3);
-      }
-      else {
-          if(current_exercise.ex["box"] == 3){
-            box3To4.value = true;
-            moveFirstElementFromBox3ToBox4(box3, box4);
-          //No more words left to study
-          if((box1.length + box2.length + box3.length) == 0){
-             if(audio_on.value){ 
-              var audio = new Audio('../../applause.mp3');
-              audio.play();
-            }
-            confetti.value = true;
+  } else {
+    if (current_exercise.ex["box"] == 2) {
+      box2To3.value = true;
+      moveFirstElementFromBox2ToBox3(box2, box3);
+      shuffle(box3);
+    } else {
+      if (current_exercise.ex["box"] == 3) {
+        box3To4.value = true;
+        moveFirstElementFromBox3ToBox4(box3, box4);
+        //No more words left to study
+        if (box1.length + box2.length + box3.length == 0) {
+          if (audio_on.value) {
+            var audio = new Audio("../../applause.mp3");
+            audio.play();
           }
+          confetti.value = true;
         }
-      }//end of else 2
-  }//end of else 1
+      }
+    } //end of else 2
+  } //end of else 1
 
-  
-  setNextCardToStudy(); 
+  setNextCardToStudy();
 
   setProgress();
-  
-}//end of correctAnswered
+} //end of correctAnswered
 
-function wrongAnswered(){
-   // if(audio_on.value){
-   //  var audio = new Audio('../../wrong.wav');
-   //  audio.play();
-   // } 
-    
+function wrongAnswered() {
+  // if(audio_on.value){
+  //  var audio = new Audio('../../wrong.wav');
+  //  audio.play();
+  // }
+
   toggleShowSolution();
 
   clearArrows();
 
-  if(current_exercise.ex["box"] == 2){
+  if (current_exercise.ex["box"] == 2) {
     box2To1.value = true;
     moveFirstElementFromBox2ToBox1(box2, box1);
-  }
-  else {
-      if(current_exercise.ex["box"] == 3){
-        box2To1.value = true;
-        box3To2.value = true;
-        moveFirstElementFromBox3ToBox1(box3, box1);
-      }
-  }//end of else
+  } else {
+    if (current_exercise.ex["box"] == 3) {
+      box2To1.value = true;
+      box3To2.value = true;
+      moveFirstElementFromBox3ToBox1(box3, box1);
+    }
+  } //end of else
   shuffle(box1);
-  
+
   setNextCardToStudy();
 
   setProgress();
-
 }
 
-function setProgress(){
+function setProgress() {
   //Set the progress
-  progress_percentage.val = Math.round(((box2.length*1/3 + box3.length*2/3 + box4.length)/checkedWords.value.length)*100);
+  progress_percentage.val = Math.round(
+    (((box2.length * 1) / 3 + (box3.length * 2) / 3 + box4.length) /
+      checkedWords.value.length) *
+      100
+  );
 
-  if(progress_percentage.val > 0 && progress_percentage.val < 1*100/12){
+  if (progress_percentage.val > 0 && progress_percentage.val < (1 * 100) / 12) {
     isOneTwelfth.value = true;
   }
-  if(progress_percentage.val >= 1*100/12 && progress_percentage.val < 2*100/12){
+  if (
+    progress_percentage.val >= (1 * 100) / 12 &&
+    progress_percentage.val < (2 * 100) / 12
+  ) {
     isTwoTwelfth.value = true;
   }
-    if(progress_percentage.val >= 2*100/12 && progress_percentage.val < 3*100/12){
+  if (
+    progress_percentage.val >= (2 * 100) / 12 &&
+    progress_percentage.val < (3 * 100) / 12
+  ) {
     isThreeTwelfth.value = true;
   }
-    if(progress_percentage.val >= 3*100/12 && progress_percentage.val < 4*100/12){
+  if (
+    progress_percentage.val >= (3 * 100) / 12 &&
+    progress_percentage.val < (4 * 100) / 12
+  ) {
     isFourTwelfth.value = true;
   }
-  if(progress_percentage.val >= 4*100/12 && progress_percentage.val < 5*100/12){
+  if (
+    progress_percentage.val >= (4 * 100) / 12 &&
+    progress_percentage.val < (5 * 100) / 12
+  ) {
     isFiveTwelfth.value = true;
   }
-    if(progress_percentage.val >= 5*100/12 && progress_percentage.val < 6*100/12){
+  if (
+    progress_percentage.val >= (5 * 100) / 12 &&
+    progress_percentage.val < (6 * 100) / 12
+  ) {
     isSixTwelfth.value = true;
   }
-   if(progress_percentage.val >= 6*100/12 && progress_percentage.val < 7*100/12){
+  if (
+    progress_percentage.val >= (6 * 100) / 12 &&
+    progress_percentage.val < (7 * 100) / 12
+  ) {
     isSevenTwelfth.value = true;
   }
-  if(progress_percentage.val >= 7*100/12 && progress_percentage.val < 8*100/12){
+  if (
+    progress_percentage.val >= (7 * 100) / 12 &&
+    progress_percentage.val < (8 * 100) / 12
+  ) {
     isEightTwelfth.value = true;
   }
-    if(progress_percentage.val >= 8*100/12 && progress_percentage.val < 9*100/12){
+  if (
+    progress_percentage.val >= (8 * 100) / 12 &&
+    progress_percentage.val < (9 * 100) / 12
+  ) {
     isNineTwelfth.value = true;
   }
-    if(progress_percentage.val >= 9*100/12 && progress_percentage.val < 10*100/12){
+  if (
+    progress_percentage.val >= (9 * 100) / 12 &&
+    progress_percentage.val < (10 * 100) / 12
+  ) {
     isTenTwelfth.value = true;
   }
-  if(progress_percentage.val >= 10*100/12 && progress_percentage.val < 11*100/12){
+  if (
+    progress_percentage.val >= (10 * 100) / 12 &&
+    progress_percentage.val < (11 * 100) / 12
+  ) {
     isElevenTwelfth.value = true;
   }
-    if(progress_percentage.val >= 11*100/12 && progress_percentage.val <= 12*100/12){
+  if (
+    progress_percentage.val >= (11 * 100) / 12 &&
+    progress_percentage.val <= (12 * 100) / 12
+  ) {
     isTwelveTwelfth.value = true;
   }
 }
 
 function shuffle(array) {
-  let currentIndex = array.length,  randomIndex;
+  let currentIndex = array.length,
+    randomIndex;
 
   // While there remain elements to shuffle.
   while (currentIndex != 0) {
-
     // Pick a remaining element.
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
 
     // And swap it with the current element.
     [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
+      array[randomIndex],
+      array[currentIndex],
+    ];
   }
 
   return array;
 }
 
-function newExercise(){
-    controlPressed.value = false;
-    newPressed.value = true;
+function newExercise() {
+  controlPressed.value = false;
+  newPressed.value = true;
 
-    if((wordinfo1IsCorrect.value || !wordinfo1CorrectExists.value) && 
-      (wordinfo2IsCorrect.value || !wordinfo2CorrectExists.value) &&
-      (wordinfo3IsCorrect.value || !wordinfo3CorrectExists.value) && 
-      (wordinfo4IsCorrect.value || !wordinfo4CorrectExists.value) && 
-      (meaningIsCorrect.value)){
-        correctAnswered();
-    }
-    else{
-        wrongAnswered();
-    }
+  if (
+    (wordinfo1IsCorrect.value || !wordinfo1CorrectExists.value) &&
+    (wordinfo2IsCorrect.value || !wordinfo2CorrectExists.value) &&
+    (wordinfo3IsCorrect.value || !wordinfo3CorrectExists.value) &&
+    (wordinfo4IsCorrect.value || !wordinfo4CorrectExists.value) &&
+    meaningIsCorrect.value
+  ) {
+    correctAnswered();
+  } else {
+    wrongAnswered();
+  }
 
-    wordinfo1Answer.value = "";
-    wordinfo2Answer.value = "";
-    wordinfo3Answer.value = "";
-    wordinfo4Answer.value = "";
-    meaningAnswer.value = "";
-    wordinfo1IsCorrect.value = false;
-    wordinfo2IsCorrect.value = false;
-    wordinfo3IsCorrect.value = false;
-    wordinfo4IsCorrect.value = false;
-    wordinfo1IsWrong.value = false;
-    wordinfo2IsWrong.value = false;
-    wordinfo3IsWrong.value = false;
-    wordinfo4IsWrong.value = false;
-    meaningIsCorrect.value = false;
-    meaningIsWrong.value = false;
+  wordinfo1Answer.value = "";
+  wordinfo2Answer.value = "";
+  wordinfo3Answer.value = "";
+  wordinfo4Answer.value = "";
+  meaningAnswer.value = "";
+  wordinfo1IsCorrect.value = false;
+  wordinfo2IsCorrect.value = false;
+  wordinfo3IsCorrect.value = false;
+  wordinfo4IsCorrect.value = false;
+  wordinfo1IsWrong.value = false;
+  wordinfo2IsWrong.value = false;
+  wordinfo3IsWrong.value = false;
+  wordinfo4IsWrong.value = false;
+  meaningIsCorrect.value = false;
+  meaningIsWrong.value = false;
 }
 
-function evaluate(){
+function evaluate() {
+  controlPressed.value = true;
+  newPressed.value = false;
+  show_solution.value = true;
 
-    controlPressed.value = true;
-    newPressed.value = false;
-    show_solution.value = true;
+  checkIfMeaningIsCorrect();
+  checkIfWordinfoIsCorrect();
 
-    checkIfMeaningIsCorrect();
-    checkIfWordinfoIsCorrect();
-
-    if((wordinfo1IsCorrect.value || !wordinfo1CorrectExists.value) && 
-      (wordinfo2IsCorrect.value || !wordinfo2CorrectExists.value) &&
-      (wordinfo3IsCorrect.value || !wordinfo3CorrectExists.value) && 
-      (wordinfo4IsCorrect.value || !wordinfo4CorrectExists.value) && 
-      (meaningIsCorrect.value)){
-        playCorrectSound();
-    }
-    else{
-        playWrongSoud();
-    }    
+  if (
+    (wordinfo1IsCorrect.value || !wordinfo1CorrectExists.value) &&
+    (wordinfo2IsCorrect.value || !wordinfo2CorrectExists.value) &&
+    (wordinfo3IsCorrect.value || !wordinfo3CorrectExists.value) &&
+    (wordinfo4IsCorrect.value || !wordinfo4CorrectExists.value) &&
+    meaningIsCorrect.value
+  ) {
+    playCorrectSound();
+  } else {
+    playWrongSoud();
+  }
 }
 
-function playCorrectSound(){
-    if(audio_on.value){
-      // var audio = new Audio('https://www.myinstants.com/media/sounds/ding-sound-effect_1.mp3');
-      var audio = new Audio('../../correct.mp3');
-      audio.play();
-    }
-}
-
-function playWrongSoud(){
-  if(audio_on.value){
-    var audio = new Audio('../../wrong.wav');
+function playCorrectSound() {
+  if (audio_on.value) {
+    // var audio = new Audio('https://www.myinstants.com/media/sounds/ding-sound-effect_1.mp3');
+    var audio = new Audio("../../correct.mp3");
     audio.play();
-  } 
+  }
 }
 
-function checkIfWordinfoIsCorrect(){
-    if(wordinfo1CorrectExists && current_exercise.ex['word_complete']["wordinfo1"] == wordinfo1Answer.value)
-    {
-      wordinfo1IsCorrect.value = true;
-    }
-    else{
-      wordinfo1IsWrong.value = true;
-    }
-
-    if(wordinfo2CorrectExists && current_exercise.ex['word_complete']["wordinfo2"] == wordinfo2Answer.value)
-    {
-      wordinfo2IsCorrect.value = true;
-    }
-    else{
-      wordinfo2IsWrong.value = true;
-    }
-
-    if(wordinfo3CorrectExists && current_exercise.ex['word_complete']["wordinfo3"] == wordinfo3Answer.value)
-    {
-      wordinfo3IsCorrect.value = true;
-    }
-    else{
-      wordinfo3IsWrong.value = true;
-    }
-    if(wordinfo4CorrectExists && current_exercise.ex['word_complete']["wordinfo4"] == wordinfo4Answer.value)
-    {
-      wordinfo4IsCorrect.value = true;
-    }
-    else{
-      wordinfo4IsWrong.value = true;
-    }
+function playWrongSoud() {
+  if (audio_on.value) {
+    var audio = new Audio("../../wrong.wav");
+    audio.play();
+  }
 }
 
-function checkIfMeaningIsCorrect(){
+function checkIfWordinfoIsCorrect() {
+  if (
+    wordinfo1CorrectExists &&
+    current_exercise.ex["word_complete"]["wordinfo1"] == wordinfo1Answer.value
+  ) {
+    wordinfo1IsCorrect.value = true;
+  } else {
+    wordinfo1IsWrong.value = true;
+  }
+
+  if (
+    wordinfo2CorrectExists &&
+    current_exercise.ex["word_complete"]["wordinfo2"] == wordinfo2Answer.value
+  ) {
+    wordinfo2IsCorrect.value = true;
+  } else {
+    wordinfo2IsWrong.value = true;
+  }
+
+  if (
+    wordinfo3CorrectExists &&
+    current_exercise.ex["word_complete"]["wordinfo3"] == wordinfo3Answer.value
+  ) {
+    wordinfo3IsCorrect.value = true;
+  } else {
+    wordinfo3IsWrong.value = true;
+  }
+  if (
+    wordinfo4CorrectExists &&
+    current_exercise.ex["word_complete"]["wordinfo4"] == wordinfo4Answer.value
+  ) {
+    wordinfo4IsCorrect.value = true;
+  } else {
+    wordinfo4IsWrong.value = true;
+  }
+}
+
+function checkIfMeaningIsCorrect() {
   var arr_meaning = ["meaning1", "meaning2", "meaning3", "meaning4"];
   var i = 0;
 
-  for(i=0; i<arr_meaning.length;i++){
-      console.log(current_exercise.ex['word_complete'][arr_meaning[i]]);
-      console.log(meaningAnswer.value);
-      if(wordmeaningCorrectExists && meaningAnswer.value != ""){
-        if((current_exercise.ex['word_complete'][arr_meaning[i]] == meaningAnswer.value)){
-          meaningIsCorrect.value = true;
-        }
-        if((current_exercise.ex['word_complete'][arr_meaning[i]] !== null) && (current_exercise.ex['word_complete'][arr_meaning[i]].substring(3) == meaningAnswer.value)){
-          meaningIsCorrect.value = true;
-        }
-        if((current_exercise.ex['word_complete'][arr_meaning[i]] !== null) && (current_exercise.ex['word_complete'][arr_meaning[i]].substring(4) == meaningAnswer.value)){
-          meaningIsCorrect.value = true;
-        }
+  for (i = 0; i < arr_meaning.length; i++) {
+    console.log(current_exercise.ex["word_complete"][arr_meaning[i]]);
+    console.log(meaningAnswer.value);
+    if (wordmeaningCorrectExists && meaningAnswer.value != "") {
+      if (
+        current_exercise.ex["word_complete"][arr_meaning[i]] ==
+        meaningAnswer.value
+      ) {
+        meaningIsCorrect.value = true;
       }
+      if (
+        current_exercise.ex["word_complete"][arr_meaning[i]] !== null &&
+        current_exercise.ex["word_complete"][arr_meaning[i]].substring(3) ==
+          meaningAnswer.value
+      ) {
+        meaningIsCorrect.value = true;
+      }
+      if (
+        current_exercise.ex["word_complete"][arr_meaning[i]] !== null &&
+        current_exercise.ex["word_complete"][arr_meaning[i]].substring(4) ==
+          meaningAnswer.value
+      ) {
+        meaningIsCorrect.value = true;
+      }
+    }
   }
 
-  if(!meaningIsCorrect.value){
+  if (!meaningIsCorrect.value) {
     meaningIsWrong.value = true;
   }
 }
@@ -659,7 +725,7 @@ function checkIfMeaningIsCorrect(){
             </div>
 
             <div class="mb-2 flex justify-center pt-2 pb-2 pl-2 pr-2">
-              <button class="bg-green-700 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-1 ml-2 mr-2 mt-2 md:mx-auto" @click="start">START</button>
+              <button class="bg-green-700 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-1 ml-2 mr-2 mt-2 md:mx-auto" @click="start">OEFEN</button>
             </div>
       </div>
 

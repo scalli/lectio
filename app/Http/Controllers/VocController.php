@@ -9,6 +9,11 @@ use \stdClass;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
+use File;
+use Illuminate\Support\Facades\Response;
+// use Illuminate\Http\Response;
+use Storage;
+
 class VocController extends Controller
 {
     public function show($layout, $id){
@@ -222,6 +227,73 @@ class VocController extends Controller
 
     }
 
+    public function export(Request $request){
+        // dd($request->systematisches);
+        // dd($request->textinfos);
+
+        $query = "select * from texts join vocs on texts.word_voc = vocs.id where ((";
+
+        for($i=0;$i<count($request->systematisches);$i++){
+            $query = $query . 'vocs.part_of_speech = ' . $request->systematisches[$i]['id'];
+            if($i<count(($request->systematisches))-1){
+                $query = $query . ' OR ';
+            }
+        }
+        $query = $query . ") AND (";
+
+        for($i=0;$i<count($request->textinfos);$i++){
+            $query = $query . 'texts.text_info_id = ' . $request->textinfos[$i]['id'];
+            if($i<count(($request->textinfos))-1){
+                $query = $query . ' OR ';
+            }
+        }
+
+        $query = $query . ") AND vocs.memorize = 1) GROUP BY vocs.id";
+        
+        // dd($query);
+
+        $text_words = DB::select($query);
+        // dd($text_words);
+
+       $layout = "profound";
+
+        $voc = $this->makeVocCardsForExport($text_words);
+        // dd($voc);
+
+
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        $section = $phpWord->addSection();
+        // $text = $section->addText("text test");
+        $table = $section->addTable();
+        for($i=0;$i<count($voc);$i++){
+            $table->addRow();
+            $table->addCell()->addText($voc[$i]->word);
+            $table->addCell()->addText($voc[$i]->wordinfo);
+            $table->addCell()->addText($voc[$i]->wordmeaning);
+            // $text = $section->addText($text_words[$i]->word);
+        }
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+        $objWriter->save(time() . 'voc.docx');
+        $url  = url('');
+        // $documentlink = $url . '/voc/downloadvoc/' . time() . 'voc';
+        $docxName = time() . 'voc';
+ 
+
+
+        return Inertia::render('ExportVoc', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'docxName' => $docxName
+        // 'title' => "Voc. oefenen van " . count($request->textinfos) . " teksten",
+        // 'phrases' => $phrases,
+        // 'voc' => $voc
+        // 'voc_front' => $voc_front,
+        // 'voc_back' => $voc_back
+        ]);
+
+
+    }
+
     function makeVocCards($text_words, $layout){
         $max_index = ($text_words[count($text_words)-1])->phrase_number;
         $phrases = array_fill(1, $max_index, "");//array containing all phrases
@@ -318,5 +390,118 @@ class VocController extends Controller
 
         // dd($voc_front);
         // dd($voc_back);
+    }
+
+    function makeVocCardsForExport($text_words){
+        $max_index = ($text_words[count($text_words)-1])->phrase_number;
+        // $phrases = array_fill(1, $max_index, "");//array containing all phrases
+        $voc_front = array();
+        $voc_back = array();
+        $voc = array();
+
+
+        foreach($text_words as $word) {
+
+            if($word->memorize == 1){
+                $o = new stdClass();
+                $o->word = $word->word;
+                $o->id = $word->id;
+
+
+                // if($word->wordinfo1 != null && str_starts_with($word->wordinfo1, '+')){
+                //     $o->word = $o->word . ' + ';
+                // }
+                // if($word->wordinfo1 != null && !str_starts_with($word->wordinfo1, '+')){
+                //     $vocword_info = $vocword_info . $word->wordinfo1;
+                //     $o->word = $o->word . ', ';
+                // }
+                // elseif($word->wordinfo1 != null){
+                $vocword_info = "";
+                    if($word->wordinfo1 != null){
+                    $vocword_info = $vocword_info . $word->wordinfo1;
+                }
+                if($word->wordinfo2 != null){
+                    $vocword_info = $vocword_info . ', ' . $word->wordinfo2;
+                }
+                if($word->wordinfo3 != null){
+                    $vocword_info = $vocword_info . ', ' . $word->wordinfo3;
+                }
+                 if($word->wordinfo4 != null){
+                    $vocword_info = $vocword_info . ', ' . $word->wordinfo4;
+                }
+
+                $o->wordinfo = $vocword_info;
+                
+                $vocword_meaning = "";
+
+                if($word->meaning1 != null){
+                    $vocword_meaning = $vocword_meaning . $word->meaning1;
+                }
+                if($word->meaning2 != null){
+                    $vocword_meaning = $vocword_meaning . ', ' . $word->meaning2;
+                }
+                if($word->meaning3 != null){
+                    $vocword_meaning = $vocword_meaning . ', ' . $word->meaning3;
+                }
+                 if($word->meaning4 != null){
+                    $vocword_meaning = $vocword_meaning . ', ' . $word->meaning4;
+                }
+
+                if($word->parentheses != null){
+                    $vocword_meaning = $vocword_meaning . ' (' . $word->parentheses . ' )';
+                }
+
+                $o->wordmeaning = $vocword_meaning;
+
+                if(!$this->isInVocAlready($voc,$o->id)){
+                    array_push($voc, $o );
+                }
+            }//end of if memorize
+
+        }//end of foreach $word
+
+        return $voc;
+
+        // dd($voc_front);
+        // dd($voc_back);
+    }
+
+    public function downloadvoc(Request $request)
+    {
+        // $filepath = $filepath;
+        // dd($request->docxName);
+ 
+        // $file = Storage::disk('public')->get($request->docxName.'.docx');
+        // $file = Storage::get('1654893063voc.docx');
+
+        // return Storage::download('1654893063voc.docx', "vocabularium", [
+        //         'Content-Type' => ' application/pdf',
+        //         'Content-Description' => 'File Transfer',
+        //         'Content-Disposition' => 'attachment;  filename='.$request->docxName.'.docx',
+        //         'Content-Transfer-Encoding' => 'binary'
+        //     ]);
+  
+        // return (new Response($file, 200))->header('Content-Type', 'application/msword');
+
+        // dd($docxName);
+
+        // $filepath = public_path('1654893993voc'.'.docx');
+        // dd($filepath);
+        // return Response::download($filepath); 
+
+        // OK
+        return response()->download($request->docxName.'.docx', "vocabularium");
+
+        // return Storage::download('1654893063voc.docx');
+
+        // return response()->download($request->docxName.'.docx', "vocabularium", [
+        //     'Content-Type' => ' application/pdf',
+        //     'Content-Description' => 'File Transfer',
+        //     'Content-Disposition' => 'attachment;  filename='.$request->docxName.'.docx',
+        //     'Content-Transfer-Encoding' => 'binary'
+        // ]);
+        
+        // return response()->download(public_path('1654893993voc'.'.docx'));
+
     }
 }

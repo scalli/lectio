@@ -29,6 +29,8 @@ Route::get('/text/{layout}/{id}', 'App\Http\Controllers\ReadTextController@show'
 Route::get('/voc/{layout}/{id}', 'App\Http\Controllers\VocController@show');
 Route::get('/voc/repetitio/step/1', 'App\Http\Controllers\VocController@repetitioStep1');
 Route::post('/voc/repetitio/step/2', 'App\Http\Controllers\VocController@repetitioStep2');
+Route::post('/voc/repetitio/export', 'App\Http\Controllers\VocController@export');
+Route::post('/voc/downloadvoc','App\Http\Controllers\VocController@downloadvoc');
 
 Route::get('/overview', 'App\Http\Controllers\TextInfoController@show');
 

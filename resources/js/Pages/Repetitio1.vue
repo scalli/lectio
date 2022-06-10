@@ -46,7 +46,7 @@ function selectNone(event) {
     <Head title="Repetio voc step 1" />
 
   <div class="flex justify-center pt-2 pb-2 pl-2 pr-2 mt-2 bg-zinc-200 text-amber-500 pl-2 pr-2 ml-2 mr-2   md:w-1/2 lg:w-1/3 md:mx-auto font-bold" @click="toggleShowTexts($event)">
-              &#8595 Teksten &#8595
+              &#8595; Teksten &#8595;
   </div>
     <div class="flex justify-center pt-2 pb-2 pl-2 pr-2 bg-zinc-200 text-amber-500 pl-2 pr-2 ml-2 mr-2   md:w-1/2 lg:w-1/3 md:mx-auto font-bold" @click="toggleShowTexts($event)">
               {{this.checkedTextInfos.length}} teksten geselecteerd
@@ -61,7 +61,7 @@ function selectNone(event) {
     </div>
 
   <div class="flex justify-center pt-2 pb-2 pl-2 pr-2 mt-2 bg-zinc-200 text-amber-500 pl-2 pr-2 ml-2 mr-2   md:w-1/2 lg:w-1/3 md:mx-auto font-bold" @click="toggleShowSystematic($event)">
-              &#8595 Systematische categorieën &#8595
+              &#8595; Systematische categorieën &#8595;
   </div>
     <div class="flex justify-center pt-2 pb-2 pl-2 pr-2 bg-zinc-200 text-amber-500 pl-2 pr-2 ml-2 mr-2   md:w-1/2 lg:w-1/3 md:mx-auto font-bold" @click="toggleShowSystematic($event)">
               {{this.checkedSystematisches.length}} categorieën geselecteerd
@@ -99,7 +99,10 @@ function selectNone(event) {
 
      <div id="start" class="flex justify-center mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
         <button class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-1" >
-            <Link href="/voc/repetitio/step/2" method="post" :data="{ systematisches: checkedSystematisches, textinfos : checkedTextInfos, layout : layout }">Start!</Link>
+            <Link href="/voc/repetitio/step/2" method="post" :data="{ systematisches: checkedSystematisches, textinfos : checkedTextInfos, layout : layout }">Oefen!</Link>
+        </button>
+        <button class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-1" >
+            <Link href="/voc/repetitio/export" method="post" :data="{ systematisches: checkedSystematisches, textinfos : checkedTextInfos, layout : layout }">Exporteer!</Link>
         </button>
       </div>
 
