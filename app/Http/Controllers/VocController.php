@@ -267,7 +267,7 @@ class VocController extends Controller
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $section = $phpWord->addSection();
         // $text = $section->addText("text test");
-        $section->addText('Te kennen vocabularium:', array('color' => 'FF0000'));
+        $section->addText('Te kennen vocabularium:', array('color' => '#0000FF', 'size' => '16', 'bold' => "true"));
         $table = $section->addTable();
         $fontStyle = new \PhpOffice\PhpWord\Style\Font();
         $fontStyle->setBold(true);
@@ -279,6 +279,7 @@ class VocController extends Controller
             // $text = $section->addText($text_words[$i]->word);
         }
         $section = $phpWord->addSection();
+        $section->addText('Niet te kennen vocabularium:', array('color' => '#0000FF', 'size' => '16', 'bold' => "true"));
         // $text = $section->addText("text test");
         $table = $section->addTable();
         for($i=0;$i<count($voc_not_to_memorize);$i++){
@@ -289,6 +290,7 @@ class VocController extends Controller
             // $text = $section->addText($text_words[$i]->word);
         }
         $section = $phpWord->addSection();
+        $section->addText('Alle vocabularium:', array('color' => '#0000FF', 'size' => '16', 'bold' => "true"));
         // $text = $section->addText("text test");
         $table = $section->addTable();
         for($i=0;$i<count($voc_complete);$i++){
