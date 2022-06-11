@@ -265,6 +265,27 @@ class VocController extends Controller
 
 
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        
+        $section = $phpWord->addSection();
+        $section->addText('Filter gebruikt voor deze woordsoorten:', array('color' => '#0000FF', 'size' => '16', 'bold' => "true"));
+        $systematisches = $request->systematisches;
+        $categoriesFilter = "";
+        for($i=0;$i<count($systematisches);$i++){
+            $categoriesFilter = $categoriesFilter . ($systematisches[$i]['part_of_speech']) . " - ";
+        }
+        $section->addText($categoriesFilter);
+        
+        $text_infos = $request->textinfos;
+        $section = $phpWord->addSection();
+        $section->addText('Filter gebruikt voor deze teksten:', array('color' => '#0000FF', 'size' => '16', 'bold' => "true"));
+        $textFilter = "";
+        for($i=0;$i<count($text_infos);$i++){
+            $textFilter = $textFilter . ($text_infos[$i]['text_title']) . " - ";
+        }
+        $section->addText($textFilter);
+        
+        $section->addPageBreak();
+
         $section = $phpWord->addSection();
         // $text = $section->addText("text test");
         $section->addText('Te kennen vocabularium:', array('color' => '#0000FF', 'size' => '16', 'bold' => "true"));
@@ -308,6 +329,30 @@ class VocController extends Controller
 
             // $text = $section->addText($text_words[$i]->word);
         }
+
+        usort($voc_to_memorize, array($this, "comparePartOfSpeech"));
+        $section = $phpWord->addSection();
+        $section->addText('Te kennen vocabularium per woordsoort:', array('color' => '#0000FF', 'size' => '16', 'bold' => "true"));
+        $table = $section->addTable();
+        $fontStyle = new \PhpOffice\PhpWord\Style\Font();
+        $fontStyle->setBold(true);
+        for($i=0;$i<count($voc_to_memorize);$i++){
+            if(($i>0) && ($voc_to_memorize[$i]->part_of_speech != $voc_to_memorize[$i-1]->part_of_speech)){
+                $section = $phpWord->addSection();
+                $section->addText($voc_to_memorize[$i]->part_of_speech);
+                $table = $section->addTable();
+            }
+            
+            $table->addRow();
+            $table->addCell()->addText($voc_to_memorize[$i]->word)->setFontStyle($fontStyle);;
+            $table->addCell()->addText($voc_to_memorize[$i]->wordinfo)->setFontStyle($fontStyle);;
+            $table->addCell()->addText($voc_to_memorize[$i]->wordmeaning)->setFontStyle($fontStyle);;
+
+
+            // $text = $section->addText($text_words[$i]->word);
+        }
+
+
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
         $docxName = time() . 'voc';
 
@@ -450,6 +495,15 @@ class VocController extends Controller
         else{
             return $a->position > $b->position;
         }
+        // dd(($a->position < $b->position)?-1:1);
+        // dd($a);
+        // return ($a->position < $b->position)?-1:1;
+    }
+
+    function comparePartOfSpeech($a, $b) {
+
+            return $a->part_of_speech > $b->part_of_speech;
+
         // dd(($a->position < $b->position)?-1:1);
         // dd($a);
         // return ($a->position < $b->position)?-1:1;
