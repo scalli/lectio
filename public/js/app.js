@@ -26412,26 +26412,18 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     canLogin: Boolean,
     canRegister: Boolean,
-    docxName: String
+    asset: String
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
     var props = __props;
     var docxName = props.docxName;
-    var form = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)({
-      docxName: docxName
-    });
-
-    function submit() {
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.post('/voc/downloadvoc', form);
-    }
-
+    var asset = props.asset;
     var __returned__ = {
       props: props,
       docxName: docxName,
-      form: form,
-      submit: submit,
+      asset: asset,
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Head,
       Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Link,
       reactive: vue__WEBPACK_IMPORTED_MODULE_1__.reactive,
@@ -31921,66 +31913,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: '/voc/downloadvoc/'
-}, "vocabularium downloaden", -1
-/* HOISTED */
-);
-
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" vocabularium downloaden ");
-
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Vocabularium downloaden");
-
-var _hoisted_4 = ["onSubmit"];
-var _hoisted_5 = ["value"];
-
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  type: "submit"
-}, "Submit", -1
-/* HOISTED */
-);
-
+var _hoisted_1 = ["href"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
-    href: _ctx.documentlink,
-    "class": "text-sm text-gray-700 underline"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_2];
-    }),
-    _: 1
-    /* STABLE */
-
-  }, 8
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: $setup.asset
+  }, "vocabularium downloaden", 8
   /* PROPS */
-  , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
-    href: "/voc/downloadvoc",
-    method: "post",
-    data: {
-      docxName: $setup.docxName
-    }
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_3];
-    }),
-    _: 1
-    /* STABLE */
-
-  }, 8
-  /* PROPS */
-  , ["data"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.submit, ["prevent"])
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    id: "docxName",
-    name: "docxName",
-    type: "hidden",
-    value: $setup.docxName
-  }, null, 8
-  /* PROPS */
-  , _hoisted_5), _hoisted_6], 40
-  /* PROPS, HYDRATE_EVENTS */
-  , _hoisted_4)]);
+  , _hoisted_1)]);
 }
 
 /***/ }),

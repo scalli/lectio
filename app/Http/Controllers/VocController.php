@@ -13,6 +13,7 @@ use File;
 use Illuminate\Support\Facades\Response;
 // use Illuminate\Http\Response;
 use Storage;
+use ZipArchive;
 
 class VocController extends Controller
 {
@@ -273,17 +274,25 @@ class VocController extends Controller
             // $text = $section->addText($text_words[$i]->word);
         }
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-        $objWriter->save(time() . 'voc.docx');
-        $url  = url('');
-        // $documentlink = $url . '/voc/downloadvoc/' . time() . 'voc';
         $docxName = time() . 'voc';
- 
 
+        $this->removeStoredDocx();
+
+        $objWriter->save(storage_path('app/') . 'public/' . $docxName . '.docx');
+        // $url  = url('');
+        // $documentlink = $url . '/voc/downloadvoc/' . time() . 'voc';
+    	
+ 
+        // Storage::put('file1.txt', 'Your name');
+
+        // $asset = asset('storage/1654893063voc.docx');
+        $asset = asset('storage/' . $docxName . '.docx');
 
         return Inertia::render('ExportVoc', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'docxName' => $docxName
+        // 'docxName' => $docxName,
+        'asset' => $asset
         // 'title' => "Voc. oefenen van " . count($request->textinfos) . " teksten",
         // 'phrases' => $phrases,
         // 'voc' => $voc
@@ -292,6 +301,13 @@ class VocController extends Controller
         ]);
 
 
+    }
+
+    function removeStoredDocx(){
+        // dd((storage_path('app\public')));
+        $files = Storage::files('\public');
+        // dd($files);
+        Storage::delete($files);
     }
 
     function makeVocCards($text_words, $layout){
@@ -466,6 +482,7 @@ class VocController extends Controller
         // dd($voc_back);
     }
 
+    //Not needed anymore because of direct link to asset in storage
     public function downloadvoc(Request $request)
     {
         // $filepath = $filepath;
@@ -473,6 +490,17 @@ class VocController extends Controller
  
         // $file = Storage::disk('public')->get($request->docxName.'.docx');
         // $file = Storage::get('1654893063voc.docx');
+
+        // $file = Storage::get('file.txt');
+        // $url = Storage::url('file.txt');
+        // dd($url);
+        // return Storage::download('public/file1.txt');
+        // echo asset('storage/file1.txt');
+        
+        //WERKT!! Maakt url naar het asset
+        asset('storage/1654893063voc.docx');
+        // return response()->download(asset('storage/1654893063voc.docx'));
+        // return response()->download(("colosseum.jpg"));
 
         // return Storage::download('1654893063voc.docx', "vocabularium", [
         //         'Content-Type' => ' application/pdf',
@@ -490,12 +518,36 @@ class VocController extends Controller
         // return Response::download($filepath); 
 
         // OK
-        return response()->download($request->docxName.'.docx', "vocabularium");
+        // return response()->download(public_path($request->docxName.'.docx', "vocabularium"));
+
+        //------------------------------ ZIP TRIAL --------------------------------------
+        // $zip = new ZipArchive;
+   
+        // $fileName = 'voc.zip';
+   
+        // if ($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE)
+        // {
+   			
+        //     $file = public_path($request->docxName.'.docx');
+        //     $relativeNameInZipFile = basename($file);
+        //     $zip->addFile($relativeNameInZipFile);
+             
+        //     $zip->close();
+        // }
+        // // Download the generated zip
+        // return response()->download(($fileName));
+        // return response()->download($fileName, "vocabularium", [
+        //     'Content-Type' => ' application/zip',
+        //     'Content-Description' => 'File Transfer',
+        //     'Content-Disposition' => "attachment;  filename=\"". $fileName."\"",
+        //     'Content-Transfer-Encoding' => 'binary'
+        // ]);
+        //------------------ END OF ZIP TRIAL --------------------------------------------
 
         // return Storage::download('1654893063voc.docx');
 
         // return response()->download($request->docxName.'.docx', "vocabularium", [
-        //     'Content-Type' => ' application/pdf',
+        //     'Content-Type' => ' application/zip',
         //     'Content-Description' => 'File Transfer',
         //     'Content-Disposition' => 'attachment;  filename='.$request->docxName.'.docx',
         //     'Content-Transfer-Encoding' => 'binary'
