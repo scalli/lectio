@@ -249,7 +249,7 @@ class VocController extends Controller
             }
         }
 
-        $query = $query . ") AND vocs.memorize = 1) GROUP BY vocs.id";
+        $query = $query . ")) GROUP BY vocs.id"; //AND vocs.memorize = 1
         
         // dd($query);
 
@@ -258,19 +258,52 @@ class VocController extends Controller
 
        $layout = "profound";
 
-        $voc = $this->makeVocCardsForExport($text_words);
+        $voc_to_memorize = $this->makeVocCardsForExport($text_words,1,0);
+        $voc_not_to_memorize =  $this->makeVocCardsForExport($text_words,0,1);
+        $voc_complete =  $this->makeVocCardsForExport($text_words,1,1);
         // dd($voc);
 
 
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
         $section = $phpWord->addSection();
         // $text = $section->addText("text test");
+        $section->addText('Te kennen vocabularium:', array('color' => 'FF0000'));
         $table = $section->addTable();
-        for($i=0;$i<count($voc);$i++){
+        $fontStyle = new \PhpOffice\PhpWord\Style\Font();
+        $fontStyle->setBold(true);
+        for($i=0;$i<count($voc_to_memorize);$i++){
             $table->addRow();
-            $table->addCell()->addText($voc[$i]->word);
-            $table->addCell()->addText($voc[$i]->wordinfo);
-            $table->addCell()->addText($voc[$i]->wordmeaning);
+            $table->addCell()->addText($voc_to_memorize[$i]->word)->setFontStyle($fontStyle);;
+            $table->addCell()->addText($voc_to_memorize[$i]->wordinfo)->setFontStyle($fontStyle);;
+            $table->addCell()->addText($voc_to_memorize[$i]->wordmeaning)->setFontStyle($fontStyle);;
+            // $text = $section->addText($text_words[$i]->word);
+        }
+        $section = $phpWord->addSection();
+        // $text = $section->addText("text test");
+        $table = $section->addTable();
+        for($i=0;$i<count($voc_not_to_memorize);$i++){
+            $table->addRow();
+            $table->addCell()->addText($voc_not_to_memorize[$i]->word);
+            $table->addCell()->addText($voc_not_to_memorize[$i]->wordinfo);
+            $table->addCell()->addText($voc_not_to_memorize[$i]->wordmeaning);
+            // $text = $section->addText($text_words[$i]->word);
+        }
+        $section = $phpWord->addSection();
+        // $text = $section->addText("text test");
+        $table = $section->addTable();
+        for($i=0;$i<count($voc_complete);$i++){
+            $table->addRow();
+            if($voc_complete[$i]->memorize == 1){
+                $table->addCell()->addText($voc_complete[$i]->word)->setFontStyle($fontStyle);;
+                $table->addCell()->addText($voc_complete[$i]->wordinfo)->setFontStyle($fontStyle);;
+                $table->addCell()->addText($voc_complete[$i]->wordmeaning)->setFontStyle($fontStyle);;
+            }
+            else{
+                $table->addCell()->addText($voc_complete[$i]->word);
+                $table->addCell()->addText($voc_complete[$i]->wordinfo);
+                $table->addCell()->addText($voc_complete[$i]->wordmeaning);
+            }
+
             // $text = $section->addText($text_words[$i]->word);
         }
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
@@ -408,8 +441,21 @@ class VocController extends Controller
         // dd($voc_back);
     }
 
-    function makeVocCardsForExport($text_words){
+    function compareTextWords($a, $b) {
+        if($a->text_info_id !== $b->text_info_id){
+            return $a->text_info_id > $b->text_info_id;
+        }
+        else{
+            return $a->position > $b->position;
+        }
+        // dd(($a->position < $b->position)?-1:1);
+        // dd($a);
+        // return ($a->position < $b->position)?-1:1;
+    }
+
+    function makeVocCardsForExport($text_words, $voc_to_memorize, $voc_not_to_memorize){
         $max_index = ($text_words[count($text_words)-1])->phrase_number;
+        // dd($text_words);
         // $phrases = array_fill(1, $max_index, "");//array containing all phrases
         $voc_front = array();
         $voc_back = array();
@@ -418,10 +464,14 @@ class VocController extends Controller
 
         foreach($text_words as $word) {
 
-            if($word->memorize == 1){
+            if(($voc_to_memorize && $word->memorize == 1)|| ($voc_not_to_memorize && $word->memorize != 1)){
                 $o = new stdClass();
                 $o->word = $word->word;
                 $o->id = $word->id;
+                $o->position = $word->position;
+                $o->text_info_id = $word->text_info_id;
+                $o->part_of_speech = $word->part_of_speech;
+                $o->memorize = $word->memorize;
 
 
                 // if($word->wordinfo1 != null && str_starts_with($word->wordinfo1, '+')){
@@ -475,6 +525,9 @@ class VocController extends Controller
             }//end of if memorize
 
         }//end of foreach $word
+
+        //  usort($voc, fn($a, $b) => ($a["position"] < $b["position"])?-1:1);
+        usort($voc, array($this, "compareTextWords"));
 
         return $voc;
 
