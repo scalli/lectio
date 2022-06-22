@@ -27459,6 +27459,157 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/TextInput.vue?vue&type=script&setup=true&lang=js":
+/*!*********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/TextInput.vue?vue&type=script&setup=true&lang=js ***!
+  \*********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    canLogin: Boolean,
+    canRegister: Boolean,
+    vocs: Object
+  },
+  setup: function setup(__props, _ref) {
+    var expose = _ref.expose;
+    expose();
+    var props = __props;
+    var vocs = props.vocs;
+    var message = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
+    var textarea_phrases = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+    var text_words_arr = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+    var text_words_arr_new = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]); //array containing the string representations of each phrase
+
+    var text_phrases = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]); //array containing the supporting question of each phrase
+
+    var supporting_questions = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]); //array containing the phrase support of each phrase
+
+    var phrase_supports = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+
+    function logSupportingQuestion($event) {
+      // console.log(supporting_questions.value);
+      // console.log(phrase_supports.value);
+      // console.log(vocs);
+      console.log(text_words_arr.value);
+    }
+
+    function addSupportingQuestion() {
+      supporting_questions.value.forEach(function (supporting_question, index) {
+        text_words_arr.value.forEach(function (word, wordindex) {
+          if (word.phrase_number == index && wordindex > 0 && text_words_arr.value[wordindex - 1].phrase_number != word.phrase_number || word.position == 1) {
+            word.supporting_question = supporting_question; // console.log(supporting_question);
+          }
+        });
+      });
+    }
+
+    function addPhraseSupport() {
+      phrase_supports.value.forEach(function (phrase_support, index) {
+        text_words_arr.value.forEach(function (word, wordindex) {
+          if (word.phrase_number == index && wordindex - 1 > -1 && text_words_arr.value[wordindex - 1].phrase_number != word.phrase_number || word.position == 1) {
+            word.phrase_support = phrase_support; // console.log(supporting_question);
+          } // word.phrase_support = phrase_support;
+
+        });
+      });
+    }
+
+    function updateText(event) {
+      console.log(message.value);
+      textarea_phrases.value = message.value.split("\n");
+      console.log(textarea_phrases.value);
+      text_phrases.value = Array(textarea_phrases.value.length).fill("");
+      supporting_questions.value = Array(textarea_phrases.value.length).fill("");
+      phrase_supports.value = Array(textarea_phrases.value.length).fill("");
+      var position = 1;
+      var phrase_number = 1;
+      var text_words = [];
+      text_words_arr_new.value = [];
+      textarea_phrases.value.forEach(function (phrase) {
+        var phrase_arr = phrase.split(" ");
+        console.log(phrase_arr);
+        phrase_arr.forEach(function (word) {
+          console.log(word);
+          var word_obj = {
+            text_info_id: 0,
+            position: position,
+            text_word: word,
+            word_voc: 0,
+            phrase_number: phrase_number,
+            supporting_question: "",
+            phrase_support: ""
+          };
+          position = position + 1; // console.log(text_words_arr.value);
+
+          text_words_arr_new.value.push(word_obj);
+        });
+        phrase_number = phrase_number + 1;
+      });
+      console.log(text_words_arr_new.value); //Try to keep the changes already made to voc in lower part of screen
+
+      text_words_arr_new.value.forEach(function (newWord) {
+        text_words_arr.value.forEach(function (oldWord) {
+          if (newWord["text_word"] == oldWord["text_word"]) {
+            if (oldWord["word_voc"] != 0) {
+              newWord["word_voc"] = oldWord["word_voc"];
+            }
+
+            if (oldWord["supporting_question"] != "") {
+              newWord["supporting_question"] = oldWord["supporting_question"];
+            }
+
+            if (oldWord["phrase_support"] != "") {
+              newWord["phrase_support"] = oldWord["phrase_support"];
+            }
+          }
+        });
+      });
+      text_words_arr.value = [];
+      text_words_arr.value = text_words_arr_new.value; // text_phrases.value = Array(24).fill("");
+
+      text_words_arr.value.forEach(function (word) {
+        text_phrases.value[word.phrase_number] = text_phrases.value[word.phrase_number] + word.text_word + " ";
+      });
+      console.log(text_phrases);
+      console.log(text_words_arr.value);
+      console.log(supporting_questions.value);
+    }
+
+    var __returned__ = {
+      props: props,
+      vocs: vocs,
+      message: message,
+      textarea_phrases: textarea_phrases,
+      text_words_arr: text_words_arr,
+      text_words_arr_new: text_words_arr_new,
+      text_phrases: text_phrases,
+      supporting_questions: supporting_questions,
+      phrase_supports: phrase_supports,
+      logSupportingQuestion: logSupportingQuestion,
+      addSupportingQuestion: addSupportingQuestion,
+      addPhraseSupport: addPhraseSupport,
+      updateText: updateText,
+      reactive: vue__WEBPACK_IMPORTED_MODULE_0__.reactive,
+      ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref
+    };
+    Object.defineProperty(__returned__, '__isScriptSetup', {
+      enumerable: false,
+      value: true
+    });
+    return __returned__;
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/TextsOverview.vue?vue&type=script&setup=true&lang=js":
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/TextsOverview.vue?vue&type=script&setup=true&lang=js ***!
@@ -33711,6 +33862,165 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), 256
   /* UNKEYED_FRAGMENT */
   ))])])], 64
+  /* STABLE_FRAGMENT */
+  );
+}
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/TextInput.vue?vue&type=template&id=ad6e3e78":
+/*!**************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/TextInput.vue?vue&type=template&id=ad6e3e78 ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "ml-2 mt-2 text-center"
+};
+var _hoisted_2 = {
+  "class": "ml-2 mr-2"
+};
+var _hoisted_3 = {
+  "class": "text-center"
+};
+var _hoisted_4 = {
+  "class": "grid grid-cols-3 gap-4"
+};
+var _hoisted_5 = {
+  "class": "col-span-2 ml-2 scroll-auto max-h-full overflow-scroll"
+};
+var _hoisted_6 = {
+  key: 0,
+  "class": "mt-2 bg-blue-700 text-white font-bold py-2 px-4"
+};
+var _hoisted_7 = {
+  "class": "pl-2 w-full bg-blue-100"
+};
+var _hoisted_8 = {
+  key: 0,
+  "class": "w-full mb-2"
+};
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "pr-1",
+  "for": "supporting_question"
+}, "Ondersteuningsvraag:", -1
+/* HOISTED */
+);
+
+var _hoisted_10 = ["onUpdate:modelValue"];
+var _hoisted_11 = {
+  key: 1,
+  "class": "w-full mb-2"
+};
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "pr-1",
+  "for": "phrase_support"
+}, "Extra hulp:", -1
+/* HOISTED */
+);
+
+var _hoisted_13 = ["onUpdate:modelValue"];
+var _hoisted_14 = {
+  key: 0,
+  "class": "grid grid-cols-6 gap-4"
+};
+var _hoisted_15 = {
+  "class": "col-span-2"
+};
+var _hoisted_16 = {
+  "class": "col-span-4"
+};
+var _hoisted_17 = ["onUpdate:modelValue"];
+var _hoisted_18 = ["value"];
+
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": ""
+}, null, -1
+/* HOISTED */
+);
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Textarea to put text in "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $setup.message = $event;
+    }),
+    "class": "w-5/6",
+    placeholder: "Voeg hier je tekst in cola in."
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.message]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-1 text-center",
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $setup.updateText($event);
+    })
+  }, "Wijzig")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" left column for page for text"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.text_phrases, function (phrase, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: phrase
+    }, [phrase != '' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(phrase), 1
+    /* TEXT */
+    )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [index != 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      "class": "w-full border-solid border-2 rounded border-black",
+      "onUpdate:modelValue": function onUpdateModelValue($event) {
+        return $setup.supporting_questions[index] = $event;
+      },
+      onClick: _cache[2] || (_cache[2] = function ($event) {
+        return $setup.logSupportingQuestion($event);
+      }),
+      onChange: $setup.addSupportingQuestion,
+      name: "supporting_question",
+      placeholder: "Typ hier de ondersteuningsvraag bij lectuur"
+    }, null, 40
+    /* PROPS, HYDRATE_EVENTS */
+    , _hoisted_10), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.supporting_questions[index]]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), index != 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      "class": "w-full border-solid border-2 rounded border-black",
+      "onUpdate:modelValue": function onUpdateModelValue($event) {
+        return $setup.phrase_supports[index] = $event;
+      },
+      onClick: _cache[3] || (_cache[3] = function ($event) {
+        return $setup.logSupportingQuestion($event);
+      }),
+      onChange: $setup.addPhraseSupport,
+      name: "phrase_support",
+      placeholder: "Typ hier de extra hulp bij lectuur"
+    }, null, 40
+    /* PROPS, HYDRATE_EVENTS */
+    , _hoisted_13), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.phrase_supports[index]]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.text_words_arr, function (word) {
+      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+        "class": "mb-2",
+        key: word.position
+      }, [word.phrase_number == index ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(word.text_word), 1
+      /* TEXT */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+        "onUpdate:modelValue": function onUpdateModelValue($event) {
+          return word.word_voc = $event;
+        }
+      }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.vocs, function (voc_word) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+          key: voc_word,
+          value: voc_word.id
+        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(voc_word.word), 9
+        /* TEXT, PROPS */
+        , _hoisted_18);
+      }), 128
+      /* KEYED_FRAGMENT */
+      ))], 8
+      /* PROPS */
+      , _hoisted_17), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, word.word_voc]])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+    }), 128
+    /* KEYED_FRAGMENT */
+    ))])]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" right column for page to add voc to dictionary"), _hoisted_19])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -61268,6 +61578,34 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/Pages/TextInput.vue":
+/*!******************************************!*\
+  !*** ./resources/js/Pages/TextInput.vue ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TextInput_vue_vue_type_template_id_ad6e3e78__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TextInput.vue?vue&type=template&id=ad6e3e78 */ "./resources/js/Pages/TextInput.vue?vue&type=template&id=ad6e3e78");
+/* harmony import */ var _TextInput_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TextInput.vue?vue&type=script&setup=true&lang=js */ "./resources/js/Pages/TextInput.vue?vue&type=script&setup=true&lang=js");
+/* harmony import */ var D_me_programming_lectio_lectio_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,D_me_programming_lectio_lectio_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_TextInput_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_TextInput_vue_vue_type_template_id_ad6e3e78__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/Pages/TextInput.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/TextsOverview.vue":
 /*!**********************************************!*\
   !*** ./resources/js/Pages/TextsOverview.vue ***!
@@ -62096,6 +62434,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TextCola_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TextCola_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./TextCola.vue?vue&type=script&setup=true&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/TextCola.vue?vue&type=script&setup=true&lang=js");
+ 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/TextInput.vue?vue&type=script&setup=true&lang=js":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/Pages/TextInput.vue?vue&type=script&setup=true&lang=js ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TextInput_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TextInput_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./TextInput.vue?vue&type=script&setup=true&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/TextInput.vue?vue&type=script&setup=true&lang=js");
  
 
 /***/ }),
@@ -62964,6 +63318,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/TextInput.vue?vue&type=template&id=ad6e3e78":
+/*!************************************************************************!*\
+  !*** ./resources/js/Pages/TextInput.vue?vue&type=template&id=ad6e3e78 ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TextInput_vue_vue_type_template_id_ad6e3e78__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TextInput_vue_vue_type_template_id_ad6e3e78__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./TextInput.vue?vue&type=template&id=ad6e3e78 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/TextInput.vue?vue&type=template&id=ad6e3e78");
+
+
+/***/ }),
+
 /***/ "./resources/js/Pages/TextsOverview.vue?vue&type=template&id=5574d3b4":
 /*!****************************************************************************!*\
   !*** ./resources/js/Pages/TextsOverview.vue?vue&type=template&id=5574d3b4 ***!
@@ -63287,6 +63657,7 @@ var map = {
 	"./TermsOfService.vue": "./resources/js/Pages/TermsOfService.vue",
 	"./TextClassic.vue": "./resources/js/Pages/TextClassic.vue",
 	"./TextCola.vue": "./resources/js/Pages/TextCola.vue",
+	"./TextInput.vue": "./resources/js/Pages/TextInput.vue",
 	"./TextsOverview.vue": "./resources/js/Pages/TextsOverview.vue",
 	"./VocProfound.vue": "./resources/js/Pages/VocProfound.vue",
 	"./VocQuick.vue": "./resources/js/Pages/VocQuick.vue",
