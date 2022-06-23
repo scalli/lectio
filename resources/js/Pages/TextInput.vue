@@ -1,6 +1,7 @@
 <script setup>
 import { reactive, ref } from "vue";
 import { useForm } from "@inertiajs/inertia-vue3";
+import { Inertia } from "@inertiajs/inertia";
 
 const props = defineProps({
   canLogin: Boolean,
@@ -22,6 +23,17 @@ const text_phrases = ref([]);
 // const supporting_questions = ref([]);
 //array containing the phrase support of each phrase
 // const phrase_supports = ref([]);
+
+const textinfoForm = useForm({
+  text_title: null,
+  method: null,
+  chapter: null,
+  grade: null,
+  extra_info: null,
+  author: null,
+  work: null,
+  passage: null,
+});
 
 const form = useForm({
   groundword: null,
@@ -57,9 +69,9 @@ function logSupportingQuestion($event) {
   // console.log(supporting_questions.value);
   // console.log(phrase_supports.value);
 
-  // console.log(vocs);
-  console.log(text_words_arr.value);
-  console.log(text_phrases.value);
+  console.log(vocs);
+  // console.log(text_words_arr.value);
+  // console.log(text_phrases.value);
 }
 
 // function addSupportingQuestion() {
@@ -175,6 +187,20 @@ function isFirstWordInPhrase($word, $phrase) {
 </script>
 
 <template>
+  <!-- Fields for textinfo -->
+  <!-- <div class="grid grid-cols-3 gap-4 ml-2 mr-2">
+    <div>
+      <label class="pr-1" for="text_title">Extra hulp:</label>
+      <input
+        class="w-full border-solid border-2 rounded border-black"
+        v-model="word.phrase_support"
+        @click="logSupportingQuestion($event)"
+        name="phrase_support"
+        placeholder="Typ hier de extra hulp bij lectuur"
+      />
+    </div>
+  </div> -->
+
   <!-- Textarea to put text in -->
   <div class="ml-2 mt-2 text-center">
     <div class="ml-2 mr-2">
@@ -283,7 +309,10 @@ function isFirstWordInPhrase($word, $phrase) {
         form.post('/voc', {
           preserveState: true,
           preserveScroll: true,
-          onSuccess: () => form.reset(),
+          onSuccess: () => {
+            form.reset();
+            vocs = props.vocs;
+          },
         })
       "
     >

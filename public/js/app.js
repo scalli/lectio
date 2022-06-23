@@ -27472,6 +27472,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -27497,6 +27499,16 @@ __webpack_require__.r(__webpack_exports__);
     //array containing the phrase support of each phrase
     // const phrase_supports = ref([]);
 
+    var textinfoForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
+      text_title: null,
+      method: null,
+      chapter: null,
+      grade: null,
+      extra_info: null,
+      author: null,
+      work: null,
+      passage: null
+    });
     var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
       groundword: null,
       memorize: 0,
@@ -27528,9 +27540,8 @@ __webpack_require__.r(__webpack_exports__);
     function logSupportingQuestion($event) {
       // console.log(supporting_questions.value);
       // console.log(phrase_supports.value);
-      // console.log(vocs);
-      console.log(text_words_arr.value);
-      console.log(text_phrases.value);
+      console.log(vocs); // console.log(text_words_arr.value);
+      // console.log(text_phrases.value);
     } // function addSupportingQuestion() {
     //   supporting_questions.value.forEach(function (supporting_question, index) {
     //     text_words_arr.value.forEach(function (word, wordindex) {
@@ -27639,13 +27650,15 @@ __webpack_require__.r(__webpack_exports__);
       text_words_arr: text_words_arr,
       text_words_arr_new: text_words_arr_new,
       text_phrases: text_phrases,
+      textinfoForm: textinfoForm,
       form: form,
       logSupportingQuestion: logSupportingQuestion,
       updateText: updateText,
       isFirstWordInPhrase: isFirstWordInPhrase,
       reactive: vue__WEBPACK_IMPORTED_MODULE_0__.reactive,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
-      useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm
+      useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm,
+      Inertia: _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -34153,7 +34166,7 @@ var _hoisted_49 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Textarea to put text in "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Fields for textinfo "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"grid grid-cols-3 gap-4 ml-2 mr-2\">\r\n    <div>\r\n      <label class=\"pr-1\" for=\"text_title\">Extra hulp:</label>\r\n      <input\r\n        class=\"w-full border-solid border-2 rounded border-black\"\r\n        v-model=\"word.phrase_support\"\r\n        @click=\"logSupportingQuestion($event)\"\r\n        name=\"phrase_support\"\r\n        placeholder=\"Typ hier de extra hulp bij lectuur\"\r\n      />\r\n    </div>\r\n  </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Textarea to put text in "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.message = $event;
     }),
@@ -34224,11 +34237,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* KEYED_FRAGMENT */
   ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" right column for page to add voc to dictionary"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onSubmit: _cache[16] || (_cache[16] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-      return $setup.form.post('/voc', {
+      $setup.form.post('/voc', {
         preserveState: true,
         preserveScroll: true,
         onSuccess: function onSuccess() {
-          return $setup.form.reset();
+          $setup.form.reset();
+          $setup.vocs = $setup.props.vocs;
         }
       });
     }, ["prevent"]))
