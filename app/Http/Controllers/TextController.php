@@ -17,10 +17,15 @@ class TextController extends Controller
         ->orderBy('word')
         ->get();
 
+        $part_of_speeches = DB::table('systematisches')
+        ->select('*')
+        ->get();
+
         return Inertia::render('TextInput', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
-            'vocs' => $vocs
+            'vocs' => $vocs,
+            'part_of_speeches' => $part_of_speeches
             ]);
     }
 }

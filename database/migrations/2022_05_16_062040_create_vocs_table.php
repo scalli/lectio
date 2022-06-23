@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('meaning3')->nullable();
             $table->string('meaning4')->nullable();
             $table->integer('part_of_speech');
+            $table->integer('contributor');
             $table->string('parentheses')->nullable();
             $table->timestamps();
         });

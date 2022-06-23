@@ -21,6 +21,7 @@ class Voc extends Model
     'meaning3',
     'meaning4',
     'part_of_speech',
-    'parentheses'
+    'parentheses',
+    'contributor'
     ];
 }

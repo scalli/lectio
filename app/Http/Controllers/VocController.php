@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Response;
 use Storage;
 use ZipArchive;
 
+use App\Models\Voc as Voc;
+use Redirect;
+
 class VocController extends Controller
 {
     public function show($layout, $id){
@@ -589,6 +592,40 @@ class VocController extends Controller
 
         // dd($voc_front);
         // dd($voc_back);
+    }
+
+
+    public function store(Request $request)
+    {
+
+        // dd($request);
+        $validated = $request->validate([
+            'groundword' => 'required',
+            'meaning1' => 'required',
+            'part_of_speech' => 'required',
+        ]);
+
+        $voc = new Voc;
+        $voc->word = $request->groundword;
+        $voc->memorize = $request->memorize;
+        $voc->wordinfo1 = $request->wordinfo1;
+        $voc->wordinfo2 = $request->wordinfo2;
+        $voc->wordinfo3 = $request->wordinfo3;
+        $voc->wordinfo4 = $request->wordinfo4;
+        $voc->meaning1 = $request->meaning1;
+        $voc->meaning2 = $request->meaning2;
+        $voc->meaning3 = $request->meaning3;
+        $voc->meaning4 = $request->meaning4;
+        $voc->part_of_speech = $request->part_of_speech;
+        //TODO: Get id of logged in user
+        $voc->contributor = 1;
+        $voc->parentheses = $request->parentheses;
+
+        $voc->save();
+
+
+        return redirect()->action([TextController::class, 'new']);
+        // return Redirect::route($request->redirect_url);
     }
 
     //Not needed anymore because of direct link to asset in storage

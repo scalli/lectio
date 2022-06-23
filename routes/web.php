@@ -25,7 +25,7 @@ Route::get('/', function () {
 });
 
 Route::get('/text/{layout}/{id}', 'App\Http\Controllers\ReadTextController@show');
-Route::get('/text/new', 'App\Http\Controllers\TextController@new');
+Route::get('/text/new', 'App\Http\Controllers\TextController@new')->name('newtext');
 
 
 Route::get('/voc/{layout}/{id}', 'App\Http\Controllers\VocController@show');
@@ -33,6 +33,7 @@ Route::get('/voc/repetitio/step/1', 'App\Http\Controllers\VocController@repetiti
 Route::post('/voc/repetitio/step/2', 'App\Http\Controllers\VocController@repetitioStep2');
 Route::post('/voc/repetitio/export', 'App\Http\Controllers\VocController@export');
 Route::post('/voc/downloadvoc','App\Http\Controllers\VocController@downloadvoc');
+Route::post('/voc','App\Http\Controllers\VocController@store');
 
 Route::get('/overview', 'App\Http\Controllers\TextInfoController@show');
 
