@@ -1020,6 +1020,15 @@ select {
 .col-start-1 {
   grid-column-start: 1;
 }
+.col-start-2 {
+  grid-column-start: 2;
+}
+.col-start-5 {
+  grid-column-start: 5;
+}
+.col-start-8 {
+  grid-column-start: 8;
+}
 .col-end-12 {
   grid-column-end: 12;
 }
@@ -1379,6 +1388,12 @@ select {
 }
 .grid-cols-7 {
   grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+.grid-cols-9 {
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+}
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .flex-row {
   flex-direction: row;

@@ -24,6 +24,8 @@ const text_phrases = ref([]);
 //array containing the phrase support of each phrase
 // const phrase_supports = ref([]);
 
+const step = ref(1);
+
 const textinfoForm = useForm({
   text_title: null,
   method: null,
@@ -184,30 +186,176 @@ function updateText(event) {
 function isFirstWordInPhrase($word, $phrase) {
   return $phrase.startsWith($word);
 }
+
+function step1() {
+  step.value = 1;
+}
+function step2() {
+  step.value = 2;
+}
+function step3() {
+  step.value = 3;
+}
+function step4() {
+  step.value = 4;
+}
+function save(){
+  //TODO
+}
 </script>
 
 <template>
+  <div class="grid grid-cols-4 gap-4 mb-2 pl-2 mr-2 pt-2">
+    <div class="col-span-1 text-center">
+      <button
+        :class="{ 'bg-green-500' : step == 1 }"
+        class="
+          bg-blue-500
+          hover:bg-blue-700
+          text-white
+          font-bold
+          py-2
+          px-4
+          rounded
+          mr-1
+          text-center
+        "
+        @click="step1($event)"
+      >
+        Stap 1: Tekstinformatie
+      </button>
+    </div>
+
+    <div class="col-span-1 text-center">
+      <button
+      :class="{ 'bg-green-500' : step == 2 }"
+        class="
+          bg-blue-500
+          hover:bg-blue-700
+          text-white
+          font-bold
+          py-2
+          px-4
+          rounded
+          mr-1
+          text-center
+        "
+        @click="step2($event)"
+      >
+        Stap 2: Tekst in cola
+      </button>
+    </div>
+
+    <div class="col-span-1 text-center">
+      <button
+      :class="{ 'bg-green-500' : step == 3 }"
+        class="
+          bg-blue-500
+          hover:bg-blue-700
+          text-white
+          font-bold
+          py-2
+          px-4
+          rounded
+          mr-1
+          text-center
+        "
+        @click="step3($event)"
+      >
+        Stap 3: Cola koppelen
+      </button>
+    </div>
+
+    <div class="col-span-1 text-center">
+      <button
+      :class="{ 'bg-green-500' : step == 4 }"
+        class="
+          bg-blue-500
+          hover:bg-blue-700
+          text-white
+          font-bold
+          py-2
+          px-4
+          rounded
+          mr-1
+          text-center
+        "
+        @click="step4($event)"
+      >
+        Stap 4: Opslaan
+      </button>
+    </div>
+  </div>
+
   <!-- Fields for textinfo -->
-  <!-- <div class="grid grid-cols-3 gap-4 ml-2 mr-2">
-    <div>
-      <label class="pr-1" for="text_title">Extra hulp:</label>
+  <div v-if="step == 1">
+    <div class="grid grid-cols-9 gap-4 mb-2 pl-2 mr-2 pt-2">
+      <label class="col-span-1 pr-1" for="text_title">Titel:</label>
       <input
-        class="w-full border-solid border-2 rounded border-black"
-        v-model="word.phrase_support"
-        @click="logSupportingQuestion($event)"
-        name="phrase_support"
-        placeholder="Typ hier de extra hulp bij lectuur"
+        class="col-span-3 border-solid border-2 rounded border-black"
+        v-model="text_title"
+        name="text_title"
+        size="60"
       />
     </div>
-  </div> -->
+
+    <div class="grid grid-cols-9 gap-4 mb-2 pl-2 mr-2">
+      <label class="pr-1 col-span-1" for="method">Methode:</label>
+      <input
+        class="col-span-2 border-solid border-2 rounded border-black"
+        v-model="method"
+        name="method"
+      />
+
+      <label class="pr-1 col-span-1" for="chapter">Hoofdstuk:</label>
+      <input
+        class="col-span-2 border-solid border-2 rounded border-black"
+        v-model="chapter"
+        name="chapter"
+      />
+
+      <label class="pr-1 col-span-1" for="grade">Graad:</label>
+      <input
+        class="col-span-2 border-solid border-2 rounded border-black"
+        v-model="grade"
+        name="grade"
+      />
+    </div>
+
+    <div class="grid grid-cols-9 gap-4 pl-2 mr-2">
+      <label class="col-span-1 pr-1" for="author">Auteur:</label>
+
+      <input
+        class="col-span-2 border-solid border-2 rounded border-black"
+        v-model="author"
+        name="author"
+      />
+
+      <label class="pr-1 col-span-1" for="work">Werk:</label>
+
+      <input
+        class="col-span-2 border-solid border-2 rounded border-black"
+        v-model="work"
+        name="work"
+      />
+
+      <label class="pr-1 col-span-1" for="passage">Passage (referentie):</label>
+
+      <input
+        class="col-span-2 border-solid border-2 rounded border-black"
+        v-model="passage"
+        name="passage"
+      />
+    </div>
+  </div>
 
   <!-- Textarea to put text in -->
-  <div class="ml-2 mt-2 text-center">
+  <div v-if="step == 2" class="ml-2 mt-4 text-center">
     <div class="ml-2 mr-2">
       <textarea
         v-model="message"
         class="w-5/6"
-        placeholder="Voeg hier je tekst in cola in."
+        placeholder="Voeg hier je tekst in cola in en druk op 'Wijzig'. Ga daarna naar stap 3 om de cola te koppelen."
       ></textarea>
     </div>
     <div class="text-center">
@@ -230,7 +378,7 @@ function isFirstWordInPhrase($word, $phrase) {
     </div>
   </div>
 
-  <div class="grid grid-cols-3 gap-4 ml-2 mr-2">
+  <div v-if="step == 3" class="grid grid-cols-3 gap-4 ml-2 mr-2">
     <!-- left column for page for text-->
     <div class="col-span-2 ml-2 scroll-auto max-h-screen overflow-scroll">
       <div v-for="(phrase, index) in text_phrases" v-bind:key="phrase">
@@ -460,5 +608,26 @@ function isFirstWordInPhrase($word, $phrase) {
         </div>
       </div>
     </form>
+  </div>
+
+  <div v-if="step == 4">
+    <div class="text-center">
+      <button
+        class="
+          bg-blue-500
+          hover:bg-blue-700
+          text-white
+          font-bold
+          py-2
+          px-4
+          rounded
+          mr-1
+          text-center
+        "
+        @click="save($event)"
+      >
+        Opslaan
+      </button>
+    </div>
   </div>
 </template>
