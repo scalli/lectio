@@ -27499,17 +27499,26 @@ __webpack_require__.r(__webpack_exports__);
     //array containing the phrase support of each phrase
     // const phrase_supports = ref([]);
 
-    var step = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(1);
-    var textinfoForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
-      text_title: null,
-      method: null,
-      chapter: null,
-      grade: null,
-      extra_info: null,
-      author: null,
-      work: null,
-      passage: null
-    });
+    var step = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(1); //Fields from the text_info
+
+    var text_title = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
+    var method = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
+    var chapter = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
+    var grade = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
+    var extra_info = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
+    var author = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
+    var work = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
+    var passage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(""); // const textinfoForm = useForm({
+    //   text_title: null,
+    //   method: null,
+    //   chapter: null,
+    //   grade: null,
+    //   extra_info: null,
+    //   author: null,
+    //   work: null,
+    //   passage: null,
+    // });
+
     var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
       groundword: null,
       memorize: 0,
@@ -27658,7 +27667,19 @@ __webpack_require__.r(__webpack_exports__);
       step.value = 4;
     }
 
-    function save() {//TODO
+    function save() {
+      console.log(text_words_arr.value);
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.post('/text/new', {
+        text_title: text_title.value,
+        method: method.value,
+        chapter: chapter.value,
+        grade: grade.value,
+        extra_info: extra_info.value,
+        author: author.value,
+        work: work.value,
+        passage: passage.value,
+        text_words_arr: text_words_arr.value
+      });
     }
 
     var __returned__ = {
@@ -27671,7 +27692,14 @@ __webpack_require__.r(__webpack_exports__);
       text_words_arr_new: text_words_arr_new,
       text_phrases: text_phrases,
       step: step,
-      textinfoForm: textinfoForm,
+      text_title: text_title,
+      method: method,
+      chapter: chapter,
+      grade: grade,
+      extra_info: extra_info,
+      author: author,
+      work: work,
+      passage: passage,
       form: form,
       logSupportingQuestion: logSupportingQuestion,
       updateText: updateText,
@@ -34318,61 +34346,61 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Fields for textinfo "), $setup.step == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "col-span-3 border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
-      return _ctx.text_title = $event;
+      return $setup.text_title = $event;
     }),
     name: "text_title",
     size: "60"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.text_title]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.text_title]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "col-span-2 border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
-      return _ctx.method = $event;
+      return $setup.method = $event;
     }),
     name: "method"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.method]]), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.method]]), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "col-span-2 border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
-      return _ctx.chapter = $event;
+      return $setup.chapter = $event;
     }),
     name: "chapter"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.chapter]]), _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.chapter]]), _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "col-span-2 border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
-      return _ctx.grade = $event;
+      return $setup.grade = $event;
     }),
     name: "grade"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.grade]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.grade]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "col-span-2 border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
-      return _ctx.author = $event;
+      return $setup.author = $event;
     }),
     name: "author"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.author]]), _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.author]]), _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "col-span-2 border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
-      return _ctx.work = $event;
+      return $setup.work = $event;
     }),
     name: "work"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.work]]), _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.work]]), _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "col-span-2 border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[10] || (_cache[10] = function ($event) {
-      return _ctx.passage = $event;
+      return $setup.passage = $event;
     }),
     name: "passage"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.passage]])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Textarea to put text in "), $setup.step == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.passage]])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Textarea to put text in "), $setup.step == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
       return $setup.message = $event;
     }),

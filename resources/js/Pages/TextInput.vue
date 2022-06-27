@@ -26,16 +26,26 @@ const text_phrases = ref([]);
 
 const step = ref(1);
 
-const textinfoForm = useForm({
-  text_title: null,
-  method: null,
-  chapter: null,
-  grade: null,
-  extra_info: null,
-  author: null,
-  work: null,
-  passage: null,
-});
+//Fields from the text_info
+const text_title = ref("");
+const method = ref("");
+const chapter = ref("");
+const grade = ref("");
+const extra_info = ref("");
+const author = ref("");
+const work = ref("");
+const passage = ref("");
+
+// const textinfoForm = useForm({
+//   text_title: null,
+//   method: null,
+//   chapter: null,
+//   grade: null,
+//   extra_info: null,
+//   author: null,
+//   work: null,
+//   passage: null,
+// });
 
 const form = useForm({
   groundword: null,
@@ -200,7 +210,18 @@ function step4() {
   step.value = 4;
 }
 function save(){
-  //TODO
+  console.log(text_words_arr.value);
+  Inertia.post('/text/new', {
+    text_title: text_title.value,
+    method: method.value,
+    chapter: chapter.value,
+    grade: grade.value,
+    extra_info: extra_info.value,
+    author: author.value,
+    work: work.value,
+    passage: passage.value,
+    text_words_arr: text_words_arr.value
+})
 }
 </script>
 
