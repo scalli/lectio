@@ -81,7 +81,7 @@ function logSupportingQuestion($event) {
   // console.log(supporting_questions.value);
   // console.log(phrase_supports.value);
 
-  console.log(vocs);
+  // console.log(vocs);
   // console.log(text_words_arr.value);
   // console.log(text_phrases.value);
 }
@@ -434,6 +434,7 @@ function save(){
                   placeholder="Typ hier de ondersteuningsvraag bij lectuur"
                 />
               </div>
+              <!--
               <div
                 class="w-full mb-2"
                 v-if="index != 0 && isFirstWordInPhrase(word.text_word, phrase)"
@@ -447,6 +448,7 @@ function save(){
                   placeholder="Typ hier de extra hulp bij lectuur"
                 />
               </div>
+              -->
               <div
                 v-if="word.phrase_number == index"
                 class="grid grid-cols-6 gap-4"
