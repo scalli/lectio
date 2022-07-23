@@ -1,0 +1,22 @@
+[
+    {
+        "name": "migrations",
+        "seq": 10
+    },
+    {
+        "name": "text_infos",
+        "seq": 41
+    },
+    {
+        "name": "systematisches",
+        "seq": 50
+    },
+    {
+        "name": "texts",
+        "seq": 2447
+    },
+    {
+        "name": "vocs",
+        "seq": 1831
+    }
+]

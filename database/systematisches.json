@@ -1,0 +1,252 @@
+[
+    {
+        "created_at": null,
+        "id": 1,
+        "part_of_speech": "Substantieven van de eerste klasse vrouwelijk op -a,-ae"
+    },
+    {
+        "created_at": null,
+        "id": 2,
+        "part_of_speech": "Substantieven van de eerste klasse mannelijk -us,-i"
+    },
+    {
+        "created_at": null,
+        "id": 3,
+        "part_of_speech": "Substantieven van de eerste klasse mannelijk -(e)r,-i"
+    },
+    {
+        "created_at": null,
+        "id": 4,
+        "part_of_speech": "Substantieven van de eerste klasse onzijdig op -um,-i"
+    },
+    {
+        "created_at": null,
+        "id": 5,
+        "part_of_speech": "Substantieven van de tweede klasse mannelijk en vrouwelijk met genitief op -is"
+    },
+    {
+        "created_at": null,
+        "id": 6,
+        "part_of_speech": "Substantieven van de tweede klasse onzijdig met genitief op -is"
+    },
+    {
+        "created_at": null,
+        "id": 7,
+        "part_of_speech": "Substantieven van de derde klasse op -us,-us"
+    },
+    {
+        "created_at": null,
+        "id": 8,
+        "part_of_speech": "Substantieven van de derde klasse op -u,-us"
+    },
+    {
+        "created_at": null,
+        "id": 9,
+        "part_of_speech": "Substantieven van de derde klasse op -es,-ei"
+    },
+    {
+        "created_at": null,
+        "id": 10,
+        "part_of_speech": "Adjectieven van de eerste klasse op -us,-a,-um"
+    },
+    {
+        "created_at": null,
+        "id": 11,
+        "part_of_speech": "Adjectieven van de eerste klasse op -(e)r,-a,-um"
+    },
+    {
+        "created_at": null,
+        "id": 12,
+        "part_of_speech": "Adjectieven van de eerste klasse op een andere uitgang"
+    },
+    {
+        "created_at": null,
+        "id": 13,
+        "part_of_speech": "Adjectieven van de tweede klasse met drie uitgangen"
+    },
+    {
+        "created_at": null,
+        "id": 14,
+        "part_of_speech": "Adjectieven van de tweede klasse met twee uitgangen"
+    },
+    {
+        "created_at": null,
+        "id": 15,
+        "part_of_speech": "Comparatieven"
+    },
+    {
+        "created_at": null,
+        "id": 16,
+        "part_of_speech": "Adjectieven van de tweede klasse met één uitgang"
+    },
+    {
+        "created_at": null,
+        "id": 17,
+        "part_of_speech": "Persoonlijke voornaamwoorden"
+    },
+    {
+        "created_at": null,
+        "id": 18,
+        "part_of_speech": "Bezittelijke voornaamwoorden"
+    },
+    {
+        "created_at": null,
+        "id": 19,
+        "part_of_speech": "Wederkerende voornaamwoorden"
+    },
+    {
+        "created_at": null,
+        "id": 20,
+        "part_of_speech": "Aanwijzende voornaamwoorden"
+    },
+    {
+        "created_at": null,
+        "id": 21,
+        "part_of_speech": "Betrekkelijke voornaamwoorden"
+    },
+    {
+        "created_at": null,
+        "id": 22,
+        "part_of_speech": "Vragende voornaamwoorden"
+    },
+    {
+        "created_at": null,
+        "id": 23,
+        "part_of_speech": "Onbepaalde voornaamwoorden"
+    },
+    {
+        "created_at": null,
+        "id": 24,
+        "part_of_speech": "Hoofdtelwoorden"
+    },
+    {
+        "created_at": null,
+        "id": 25,
+        "part_of_speech": "Rangtelwoorden"
+    },
+    {
+        "created_at": null,
+        "id": 26,
+        "part_of_speech": "Verdelingstelwoord"
+    },
+    {
+        "created_at": null,
+        "id": 27,
+        "part_of_speech": "Vraagpartikels"
+    },
+    {
+        "created_at": null,
+        "id": 28,
+        "part_of_speech": "Nevenschikkende voegwoorden"
+    },
+    {
+        "created_at": null,
+        "id": 29,
+        "part_of_speech": "Onderschikkende voegwoorden"
+    },
+    {
+        "created_at": null,
+        "id": 30,
+        "part_of_speech": "Voorzetsels met accusatief"
+    },
+    {
+        "created_at": null,
+        "id": 31,
+        "part_of_speech": "Voorzetsels met ablatief"
+    },
+    {
+        "created_at": null,
+        "id": 32,
+        "part_of_speech": "Voorzetsels met accusatief en ablatief"
+    },
+    {
+        "created_at": null,
+        "id": 33,
+        "part_of_speech": "Actieve werkwoorden van de a-vervoeging"
+    },
+    {
+        "created_at": null,
+        "id": 34,
+        "part_of_speech": "Deponente werkwoorden van de a-vervoeging"
+    },
+    {
+        "created_at": null,
+        "id": 35,
+        "part_of_speech": "Actieve werkwoorden van de e-vervoeging"
+    },
+    {
+        "created_at": null,
+        "id": 36,
+        "part_of_speech": "Deponente werkwoorden van de e-vervoeging"
+    },
+    {
+        "created_at": null,
+        "id": 37,
+        "part_of_speech": "Semideponente werkwoorden van de e-vervoeging"
+    },
+    {
+        "created_at": null,
+        "id": 38,
+        "part_of_speech": "Actieve werkwoorden van de consonantvervoeginging"
+    },
+    {
+        "created_at": null,
+        "id": 39,
+        "part_of_speech": "Deponente werkwoorden van de consonantvervoeging"
+    },
+    {
+        "created_at": null,
+        "id": 40,
+        "part_of_speech": "Semi-deponente werkwoorden van de consonantvervoeging"
+    },
+    {
+        "created_at": null,
+        "id": 41,
+        "part_of_speech": "Actieve werkwoorden van de lange i-vervoeging"
+    },
+    {
+        "created_at": null,
+        "id": 42,
+        "part_of_speech": "Deponente werkwoorden van de lange i-vervoeging"
+    },
+    {
+        "created_at": null,
+        "id": 43,
+        "part_of_speech": "Actieve werkwoorden van de korte i-vervoeging"
+    },
+    {
+        "created_at": null,
+        "id": 44,
+        "part_of_speech": "Deponente werkwoorden van de korte i-vervoeging"
+    },
+    {
+        "created_at": null,
+        "id": 45,
+        "part_of_speech": "Esse en samenstellingen ervan"
+    },
+    {
+        "created_at": null,
+        "id": 46,
+        "part_of_speech": "Ferre en samenstellingen ervan"
+    },
+    {
+        "created_at": null,
+        "id": 47,
+        "part_of_speech": "Ire en samenstellingen ervan"
+    },
+    {
+        "created_at": null,
+        "id": 48,
+        "part_of_speech": "Andere onregelmatige werkwoorden"
+    },
+    {
+        "created_at": null,
+        "id": 49,
+        "part_of_speech": "Defectieve werkwoorden"
+    },
+    {
+        "created_at": null,
+        "id": 50,
+        "part_of_speech": "Bijwoorden"
+    }
+]
