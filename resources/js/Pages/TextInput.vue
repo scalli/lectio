@@ -504,7 +504,7 @@ function linkSelectedWord($word){
       "
     >
       <div class="col-span-1 bg-orange-300 pl-1 mr-2">
-        <div class="col-span-4">
+        <div class="col-span-4 mb-1">
           <div>
             Woord uit woordenboek:
           </div>

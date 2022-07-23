@@ -34122,7 +34122,7 @@ var _hoisted_28 = {
   "class": "col-span-1 bg-orange-300 pl-1 mr-2"
 };
 var _hoisted_29 = {
-  "class": "col-span-4"
+  "class": "col-span-4 mb-1"
 };
 
 var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, " Woord uit woordenboek: ", -1
