@@ -36,6 +36,8 @@ const author = ref("");
 const work = ref("");
 const passage = ref("");
 
+const selectedWord = ref("");
+
 // const textinfoForm = useForm({
 //   text_title: null,
 //   method: null,
@@ -80,7 +82,6 @@ const form = useForm({
 function logSupportingQuestion($event) {
   // console.log(supporting_questions.value);
   // console.log(phrase_supports.value);
-
   // console.log(vocs);
   // console.log(text_words_arr.value);
   // console.log(text_phrases.value);
@@ -209,9 +210,9 @@ function step3() {
 function step4() {
   step.value = 4;
 }
-function save(){
+function save() {
   console.log(text_words_arr.value);
-  Inertia.post('/text/new', {
+  Inertia.post("/text/new", {
     text_title: text_title.value,
     method: method.value,
     chapter: chapter.value,
@@ -220,8 +221,16 @@ function save(){
     author: author.value,
     work: work.value,
     passage: passage.value,
-    text_words_arr: text_words_arr.value
-})
+    text_words_arr: text_words_arr.value,
+  });
+}
+
+function linkSelectedWord($word){
+  console.log(this.selectedWord);
+  console.log($word);
+  $word.word_voc = this.selectedWord.id;
+  $word.word = this.selectedWord.word;
+  console.log($word);
 }
 </script>
 
@@ -229,7 +238,7 @@ function save(){
   <div class="grid grid-cols-4 gap-4 mb-2 pl-2 mr-2 pt-2">
     <div class="col-span-1 text-center">
       <button
-        :class="{ 'bg-green-500' : step == 1 }"
+        :class="{ 'bg-green-500': step == 1 }"
         class="
           bg-blue-500
           hover:bg-blue-700
@@ -249,7 +258,7 @@ function save(){
 
     <div class="col-span-1 text-center">
       <button
-      :class="{ 'bg-green-500' : step == 2 }"
+        :class="{ 'bg-green-500': step == 2 }"
         class="
           bg-blue-500
           hover:bg-blue-700
@@ -269,7 +278,7 @@ function save(){
 
     <div class="col-span-1 text-center">
       <button
-      :class="{ 'bg-green-500' : step == 3 }"
+        :class="{ 'bg-green-500': step == 3 }"
         class="
           bg-blue-500
           hover:bg-blue-700
@@ -289,7 +298,7 @@ function save(){
 
     <div class="col-span-1 text-center">
       <button
-      :class="{ 'bg-green-500' : step == 4 }"
+        :class="{ 'bg-green-500': step == 4 }"
         class="
           bg-blue-500
           hover:bg-blue-700
@@ -416,6 +425,7 @@ function save(){
             v-bind:key="word.position"
           >
             <div>
+              <!--
               <div
                 class="w-full mb-2"
                 v-if="
@@ -434,7 +444,7 @@ function save(){
                   placeholder="Typ hier de ondersteuningsvraag bij lectuur"
                 />
               </div>
-              <!--
+              
               <div
                 class="w-full mb-2"
                 v-if="index != 0 && isFirstWordInPhrase(word.text_word, phrase)"
@@ -456,6 +466,11 @@ function save(){
                 <div class="col-span-2">
                   {{ word.text_word }}
                 </div>
+                <div>
+                  <input type="hidden" v-model="word.word_voc" @click="linkSelectedWord(word)" readonly>
+                  <input v-model="word.word" @click="linkSelectedWord(word)" readonly>
+                </div>
+                <!--
                 <div class="col-span-4">
                   <select v-model="word.word_voc">
                     <option
@@ -467,6 +482,7 @@ function save(){
                     </option>
                   </select>
                 </div>
+                -->
               </div>
             </div>
           </div>
@@ -488,6 +504,21 @@ function save(){
       "
     >
       <div class="col-span-1 bg-orange-300 pl-1 mr-2">
+        <div class="col-span-4">
+          <div>
+            Woord uit woordenboek:
+          </div>
+          <select v-model="selectedWord">
+            <option
+              v-for="voc_word in vocs"
+              :key="voc_word"
+              :value="voc_word"
+            >
+              {{ voc_word.word }}
+            </option>
+          </select>
+        </div>
+
         <div class="pr-1 mb-1 pt-2 pb-2 font-bold text-center bg-orange-500">
           Toevoegen aan woordenboek
         </div>

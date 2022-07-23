@@ -27508,7 +27508,8 @@ __webpack_require__.r(__webpack_exports__);
     var extra_info = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
     var author = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
     var work = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
-    var passage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(""); // const textinfoForm = useForm({
+    var passage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
+    var selectedWord = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(""); // const textinfoForm = useForm({
     //   text_title: null,
     //   method: null,
     //   chapter: null,
@@ -27669,7 +27670,7 @@ __webpack_require__.r(__webpack_exports__);
 
     function save() {
       console.log(text_words_arr.value);
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.post('/text/new', {
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.post("/text/new", {
         text_title: text_title.value,
         method: method.value,
         chapter: chapter.value,
@@ -27680,6 +27681,14 @@ __webpack_require__.r(__webpack_exports__);
         passage: passage.value,
         text_words_arr: text_words_arr.value
       });
+    }
+
+    function linkSelectedWord($word) {
+      console.log(this.selectedWord);
+      console.log($word);
+      $word.word_voc = this.selectedWord.id;
+      $word.word = this.selectedWord.word;
+      console.log($word);
     }
 
     var __returned__ = {
@@ -27700,6 +27709,7 @@ __webpack_require__.r(__webpack_exports__);
       author: author,
       work: work,
       passage: passage,
+      selectedWord: selectedWord,
       form: form,
       logSupportingQuestion: logSupportingQuestion,
       updateText: updateText,
@@ -27709,6 +27719,7 @@ __webpack_require__.r(__webpack_exports__);
       step3: step3,
       step4: step4,
       save: save,
+      linkSelectedWord: linkSelectedWord,
       reactive: vue__WEBPACK_IMPORTED_MODULE_0__.reactive,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm,
@@ -34100,185 +34111,178 @@ var _hoisted_23 = {
 };
 var _hoisted_24 = {
   key: 0,
-  "class": "w-full mb-2"
-};
-
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "pr-1",
-  "for": "supporting_question"
-}, "Ondersteuningsvraag:", -1
-/* HOISTED */
-);
-
-var _hoisted_26 = ["onUpdate:modelValue"];
-var _hoisted_27 = {
-  key: 1,
   "class": "grid grid-cols-6 gap-4"
 };
-var _hoisted_28 = {
+var _hoisted_25 = {
   "class": "col-span-2"
+};
+var _hoisted_26 = ["onUpdate:modelValue", "onClick"];
+var _hoisted_27 = ["onUpdate:modelValue", "onClick"];
+var _hoisted_28 = {
+  "class": "col-span-1 bg-orange-300 pl-1 mr-2"
 };
 var _hoisted_29 = {
   "class": "col-span-4"
 };
-var _hoisted_30 = ["onUpdate:modelValue"];
-var _hoisted_31 = ["value"];
-var _hoisted_32 = {
-  "class": "col-span-1 bg-orange-300 pl-1 mr-2"
-};
 
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, " Woord uit woordenboek: ", -1
+/* HOISTED */
+);
+
+var _hoisted_31 = ["value"];
+
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "pr-1 mb-1 pt-2 pb-2 font-bold text-center bg-orange-500"
 }, " Toevoegen aan woordenboek ", -1
 /* HOISTED */
 );
 
-var _hoisted_34 = {
+var _hoisted_33 = {
   "class": "pr-1 mb-1"
 };
 
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "pr-1",
   "for": "groundword"
 }, "Grondwoord:", -1
 /* HOISTED */
 );
 
-var _hoisted_36 = {
+var _hoisted_35 = {
   key: 0,
   "class": "text-red-700"
 };
-var _hoisted_37 = {
+var _hoisted_36 = {
   "class": "pr-1 mb-1"
 };
 
-var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "pr-1",
   "for": "wordinfo1"
 }, "Woordinformatie 1:", -1
 /* HOISTED */
 );
 
-var _hoisted_39 = {
+var _hoisted_38 = {
   "class": "pr-1 mb-1"
 };
 
-var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "pr-1",
   "for": "wordinfo2"
 }, "Woordinformatie 2:", -1
 /* HOISTED */
 );
 
-var _hoisted_41 = {
+var _hoisted_40 = {
   "class": "pr-1 mb-1"
 };
 
-var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "pr-1",
   "for": "wordinfo3"
 }, "Woordinformatie 3:", -1
 /* HOISTED */
 );
 
-var _hoisted_43 = {
+var _hoisted_42 = {
   "class": "pr-1 mb-1"
 };
 
-var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "pr-1",
   "for": "wordinfo4"
 }, "Woordinformatie 4:", -1
 /* HOISTED */
 );
 
-var _hoisted_45 = {
+var _hoisted_44 = {
   "class": "pr-1 mb-1"
 };
 
-var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "pr-1",
   "for": "meaning1"
 }, "Betekenis 1:", -1
 /* HOISTED */
 );
 
-var _hoisted_47 = {
+var _hoisted_46 = {
   key: 0,
   "class": "text-red-700"
 };
-var _hoisted_48 = {
+var _hoisted_47 = {
   "class": "pr-1 mb-1"
 };
 
-var _hoisted_49 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_48 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "pr-1",
   "for": "meaning2"
 }, "Betekenis 2:", -1
 /* HOISTED */
 );
 
-var _hoisted_50 = {
+var _hoisted_49 = {
   "class": "pr-1 mb-1"
 };
 
-var _hoisted_51 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_50 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "pr-1",
   "for": "meaning3"
 }, "Betekenis 3:", -1
 /* HOISTED */
 );
 
-var _hoisted_52 = {
+var _hoisted_51 = {
   "class": "pr-1 mb-1"
 };
 
-var _hoisted_53 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "pr-1",
   "for": "meaning4"
 }, "Betekenis 4:", -1
 /* HOISTED */
 );
 
-var _hoisted_54 = {
+var _hoisted_53 = {
   "class": "pr-1 mb-1"
 };
 
-var _hoisted_55 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_54 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "pr-1",
   "for": "pos"
 }, "Woordsoort", -1
 /* HOISTED */
 );
 
-var _hoisted_56 = ["value"];
-var _hoisted_57 = {
+var _hoisted_55 = ["value"];
+var _hoisted_56 = {
   key: 0,
   "class": "text-red-700"
 };
-var _hoisted_58 = {
+var _hoisted_57 = {
   "class": "pr-1 mb-1"
 };
 
-var _hoisted_59 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_58 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "pr-1",
   "for": "parentheses"
 }, "Extra info (tussen haakjes):", -1
 /* HOISTED */
 );
 
-var _hoisted_60 = {
+var _hoisted_59 = {
   "class": "pr-1"
 };
 
-var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "pr-1",
   "for": "memorize"
 }, "Te memoriseren:", -1
 /* HOISTED */
 );
 
-var _hoisted_62 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "text-center mt-3 mb-2"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
@@ -34287,10 +34291,10 @@ var _hoisted_62 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_63 = {
+var _hoisted_62 = {
   key: 3
 };
-var _hoisted_64 = {
+var _hoisted_63 = {
   "class": "text-center"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -34409,36 +34413,30 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
         "class": "mb-2",
         key: word.position
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [word.phrase_number == index && $setup.isFirstWordInPhrase(word.text_word, phrase) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        "class": "w-full border-solid border-2 rounded border-black",
-        "onUpdate:modelValue": function onUpdateModelValue($event) {
-          return word.supporting_question = $event;
-        },
-        onClick: _cache[13] || (_cache[13] = function ($event) {
-          return $setup.logSupportingQuestion($event);
-        }),
-        name: "supporting_question",
-        placeholder: "Typ hier de ondersteuningsvraag bij lectuur"
-      }, null, 8
-      /* PROPS */
-      , _hoisted_26), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, word.supporting_question]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\r\n              <div\r\n                class=\"w-full mb-2\"\r\n                v-if=\"index != 0 && isFirstWordInPhrase(word.text_word, phrase)\"\r\n              >\r\n                <label class=\"pr-1\" for=\"phrase_support\">Extra hulp:</label>\r\n                <input\r\n                  class=\"w-full border-solid border-2 rounded border-black\"\r\n                  v-model=\"word.phrase_support\"\r\n                  @click=\"logSupportingQuestion($event)\"\r\n                  name=\"phrase_support\"\r\n                  placeholder=\"Typ hier de extra hulp bij lectuur\"\r\n                />\r\n              </div>\r\n              "), word.phrase_number == index ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(word.text_word), 1
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\r\n              <div\r\n                class=\"w-full mb-2\"\r\n                v-if=\"\r\n                  word.phrase_number == index &&\r\n                  isFirstWordInPhrase(word.text_word, phrase)\r\n                \"\r\n              >\r\n                <label class=\"pr-1\" for=\"supporting_question\"\r\n                  >Ondersteuningsvraag:</label\r\n                >\r\n                <input\r\n                  class=\"w-full border-solid border-2 rounded border-black\"\r\n                  v-model=\"word.supporting_question\"\r\n                  @click=\"logSupportingQuestion($event)\"\r\n                  name=\"supporting_question\"\r\n                  placeholder=\"Typ hier de ondersteuningsvraag bij lectuur\"\r\n                />\r\n              </div>\r\n              \r\n              <div\r\n                class=\"w-full mb-2\"\r\n                v-if=\"index != 0 && isFirstWordInPhrase(word.text_word, phrase)\"\r\n              >\r\n                <label class=\"pr-1\" for=\"phrase_support\">Extra hulp:</label>\r\n                <input\r\n                  class=\"w-full border-solid border-2 rounded border-black\"\r\n                  v-model=\"word.phrase_support\"\r\n                  @click=\"logSupportingQuestion($event)\"\r\n                  name=\"phrase_support\"\r\n                  placeholder=\"Typ hier de extra hulp bij lectuur\"\r\n                />\r\n              </div>\r\n              "), word.phrase_number == index ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(word.text_word), 1
       /* TEXT */
-      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        type: "hidden",
         "onUpdate:modelValue": function onUpdateModelValue($event) {
           return word.word_voc = $event;
-        }
-      }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.vocs, function (voc_word) {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-          key: voc_word,
-          value: voc_word.id
-        }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(voc_word.word), 9
-        /* TEXT, PROPS */
-        , _hoisted_31);
-      }), 128
-      /* KEYED_FRAGMENT */
-      ))], 8
+        },
+        onClick: function onClick($event) {
+          return $setup.linkSelectedWord(word);
+        },
+        readonly: ""
+      }, null, 8
       /* PROPS */
-      , _hoisted_30), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, word.word_voc]])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
+      , _hoisted_26), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, word.word_voc]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        "onUpdate:modelValue": function onUpdateModelValue($event) {
+          return word.word = $event;
+        },
+        onClick: function onClick($event) {
+          return $setup.linkSelectedWord(word);
+        },
+        readonly: ""
+      }, null, 8
+      /* PROPS */
+      , _hoisted_27), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, word.word]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\r\n                <div class=\"col-span-4\">\r\n                  <select v-model=\"word.word_voc\">\r\n                    <option\r\n                      v-for=\"voc_word in vocs\"\r\n                      :key=\"voc_word\"\r\n                      :value=\"voc_word.id\"\r\n                    >\r\n                      {{ voc_word.word }}\r\n                    </option>\r\n                  </select>\r\n                </div>\r\n                ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
     }), 128
     /* KEYED_FRAGMENT */
     ))])]);
@@ -34455,7 +34453,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }
       });
     }, ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "onUpdate:modelValue": _cache[13] || (_cache[13] = function ($event) {
+      return $setup.selectedWord = $event;
+    })
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.vocs, function (voc_word) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+      key: voc_word,
+      value: voc_word
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(voc_word.word), 9
+    /* TEXT, PROPS */
+    , _hoisted_31);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))], 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.selectedWord]])]), _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "w-full border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[14] || (_cache[14] = function ($event) {
       return $setup.form.groundword = $event;
@@ -34464,9 +34477,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "groundword"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.groundword]]), $setup.form.errors.groundword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.form.errors.groundword), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.groundword]]), $setup.form.errors.groundword ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.form.errors.groundword), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [_hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "w-full border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[15] || (_cache[15] = function ($event) {
       return $setup.form.wordinfo1 = $event;
@@ -34475,7 +34488,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "wordinfo1"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.wordinfo1]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.wordinfo1]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [_hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "w-full border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[16] || (_cache[16] = function ($event) {
       return $setup.form.wordinfo2 = $event;
@@ -34484,7 +34497,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "wordinfo2"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.wordinfo2]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [_hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.wordinfo2]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "w-full border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[17] || (_cache[17] = function ($event) {
       return $setup.form.wordinfo3 = $event;
@@ -34493,7 +34506,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "wordinfo3"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.wordinfo3]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [_hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.wordinfo3]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [_hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "w-full border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[18] || (_cache[18] = function ($event) {
       return $setup.form.wordinfo4 = $event;
@@ -34502,7 +34515,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "wordinfo4"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.wordinfo4]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [_hoisted_46, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.wordinfo4]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [_hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "w-full border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[19] || (_cache[19] = function ($event) {
       return $setup.form.meaning1 = $event;
@@ -34511,9 +34524,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "meaning1"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.meaning1]]), $setup.form.errors.meaning1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_47, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.form.errors.meaning1), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.meaning1]]), $setup.form.errors.meaning1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_46, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.form.errors.meaning1), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_48, [_hoisted_49, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [_hoisted_48, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "w-full border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[20] || (_cache[20] = function ($event) {
       return $setup.form.meaning2 = $event;
@@ -34522,7 +34535,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "meaning2"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.meaning2]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_50, [_hoisted_51, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.meaning2]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [_hoisted_50, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "w-full border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[21] || (_cache[21] = function ($event) {
       return $setup.form.meaning3 = $event;
@@ -34531,7 +34544,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "meaning3"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.meaning3]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_52, [_hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.meaning3]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [_hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "w-full border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[22] || (_cache[22] = function ($event) {
       return $setup.form.meaning4 = $event;
@@ -34540,7 +34553,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "meaning4"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.meaning4]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_54, [_hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.meaning4]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_53, [_hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "onUpdate:modelValue": _cache[23] || (_cache[23] = function ($event) {
       return $setup.form.part_of_speech = $event;
     }),
@@ -34552,14 +34565,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       value: pos.id
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(pos.part_of_speech), 9
     /* TEXT, PROPS */
-    , _hoisted_56);
+    , _hoisted_55);
   }), 128
   /* KEYED_FRAGMENT */
   ))], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.part_of_speech]]), $setup.form.errors.part_of_speech ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.form.errors.part_of_speech), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.part_of_speech]]), $setup.form.errors.part_of_speech ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.form.errors.part_of_speech), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_58, [_hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_57, [_hoisted_58, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "w-full border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[24] || (_cache[24] = function ($event) {
       return $setup.form.parentheses = $event;
@@ -34568,7 +34581,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "parentheses"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.parentheses]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_60, [_hoisted_61, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.parentheses]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_59, [_hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "checkbox",
     "onUpdate:modelValue": _cache[25] || (_cache[25] = function ($event) {
       return $setup.form.memorize = $event;
@@ -34577,9 +34590,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "memorize"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.form.memorize]])]), _hoisted_62])], 32
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.form.memorize]])]), _hoisted_61])], 32
   /* HYDRATE_EVENTS */
-  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.step == 4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_63, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_64, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.step == 4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_62, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_63, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-1 text-center",
     onClick: _cache[27] || (_cache[27] = function ($event) {
       return $setup.save($event);
