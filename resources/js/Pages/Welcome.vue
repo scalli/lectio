@@ -1,130 +1,107 @@
 <script setup>
-import { Head, Link } from '@inertiajs/inertia-vue3';
-import { reactive, ref } from 'vue';
+import { Head, Link } from "@inertiajs/inertia-vue3";
+import { reactive, ref } from "vue";
 
 const props = defineProps({
-    canLogin: Boolean,
-    canRegister: Boolean,
-    laravelVersion: String,
-    phpVersion: String,
-    phrases: Object,
-    questions: Object,
-    voc: Object
+  canLogin: Boolean,
+  canRegister: Boolean,
+  laravelVersion: String,
+  phpVersion: String,
 });
-
-const selected = reactive({ index: 0 });
-const questions = reactive(props.questions);
-const voc = reactive(props.voc);
-const selected_question = ref("") ;
-const selected_voc = ref([]);
-const helper_questions = ref(true);//show the supporting questions
-const helper_voc = ref(true);//show the vocabulary that you don't have to know by heart
-const helper_voc_to_know = ref(true);//show the vocabulary that you should have to know by heart
-const show_preferences= ref(false);
-
-function setSelected(event) {
-  selected.index = event.target.id;
-  // console.log(selected);
-  // console.log(this.questions);
-  if(this.helper_questions){
-      this.selected_question = this.questions[this.selected.index];
-  }
-  else{
-    this.selected_question = "-";
-  }
-
-  this.selected_voc = [];
-  for (let i = 0; i < this.props.voc[selected.index].length; i += 1) {
-    if(this.props.voc[selected.index][i].startsWith("*") && this.helper_voc_to_know == true){
-        this.selected_voc.push(this.props.voc[selected.index][i]);
-    }
-    if(!this.props.voc[selected.index][i].startsWith("*") && this.helper_voc == true){
-        this.selected_voc.push(this.props.voc[selected.index][i]);
-    }
-  }//end of for
-}
-
-function toggleShowPreferences(event){
-    this.show_preferences = !this.show_preferences;
-}
-
 </script>
 
 
 <template>
-    <Head title="Welcome" />
+  <Head title="Welcome" />
 
-    <div class="bg-gray-100 dark:bg-gray-900 h-screen">
-        <div v-if="canLogin" class="px-6 py-4">
-            <Link v-if="$page.props.user" :href="route('dashboard')" class="text-sm text-gray-700 underline">
-                Dashboard
+  <div class="bg-gray-100 dark:bg-gray-900 h-screen">
+    <div v-if="canLogin" class="px-6 py-4">
+      <Link
+        v-if="$page.props.user"
+        :href="route('dashboard')"
+        class="text-sm text-gray-700 underline"
+      >
+        Dashboard
+      </Link>
+
+      <template v-else>
+        <div class="grid grid-cols-2 justify-items-end">
+          <div>
+            <Link
+              :href="route('login')"
+              class="text-sm text-gray-700 underline text-right"
+            >
+              Log in
             </Link>
+          </div>
 
-            <template v-else>
-                <div class="grid grid-cols-2 justify-items-end">
-                    <div>
-                        <Link :href="route('login')" class="text-sm text-gray-700 underline text-right">
-                            Log in
-                        </Link>
-                    </div> 
-
-                    <div>
-                        <Link v-if="canRegister" :href="route('register')" class="ml-4 text-sm text-gray-700 underline text-right">
-                            Register
-                        </Link>
-                    </div> 
-
-                </div>
-            </template>
+          <div>
+            <Link
+              v-if="canRegister"
+              :href="route('register')"
+              class="ml-4 text-sm text-gray-700 underline text-right"
+            >
+              Register
+            </Link>
+          </div>
         </div>
+      </template>
 
-        <div class="flex justify-center pt-2 pb-2 pl-2 pr-2 bg-zinc-200 text-amber-500 pl-2 pr-2 ml-2 mr-2  w-1/2 md:w-1/2 lg:w-1/3 md:mx-auto font-bold" @click="toggleShowPreferences($event)">
-            &#8595 Instellingen &#8595
-        </div>
-        <div class="pt-2 pb-2 pl-2 pr-2 bg-zinc-200 pl-2 pr-2 ml-2 mr-2 mb-2 text-amber-500  md:w-1/2 lg:w-1/3 md:mx-auto" v-if="show_preferences" >
-            <div class="">
-              <div class="grid grid-cols-12 gap-1 form-check form-switch">
-                <input class="col-start-3 col-span-3 form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-white bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm" type="checkbox" role="switch" id="helper_questions" v-model="helper_questions" checked>
-                <label class="col-start-6 col-span-6 form-check-label inline-block text-gray-800" for="helper_questions">Toon hulpvragen</label>
-              </div>
+      <div class="grid grid-cols-3 gap-4">
+        <div></div>
+        <div>
+          <div class="ml-4 text-lg text-gray-700">Welkom!</div>
+          <div class="ml-4 mb-4 text-gray-700">
+            Latijn lezen mag en hoeft geen hele klus te zijn! Het kan
+            ontspannend, leerrijk en fijn zijn. Om dit te bereiken is een beetje
+            hulp bij het lezen echter vaak welkom. Dat is precies waarom deze
+            website werd opgezet. Hij geeft je de nodige ondersteuning, zodat
+            Latijn lezen (weer) fun wordt!
+          </div>
+          <div class="ml-4 mb-4 text-gray-700">
+            Je krijgt de mogelijkheid om Latijnse teksten te lezen met
+            verschillende vormen van ondersteuning (LECTIO). Zo kan eenieder Latijn lezen
+            op de manier die hem/haar het beste past. Indien je dat graag wil,
+            kun je ook het vocabularium inoefenen van teksten die je reeds las (REPETITIO).
+            Maak hieronder je keuze.
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div
+              class="
+                pt-4
+                pb-4
+                pl-4
+                pr-4
+                bg-amber-300
+                text-gray-700 text-center
+                font-bold
+              "
+            >
+              <Link :href="'/overview'">LECTIO</Link>
             </div>
-
-            <div class="">
-              <div class="grid grid-cols-12 gap-1 form-check form-switch">
-                <input class="col-start-3 col-span-3 form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-white bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm" type="checkbox" role="switch" id="helper_questions" v-model="helper_voc_to_know" checked>
-                <label class="col-start-6 col-span-6 form-check-label inline-block text-gray-800" for="helper_voc_to_know">Toon kernvoc.</label>
-              </div>
+            <div
+              class="
+                pt-4
+                pb-4
+                pl-4
+                pr-4
+                bg-amber-300
+                text-gray-700 text-center
+                font-bold
+              "
+            >
+              <Link :href="'/voc/repetitio/step/1'"
+                >REPETITIO</Link
+              >
             </div>
-
-            <div class="">
-              <div class="grid grid-cols-12 gap-1form-check form-switch">
-                <input class="col-start-3 col-span-3  form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top bg-white bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm" type="checkbox" role="switch" id="helper_questions" v-model="helper_voc" checked>
-                <label class="col-start-6 col-span-6 form-check-label inline-block text-gray-800" for="helper_voc">Toon hulpvoc.</label>
-              </div>
-            </div>
+          </div>
+          <div></div>
         </div>
-
-
-        <div class="pt-2 pb-2 pl-2 pr-2 bg-white pt-2 pb-2 pl-2 pr-2 ml-2 mr-2 mt-2 md:w-1/2 lg:w-1/3 md:mx-auto">
-            <div @click="setSelected($event)" :id="index" class="inline-block pr-2" 
-                    v-bind:class="{ 'text-blue-700 font-bold': (index == selected.index) }" 
-                    v-for="(phrase, index) in phrases">{{phrase}}</div>
-        </div>
-
-        <div class="ml-2 mr-2 md:w-3/4 lg:w-1/3 md:mx-auto">
-            <div class="mt-4 pt-2 pb-2 pl-2 pr-2 bg-white text-center text-blue-700 font-bold">
-                  <p>{{selected_question}}</p>
-            </div>
-        </div>
-
-        <div class="mt-2 ml-2 mr-2 md:w-3/4 lg:w-1/3 md:mx-auto">
-            <div class="pt-2 pb-2 pl-2 pr-2 bg-white text-blue-700 font-bold" v-for="(voc_word, index) in selected_voc">
-                    {{voc_word}}
-            </div> 
-        </div>
-    
+      </div>
     </div>
-
+  </div>
 </template>
+
+
 
 

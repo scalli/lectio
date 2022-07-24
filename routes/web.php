@@ -24,6 +24,7 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/text/normal/{id}', 'App\Http\Controllers\ReadTextController@showNormal');
 Route::get('/text/{layout}/{id}', 'App\Http\Controllers\ReadTextController@show');
 Route::get('/text/new', 'App\Http\Controllers\TextController@new')->name('newtext');
 Route::post('/text/new', 'App\Http\Controllers\TextController@save');

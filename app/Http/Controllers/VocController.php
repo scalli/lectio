@@ -394,17 +394,17 @@ class VocController extends Controller
     }
 
     function makeVocCards($text_words, $layout){
-        $max_index = ($text_words[count($text_words)-1])->phrase_number;
-        $phrases = array_fill(1, $max_index, "");//array containing all phrases
+        // $max_index = ($text_words[count($text_words)-1])->phrase_number;
+        // $phrases = array_fill(1, $max_index, "");//array containing all phrases
         $voc_front = array();
         $voc_back = array();
         $voc = array();
         
 
-        foreach($text_words as $word) {
-            $index = $word->phrase_number;
-            $phrases[$index] = $phrases[$index] . " " . $word->text_word;
-        }
+        // foreach($text_words as $word) {
+        //     $index = $word->phrase_number;
+        //     $phrases[$index] = $phrases[$index] . " " . $word->text_word;
+        // }
 
         // dd($phrases);
 
@@ -417,16 +417,16 @@ class VocController extends Controller
                 $o = new stdClass();
                 $o->word = $word->word;
                 $o->id = $word->id;
-                $o->phrase_number = $word->phrase_number;
+                // $o->phrase_number = $word->phrase_number;
                 //TODO
-                $o->phrase = "";
-                if($o->phrase_number>1){
-                    $o->phrase = $phrases[$o->phrase_number-1] . $o->phrase;
-                }
-                $o->phrase = $o->phrase . $phrases[$o->phrase_number];
-                if($o->phrase_number != count($phrases)){
-                    $o->phrase = $o->phrase . $phrases[$o->phrase_number+1];
-                }
+                // $o->phrase = "";
+                // if($o->phrase_number>1){
+                //     $o->phrase = $phrases[$o->phrase_number-1] . $o->phrase;
+                // }
+                // $o->phrase = $o->phrase . $phrases[$o->phrase_number];
+                // if($o->phrase_number != count($phrases)){
+                //     $o->phrase = $o->phrase . $phrases[$o->phrase_number+1];
+                // }
                 // array_push($voc_front, $o );
 
                 if($word->wordinfo1 != null && str_starts_with($word->wordinfo1, '+')){
