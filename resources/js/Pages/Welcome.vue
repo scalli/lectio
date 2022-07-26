@@ -72,7 +72,7 @@ const props = defineProps({
                 pb-4
                 pl-4
                 pr-4
-                bg-amber-300
+                bg-orange-300
                 text-gray-700 text-center
                 font-bold
               "
@@ -85,7 +85,7 @@ const props = defineProps({
                 pb-4
                 pl-4
                 pr-4
-                bg-amber-300
+                bg-orange-300
                 text-gray-700 text-center
                 font-bold
               "

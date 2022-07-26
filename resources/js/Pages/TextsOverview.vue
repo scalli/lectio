@@ -64,7 +64,7 @@ function setSelected(event) {
       class="ml-4 mr-4 text-gray-700 font-bold"
       @click="setSelected($event)"
     >
-      <div class="mb-2 pl-2 text-lg bg-amber-300 text-gray-600 font-bold">
+      <div class="mb-2 pl-2 text-lg bg-orange-300 text-gray-600 font-bold">
         <div>
           {{ text.text_title }}
         </div>
