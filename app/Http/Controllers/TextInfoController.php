@@ -14,7 +14,9 @@ class TextInfoController extends Controller
     public function show(){
 
         $text_infos = DB::table('text_infos')
-            ->select('*')
+            ->where('id', '!=', 11) //3 teksten weglaten voor Els Cloelia
+            ->where('id', '!=', 17) //De hond in de rivier
+            ->where('id', '!=', 38) //Ijdelheid gestraft
             ->get();
 
         return Inertia::render('TextsOverview', [

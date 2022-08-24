@@ -34855,7 +34855,7 @@ var _hoisted_7 = {
 };
 var _hoisted_8 = ["id"];
 var _hoisted_9 = {
-  "class": "mb-2 pl-2 text-lg bg-amber-300 text-gray-600 font-bold"
+  "class": "mb-2 pl-2 text-lg bg-orange-300 text-gray-600 font-bold"
 };
 var _hoisted_10 = {
   "class": "text-gray-500 text-sm"
@@ -34872,7 +34872,7 @@ var _hoisted_13 = {
 
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Lezen");
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("In woordgroepen lezen");
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Lineair lezen");
 
 var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("In cola lezen");
 
@@ -35832,13 +35832,13 @@ var _hoisted_12 = {
   "class": "grid grid-cols-2 gap-4"
 };
 var _hoisted_13 = {
-  "class": "pt-4 pb-4 pl-4 pr-4 bg-amber-300 text-gray-700 text-center font-bold"
+  "class": "pt-4 pb-4 pl-4 pr-4 bg-orange-300 text-gray-700 text-center font-bold"
 };
 
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("LECTIO");
 
 var _hoisted_15 = {
-  "class": "pt-4 pb-4 pl-4 pr-4 bg-amber-300 text-gray-700 text-center font-bold"
+  "class": "pt-4 pb-4 pl-4 pr-4 bg-orange-300 text-gray-700 text-center font-bold"
 };
 
 var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("REPETITIO");

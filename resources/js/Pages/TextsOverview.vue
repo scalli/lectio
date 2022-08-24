@@ -87,7 +87,7 @@ function setSelected(event) {
           <Link
             :href="'/text/classic/' + text.id"
             class="ml-4 text-sm text-gray-700 underline text-right"
-            >In woordgroepen lezen</Link
+            >Lineair lezen</Link
           >
           <Link
             :href="'/text/cola/' + text.id"
