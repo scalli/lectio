@@ -1,6 +1,7 @@
 <script setup>
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import { reactive, ref } from "vue";
+import { Inertia } from '@inertiajs/inertia'
 
 const props = defineProps({
   canLogin: Boolean,
@@ -13,9 +14,91 @@ const title = props.title;
 
 const selected = reactive({ index: 0 });
 
+const show_filter= ref(false);
+
+//Fields from the filter
+const text_title = ref("");
+const method = ref("");
+const grade = ref("");
+const author = ref("");
+const work = ref("");
+const selected_texts = text_infos;
+
 function setSelected(event) {
   selected.index = event.target.id;
   // console.log(selected.index);
+}
+
+function toggleShowFilter(event){
+    this.show_filter = !this.show_filter;
+}
+
+function applyFilter(event){
+
+  console.log(props.text_infos);
+
+  Inertia.post('/filterTextsOverwiew', {
+    title: this.text_title,
+    method: this.method,
+    grade: this.grade,
+    author: this.author,
+    work: this.work
+  })
+
+  this.toggleShowFilter();
+
+  // console.log(this.selected_texts);
+  
+  // console.log(this.text_infos);
+  // console.log(this.selected_texts);
+  // this.selected_texts = [];
+
+  // this.text_infos.forEach(text => {;
+  //   if(
+  //     // text.text_title.includes(this.text_title) && text.method.includes(this.method)
+  //      textTitleFilter(text) && textMethodFilter(text)
+  //       && text.grade.includes(this.grade) && text.author.includes(this.author)
+  //       && text.work.includes(this.work)){
+  //     this.selected_texts.push(text);
+  //   }
+  // });
+
+
+  // this.toggleShowFilter();
+
+  // console.log(this.selected_texts);
+}
+
+function textTitleFilter (text){
+  // if(!(this.text_title.value) == ''){
+  //       return true;
+  // }
+  // else{
+  //   return text.text_title.includes(this.text_title);
+  // }
+
+  return (text.text_title.includes(this.text_title) || this.text_title.length == 0);
+}
+
+function textMethodFilter (text){
+  // if(!(this.method.value.length) == ''){
+  //   return true;
+  // }
+  // else{
+  //   return text.method.includes(this.method);
+  // }
+    return (text.method.includes(this.method) || this.method.length == 0);
+}
+
+function clearFilter(event){
+  this.selected_texts = this.text_infos;
+
+    this.text_title = "";
+    this.method = "";
+    this.grade = "";
+    this.author = "";
+    this.work = "";
+    this.toggleShowFilter();
 }
 </script>
 
@@ -56,9 +139,102 @@ function setSelected(event) {
       </template>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="flex justify-center pt-2 pb-2 pl-2 pr-2 bg-zinc-200 text-amber-500 pl-2 pr-2 ml-2 mr-2  w-1/2 md:w-1/2 lg:w-1/3 md:mx-auto font-bold" @click="toggleShowFilter($event)">
+        &#8595 Filter &#8595
+    </div>
+    <div class="pt-2 pb-2 pl-2 pr-2 bg-zinc-200 pl-2 pr-2 ml-2 mr-2 mb-2  md:w-1/2 lg:w-1/3 md:mx-auto" v-if="show_filter" >
+            <div class="grid grid-cols-9 gap-4 mb-2 pl-2 mr-2 pt-2">
+              <label class="col-span-2 pr-2" for="text_title">Titel:</label>
+              <input
+                class="col-span-7 border-solid border-2 rounded border-black"
+                v-model="text_title"
+                name="text_title"
+                size="60"
+              />
+            </div>
+
+            <div class="grid grid-cols-9 gap-4 mb-2 pl-2 mr-2 pt-2">
+              <label class="col-span-2 pr-2 mr-2" for="method">Methode:</label>
+              <input
+                class="col-span-7 border-solid border-2 rounded border-black"
+                v-model="method"
+                name="method"
+                size="60"
+              />
+            </div>
+
+            <div class="grid grid-cols-9 gap-4 mb-2 pl-2 mr-2 pt-2">
+              <label class="col-span-2 pr-2" for="grade">Graad:</label>
+              <input
+                class="col-span-7 border-solid border-2 rounded border-black"
+                v-model="grade"
+                name="grade"
+                size="60"
+              />
+            </div>
+
+            <div class="grid grid-cols-9 gap-4 mb-2 pl-2 mr-2 pt-2">
+              <label class="col-span-2 pr-2" for="author">Auteur:</label>
+              <input
+                class="col-span-7 border-solid border-2 rounded border-black"
+                v-model="author"
+                name="author"
+                size="60"
+              />
+            </div>
+
+            <div class="grid grid-cols-9 gap-4 mb-2 pl-2 mr-2 pt-2">
+              <label class="col-span-2 pr-2" for="work">Werk:</label>
+              <input
+                class="col-span-7 border-solid border-2 rounded border-black"
+                v-model="work"
+                name="work"
+                size="60"
+              />
+            </div>
+
+            <div class="col-span-1 text-center">
+              <button
+                :class="{ 'bg-green-500': step == 1 }"
+                class="
+                  bg-blue-500
+                  hover:bg-blue-700
+                  text-white
+                  font-bold
+                  py-2
+                  px-4
+                  rounded
+                  mr-1
+                  text-center
+                "
+                @click="applyFilter($event)"
+              >
+                Filter toepassen
+              </button>
+
+              <button
+                :class="{ 'bg-green-500': step == 1 }"
+                class="
+                  bg-blue-500
+                  hover:bg-blue-700
+                  text-white
+                  font-bold
+                  py-2
+                  px-4
+                  rounded
+                  mr-1
+                  text-center
+                "
+                @click="clearFilter($event)"
+              >
+                Filter wissen
+              </button>
+            </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
     <div
-      v-for="(text) in text_infos"
+      v-for="(text) in props.text_infos"
       :id="text.id"
       :key="text.id"
       class="ml-4 mr-4 text-gray-700 font-bold"

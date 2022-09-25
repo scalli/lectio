@@ -26,8 +26,8 @@ Route::get('/', function () {
 
 Route::get('/text/normal/{id}', 'App\Http\Controllers\ReadTextController@showNormal');
 Route::get('/text/{layout}/{id}', 'App\Http\Controllers\ReadTextController@show');
-Route::get('/text/new', 'App\Http\Controllers\TextController@new')->name('newtext');
-Route::post('/text/new', 'App\Http\Controllers\TextController@save');
+Route::get('/text/new', 'App\Http\Controllers\TextController@new')->name('newtext');//->middleware('auth');
+Route::post('/text/new', 'App\Http\Controllers\TextController@save');//->middleware('auth');
 
 Route::get('/voc/{layout}/{id}', 'App\Http\Controllers\VocController@show');
 Route::get('/voc/repetitio/step/1', 'App\Http\Controllers\VocController@repetitioStep1');
@@ -37,6 +37,8 @@ Route::post('/voc/downloadvoc','App\Http\Controllers\VocController@downloadvoc')
 Route::post('/voc','App\Http\Controllers\VocController@store');
 
 Route::get('/overview', 'App\Http\Controllers\TextInfoController@show');
+Route::post('/filterTextsOverwiew', 'App\Http\Controllers\TextInfoController@filter');
+
 
 Route::middleware([
     'auth:sanctum',
