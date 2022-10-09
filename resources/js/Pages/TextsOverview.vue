@@ -69,36 +69,45 @@ function applyFilter(event){
   // console.log(this.selected_texts);
 }
 
-function textTitleFilter (text){
-  // if(!(this.text_title.value) == ''){
-  //       return true;
-  // }
-  // else{
-  //   return text.text_title.includes(this.text_title);
-  // }
+// function textTitleFilter (text){
+//   // if(!(this.text_title.value) == ''){
+//   //       return true;
+//   // }
+//   // else{
+//   //   return text.text_title.includes(this.text_title);
+//   // }
 
-  return (text.text_title.includes(this.text_title) || this.text_title.length == 0);
-}
+//   return (text.text_title.includes(this.text_title) || this.text_title.length == 0);
+// }
 
-function textMethodFilter (text){
-  // if(!(this.method.value.length) == ''){
-  //   return true;
-  // }
-  // else{
-  //   return text.method.includes(this.method);
-  // }
-    return (text.method.includes(this.method) || this.method.length == 0);
-}
+// function textMethodFilter (text){
+//   // if(!(this.method.value.length) == ''){
+//   //   return true;
+//   // }
+//   // else{
+//   //   return text.method.includes(this.method);
+//   // }
+//     return (text.method.includes(this.method) || this.method.length == 0);
+// }
 
 function clearFilter(event){
-  this.selected_texts = this.text_infos;
+  // this.selected_texts = this.text_infos;
 
     this.text_title = "";
     this.method = "";
     this.grade = "";
     this.author = "";
     this.work = "";
-    this.toggleShowFilter();
+
+this.toggleShowFilter();
+
+  Inertia.post('/filterTextsOverwiew', {
+    title: this.text_title,
+    method: this.method,
+    grade: this.grade,
+    author: this.author,
+    work: this.work
+  })
 }
 </script>
 
@@ -140,7 +149,7 @@ function clearFilter(event){
     </div>
 
     <div class="flex justify-center pt-2 pb-2 pl-2 pr-2 bg-zinc-200 text-amber-500 pl-2 pr-2 ml-2 mr-2  w-1/2 md:w-1/2 lg:w-1/3 md:mx-auto font-bold" @click="toggleShowFilter($event)">
-        &#8595 Filter &#8595
+        &#8595; Filter &#8595;
     </div>
     <div class="pt-2 pb-2 pl-2 pr-2 bg-zinc-200 pl-2 pr-2 ml-2 mr-2 mb-2  md:w-1/2 lg:w-1/3 md:mx-auto" v-if="show_filter" >
             <div class="grid grid-cols-9 gap-4 mb-2 pl-2 mr-2 pt-2">

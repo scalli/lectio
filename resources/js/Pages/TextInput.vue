@@ -2,6 +2,7 @@
 import { reactive, ref } from "vue";
 import { useForm } from "@inertiajs/inertia-vue3";
 import { Inertia } from "@inertiajs/inertia";
+import AppLayout from '@/Layouts/AppLayout.vue';
 
 const props = defineProps({
   canLogin: Boolean,
@@ -136,7 +137,7 @@ function updateText(event) {
   text_words_arr_new.value = [];
 
   textarea_phrases.value.forEach(function (phrase) {
-    let phrase_arr = phrase.split(" ");
+    let phrase_arr = phrase.trim().split(" ");
     console.log(phrase_arr);
 
     phrase_arr.forEach(function (word) {
@@ -145,7 +146,7 @@ function updateText(event) {
       let word_obj = {
         text_info_id: 0,
         position: position,
-        text_word: word,
+        text_word: word.trim(),
         word_voc: 0,
         phrase_number: phrase_number,
         supporting_question: "",
@@ -234,7 +235,9 @@ function linkSelectedWord($word){
 }
 </script>
 
+
 <template>
+<AppLayout title="Dashboard">
   <div class="grid grid-cols-4 gap-4 mb-2 pl-2 mr-2 pt-2">
     <div class="col-span-1 text-center">
       <button
@@ -684,4 +687,5 @@ function linkSelectedWord($word){
       </button>
     </div>
   </div>
+  </AppLayout>
 </template>

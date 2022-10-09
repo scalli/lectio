@@ -1,6 +1,7 @@
 <script setup>
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import { reactive, ref } from "vue";
+import AppLayout from '@/Layouts/AppLayout.vue';
 
 const props = defineProps({
   canLogin: Boolean,
@@ -12,6 +13,7 @@ const props = defineProps({
 
 
 <template>
+
   <Head title="Welcome" />
 
   <div class="bg-gray-100 dark:bg-gray-900 h-screen">
@@ -100,6 +102,7 @@ const props = defineProps({
       </div>
     </div>
   </div>
+
 </template>
 
 
