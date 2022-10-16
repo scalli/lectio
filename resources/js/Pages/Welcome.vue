@@ -2,6 +2,7 @@
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import { reactive, ref } from "vue";
 import AppLayout from '@/Layouts/AppLayout.vue';
+import Menu from '@/Pages/Menu.vue';
 
 const props = defineProps({
   canLogin: Boolean,
@@ -27,17 +28,20 @@ const props = defineProps({
       </Link>
 
       <template v-else>
-        <div class="grid grid-cols-2 justify-items-end">
-          <div>
+        <Menu>
+        </Menu>
+        <!--
+        <div class="grid grid-cols-2 justify-items-end bg-slate-50">
+          <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <Link
               :href="route('login')"
               class="text-sm text-gray-700 underline text-right"
             >
               Log in
             </Link>
-          </div>
+          </h2>
 
-          <div>
+          <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <Link
               v-if="canRegister"
               :href="route('register')"
@@ -45,8 +49,9 @@ const props = defineProps({
             >
               Register
             </Link>
-          </div>
+          </h2>
         </div>
+        -->
       </template>
 
       <div class="grid grid-cols-3 gap-4">
