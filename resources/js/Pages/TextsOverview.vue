@@ -1,7 +1,8 @@
 <script setup>
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import { reactive, ref } from "vue";
-import { Inertia } from '@inertiajs/inertia'
+import { Inertia } from '@inertiajs/inertia';
+import Menu from '@/Pages/Menu.vue';
 
 const props = defineProps({
   canLogin: Boolean,
@@ -125,6 +126,9 @@ this.toggleShowFilter();
       </Link>
 
       <template v-else>
+        <Menu>
+        </Menu>
+        <!--
         <div class="grid grid-cols-2 justify-items-end">
           <div>
             <Link
@@ -145,17 +149,18 @@ this.toggleShowFilter();
             </Link>
           </div>
         </div>
+        -->
       </template>
     </div>
 
-    <div class="flex justify-center pt-2 pb-2 pl-2 pr-2 bg-zinc-200 text-amber-500 pl-2 pr-2 ml-2 mr-2  w-1/2 md:w-1/2 lg:w-1/3 md:mx-auto font-bold" @click="toggleShowFilter($event)">
+    <div class="flex justify-center pt-2 pb-2 pl-2 pr-2 text-pink-500 bg-zinc-200 pl-2 pr-2 ml-2 mr-2  w-1/2 md:w-1/2 lg:w-1/3 md:mx-auto font-bold" @click="toggleShowFilter($event)">
         &#8595; Filter &#8595;
     </div>
     <div class="pt-2 pb-2 pl-2 pr-2 bg-zinc-200 pl-2 pr-2 ml-2 mr-2 mb-2  md:w-1/2 lg:w-1/3 md:mx-auto" v-if="show_filter" >
             <div class="grid grid-cols-9 gap-4 mb-2 pl-2 mr-2 pt-2">
               <label class="col-span-2 pr-2" for="text_title">Titel:</label>
               <input
-                class="col-span-7 border-solid border-2 rounded border-black"
+                class="col-span-7 border-solid border-2 rounded border-pink-500"
                 v-model="text_title"
                 name="text_title"
                 size="60"
@@ -165,7 +170,7 @@ this.toggleShowFilter();
             <div class="grid grid-cols-9 gap-4 mb-2 pl-2 mr-2 pt-2">
               <label class="col-span-2 pr-2 mr-2" for="method">Methode:</label>
               <input
-                class="col-span-7 border-solid border-2 rounded border-black"
+                class="col-span-7 border-solid border-2 rounded border-pink-500"
                 v-model="method"
                 name="method"
                 size="60"
@@ -175,7 +180,7 @@ this.toggleShowFilter();
             <div class="grid grid-cols-9 gap-4 mb-2 pl-2 mr-2 pt-2">
               <label class="col-span-2 pr-2" for="grade">Graad:</label>
               <input
-                class="col-span-7 border-solid border-2 rounded border-black"
+                class="col-span-7 border-solid border-2 rounded border-pink-500"
                 v-model="grade"
                 name="grade"
                 size="60"
@@ -185,7 +190,7 @@ this.toggleShowFilter();
             <div class="grid grid-cols-9 gap-4 mb-2 pl-2 mr-2 pt-2">
               <label class="col-span-2 pr-2" for="author">Auteur:</label>
               <input
-                class="col-span-7 border-solid border-2 rounded border-black"
+                class="col-span-7 border-solid border-2 rounded border-pink-500"
                 v-model="author"
                 name="author"
                 size="60"
@@ -195,7 +200,7 @@ this.toggleShowFilter();
             <div class="grid grid-cols-9 gap-4 mb-2 pl-2 mr-2 pt-2">
               <label class="col-span-2 pr-2" for="work">Werk:</label>
               <input
-                class="col-span-7 border-solid border-2 rounded border-black"
+                class="col-span-7 border-solid border-2 rounded border-pink-500"
                 v-model="work"
                 name="work"
                 size="60"
@@ -206,8 +211,8 @@ this.toggleShowFilter();
               <button
                 :class="{ 'bg-green-500': step == 1 }"
                 class="
-                  bg-blue-500
-                  hover:bg-blue-700
+                  bg-lime-500
+                  hover:bg-lime-400
                   text-white
                   font-bold
                   py-2
@@ -224,8 +229,8 @@ this.toggleShowFilter();
               <button
                 :class="{ 'bg-green-500': step == 1 }"
                 class="
-                  bg-blue-500
-                  hover:bg-blue-700
+                  bg-lime-500
+                  hover:bg-lime-400
                   text-white
                   font-bold
                   py-2
@@ -249,17 +254,17 @@ this.toggleShowFilter();
       class="ml-4 mr-4 text-gray-700 font-bold"
       @click="setSelected($event)"
     >
-      <div class="mb-2 pl-2 text-lg bg-orange-300 text-gray-600 font-bold">
-        <div>
+      <div class="border-lime-500 mb-2 pl-2 text-lg text-gray-700 border-2 bg-gray-50 font-bold rounded">
+        <div class="text-pink-500">
           {{ text.text_title }}
         </div>
-        <div class="text-gray-500 text-sm">
+        <div class="text-sm break-words">
           Naar: {{ text.author }}, {{ text.work }} {{ text.passage }}
         </div>
-        <div class="text-gray-500 text-sm">
+        <div class="text-sm">
           Uit: {{ text.method }}, {{ text.chapter }} (graad: {{ text.grade }})
         </div>
-        <div class="text-gray-500 text-sm">
+        <div class="text-sm">
           {{ text.extra_info }}
         </div>
 

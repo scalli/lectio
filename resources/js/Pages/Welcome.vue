@@ -1,8 +1,8 @@
 <script setup>
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import { reactive, ref } from "vue";
-import AppLayout from '@/Layouts/AppLayout.vue';
-import Menu from '@/Pages/Menu.vue';
+import AppLayout from "@/Layouts/AppLayout.vue";
+import Menu from "@/Pages/Menu.vue";
 
 const props = defineProps({
   canLogin: Boolean,
@@ -14,10 +14,9 @@ const props = defineProps({
 
 
 <template>
-
   <Head title="Welcome" />
 
-  <div class="bg-gray-100 dark:bg-gray-900 h-screen">
+  <div class="bg-gray-100 dark:bg-gray-900">
     <div v-if="canLogin" class="px-6 py-4">
       <Link
         v-if="$page.props.user"
@@ -28,8 +27,7 @@ const props = defineProps({
       </Link>
 
       <template v-else>
-        <Menu>
-        </Menu>
+        <Menu> </Menu>
         <!--
         <div class="grid grid-cols-2 justify-items-end bg-slate-50">
           <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -53,61 +51,332 @@ const props = defineProps({
         </div>
         -->
       </template>
+    </div>
 
-      <div class="grid grid-cols-3 gap-4">
-        <div></div>
-        <div>
-          <div class="ml-4 text-lg text-gray-700">Welkom!</div>
-          <div class="ml-4 mb-4 text-gray-700">
-            Latijn lezen mag en hoeft geen hele klus te zijn! Het kan
-            ontspannend, leerrijk en fijn zijn. Om dit te bereiken is een beetje
-            hulp bij het lezen echter vaak welkom. Dat is precies waarom deze
-            website werd opgezet. Hij geeft je de nodige ondersteuning, zodat
-            Latijn lezen (weer) fun wordt!
-          </div>
-          <div class="ml-4 mb-4 text-gray-700">
-            Je krijgt de mogelijkheid om Latijnse teksten te lezen met
-            verschillende vormen van ondersteuning (LECTIO). Zo kan eenieder Latijn lezen
-            op de manier die hem/haar het beste past. Indien je dat graag wil,
-            kun je ook het vocabularium inoefenen van teksten die je reeds las (REPETITIO).
-            Maak hieronder je keuze.
-          </div>
-          <div class="grid grid-cols-2 gap-4">
-            <div
-              class="
-                pt-4
-                pb-4
-                pl-4
-                pr-4
-                bg-orange-300
-                text-gray-700 text-center
-                font-bold
-              "
-            >
-              <Link :href="'/overview'">LECTIO</Link>
+    <!-- Start of layout for mobile -->
+    <div class="md:hidden">
+      <div class="flex justify-center mb-4 p-8">
+        <div
+          class="
+            flex-initial
+            w-128
+            p-2
+            text-4xl
+            center-text
+            text-pink-500
+            font-bold
+          "
+        >
+          Hier wordt Latijn lezen terug fun!
+        </div>
+      </div>
+
+      <div class="flex justify-center p-8">
+        <div class="flex-initial md:w-128 p-2">
+          <div
+            class="
+              border-lime-500
+              bg-gray-50
+              border-2
+              rounded
+              shadow-lg
+              text-center
+            "
+          >
+            <div class="p-2 opacity-50">
+              <img src="././images/old-books.jpg" class="" />
             </div>
             <div
               class="
-                pt-4
-                pb-4
-                pl-4
-                pr-4
-                bg-orange-300
-                text-gray-700 text-center
+                inline-block
+                text-lime-500
                 font-bold
+                align-middle
+                place-items-center
               "
             >
-              <Link :href="'/voc/repetitio/step/1'"
-                >REPETITIO</Link
+              <div class="text-xl text-center">LECTIO</div>
+              <div>Latijn lezen zonder zorgen</div>
+              <div
+                class="
+                  p-4
+                  m-2
+                  bg-lime-500
+                  text-white text-center
+                  font-bold
+                  rounded
+                  border-2
+                "
               >
+                <Link :href="'/overview'">Nu lezen</Link>
+              </div>
             </div>
           </div>
-          <div></div>
+        </div>
+      </div>
+
+      <div class="flex justify-center p-8">
+        <div class="flex-initial w-128 p-2">
+          <div
+            class="
+              border-lime-500
+              bg-gray-50
+              border-2
+              rounded
+              shadow-lg
+              text-center
+            "
+          >
+            <div class="p-2 opacity-50">
+              <img src="././images/old-dictionary.jpg" class="" />
+            </div>
+            <div
+              class="
+                inline-block
+                text-center text-lime-500
+                font-bold
+                align-middle
+                place-items-center
+              "
+            >
+              <div class="text-xl">REPETITIO</div>
+              <div>Efficiënt vocabularium oefenen</div>
+              <div
+                class="
+                  p-4
+                  m-2
+                  bg-lime-500
+                  text-white text-center
+                  font-bold
+                  rounded
+                  border-2
+                "
+              >
+                <Link :href="'/voc/repetitio/step/1'">Nu oefenen</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="
+          flex
+          justify-center
+          text-center
+          bg-white
+          mx-auto
+          mt-4
+          mb-4
+          pt-4
+          pb-4
+        "
+      >
+        <div
+          class="flex-initial p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4"
+        >
+          <div class="text-4xl">18</div>
+          <div>klassieke auteurs</div>
+          <div class="p-2 text-center">
+            <img src="././images/greek.png" class="h-24 mx-auto" />
+          </div>
+        </div>
+      </div>
+      <div
+        class="
+          flex
+          justify-center
+          text-center
+          bg-white
+          mx-auto
+          mt-4
+          mb-4
+          pt-4
+          pb-4
+        "
+      >
+        <div
+          class="flex-initial p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4"
+        >
+          <div class="text-4xl">48</div>
+          <div>Latijnse teksten</div>
+          <div class="p-2 text-center">
+            <img src="././images/poem.png" class="h-24 mx-auto" />
+          </div>
+        </div>
+      </div>
+      <div
+        class="
+          flex
+          justify-center
+          text-center
+          bg-white
+          mx-auto
+          mt-4
+          mb-4
+          pt-4
+          pb-4
+        "
+      >
+        <div
+          class="flex-initial p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4"
+        >
+          <div class="text-4xl">1364</div>
+          <div>Latijnse woorden</div>
+          <div class="p-2 text-center">
+            <img src="././images/book.png" class="h-24 mx-auto" />
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    <!-- End of layout for mobile -->
 
+    <!-- start of layout for medium screens and up -->
+    <div class="hidden md:block">
+      <div class="flex justify-center mb-4 p-8">
+        <div
+          class="
+            flex-initial
+            w-128
+            p-2
+            text-4xl
+            center-text
+            text-pink-500
+            font-bold
+          "
+        >
+          Hier wordt Latijn lezen terug fun!
+        </div>
+      </div>
+
+      <div class="flex justify-center p-8">
+        <div class="flex-initial md:w-128 p-2">
+          <div
+            class="
+              grid grid-cols-2
+              gap-1
+              border-lime-500
+              bg-gray-50
+              border-2
+              rounded
+              shadow-lg
+            "
+          >
+            <div class="p-2 opacity-50">
+              <img src="././images/old-books.jpg" class="" />
+            </div>
+            <div
+              class="
+                inline-block
+                text-center text-lime-500
+                font-bold
+                align-middle
+                grid
+                place-items-center
+              "
+            >
+              <div class="md:text-xl">LECTIO</div>
+              <div>Latijn lezen zonder zorgen</div>
+              <div
+                class="
+                  p-4
+                  m-2
+                  bg-lime-500
+                  text-white text-center
+                  font-bold
+                  rounded
+                  border-2
+                "
+              >
+                <Link :href="'/overview'">Nu lezen</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-initial w-128 p-2">
+          <div
+            class="
+              grid grid-cols-2
+              gap-1
+              border-lime-500
+              bg-gray-50
+              border-2
+              rounded
+              shadow-lg
+            "
+          >
+            <div class="p-2 opacity-50">
+              <img src="././images/old-dictionary.jpg" class="" />
+            </div>
+            <div
+              class="
+                inline-block
+                text-center text-lime-500
+                font-bold
+                align-middle
+                grid
+                place-items-center
+              "
+            >
+              <div class="md:text-xl">REPETITIO</div>
+              <div>Efficiënt vocabularium oefenen</div>
+              <div
+                class="
+                  p-4
+                  m-2
+                  bg-lime-500
+                  text-white text-center
+                  font-bold
+                  rounded
+                  border-2
+                "
+              >
+                <Link :href="'/voc/repetitio/step/1'">Nu oefenen</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="
+          flex flex-row
+          justify-center
+          text-center
+          bg-white
+          mx-auto
+          mt-4
+          mb-4
+          pt-4
+          pb-4
+        "
+      >
+        <div class="basis-1/3 p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4">
+          <div class="text-4xl">18</div>
+          <div>klassieke auteurs</div>
+          <div class="p-2 text-center">
+            <img src="././images/greek.png" class="h-24 mx-auto" />
+          </div>
+        </div>
+        <div class="basis-1/3 p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4">
+          <div class="text-4xl">48</div>
+          <div>Latijnse teksten</div>
+          <div class="p-2 text-center">
+            <img src="././images/poem.png" class="h-24 mx-auto" />
+          </div>
+        </div>
+        <div class="basis-1/3 p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4">
+          <div class="text-4xl">1364</div>
+          <div>Latijnse woorden</div>
+          <div class="p-2 text-center">
+            <img src="././images/book.png" class="h-24 mx-auto" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of layout for medium screens and up -->
+  </div>
 </template>
 
 

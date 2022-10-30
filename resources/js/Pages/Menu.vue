@@ -91,8 +91,8 @@ const props = defineProps({
           >
             <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li class="nav-item">
-                <a
-                  class="
+                
+                  <Link class="
                     px-3
                     py-2
                     flex
@@ -103,11 +103,8 @@ const props = defineProps({
                     leading-snug
                     text-white
                     hover:opacity-75
-                  "
-                  :href="route('login')"
-                >
-                  Log in
-                </a>
+                  " :href="'/overview'">LECTIO</Link>
+                
               </li>
               <li class="nav-item">
                 
@@ -122,7 +119,7 @@ const props = defineProps({
                     leading-snug
                     text-white
                     hover:opacity-75
-                  " :href="'/overview'">LECTIO</Link>
+                  " :href="'/voc/repetitio/step/1'">REPETITIO</Link>
                 
               </li>
               <li class="nav-item">
@@ -142,6 +139,25 @@ const props = defineProps({
                   href="#pablo"
                 >
                   Settings
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="
+                    px-3
+                    py-2
+                    flex
+                    items-center
+                    text-xs
+                    uppercase
+                    font-bold
+                    leading-snug
+                    text-white
+                    hover:opacity-75
+                  "
+                  :href="route('login')"
+                >
+                  Log in
                 </a>
               </li>
             </ul>
