@@ -69,7 +69,7 @@ function toggleShowPreferences(event) {
         </div>
 
         <div class="flex justify-center pt-2 pb-2 pl-2 pr-2 bg-zinc-200 text-pink-500 pl-2 pr-2 ml-2 mr-2  w-1/2 md:w-1/2 lg:w-1/3 md:mx-auto font-bold" @click="toggleShowPreferences($event)">
-            &#8595 Instellingen &#8595
+            &#8595; Instellingen &#8595;
         </div>
         <div class="pt-2 pb-2 pl-2 pr-2 bg-zinc-200 pl-2 pr-2 ml-2 mr-2 mb-2 text-pink-500  md:w-1/2 lg:w-1/3 md:mx-auto" v-if="show_preferences" >
             <div class="">

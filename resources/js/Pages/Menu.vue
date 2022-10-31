@@ -59,9 +59,9 @@ const props = defineProps({
                 uppercase
                 text-white
               "
-              href="#pablo"
+              href=""
             >
-              LECTIO
+              <Link href="/">LATIJNLEZERS</Link>
             </a>
             <button
               class="
@@ -136,9 +136,9 @@ const props = defineProps({
                     text-white
                     hover:opacity-75
                   "
-                  href="#pablo"
+                  :href="'/'"
                 >
-                  Settings
+                  Instellingen
                 </a>
               </li>
               <li class="nav-item">
