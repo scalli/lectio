@@ -36066,7 +36066,9 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "class": "flex justify-center mb-4 p-8"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex-initial w-128 p-2 text-4xl center-text text-pink-500 font-bold"
-}, " Hier wordt Latijn lezen terug fun! ")], -1
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Hier wordt Latijn lezen terug "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "italic inline"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "fun")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ! ")])], -1
 /* HOISTED */
 );
 
@@ -36148,31 +36150,33 @@ var _hoisted_22 = {
 
 var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nu oefenen");
 
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-center text-center bg-white mx-auto mt-4 mb-4 pt-4 pb-4\"><div class=\"flex-initial p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">18</div><div>klassieke auteurs</div><div class=\"p-2 text-center\"><img src=\"" + _images_greek_png__WEBPACK_IMPORTED_MODULE_3__["default"] + "\" class=\"h-24 mx-auto\"></div></div></div><div class=\"flex justify-center text-center bg-white mx-auto mt-4 mb-4 pt-4 pb-4\"><div class=\"flex-initial p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">48</div><div>Latijnse teksten</div><div class=\"p-2 text-center\"><img src=\"" + _images_poem_png__WEBPACK_IMPORTED_MODULE_4__["default"] + "\" class=\"h-24 mx-auto\"></div></div></div><div class=\"flex justify-center text-center bg-white mx-auto mt-4 mb-4 pt-4 pb-4\"><div class=\"flex-initial p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">1364</div><div>Latijnse woorden</div><div class=\"p-2 text-center\"><img src=\"" + _images_book_png__WEBPACK_IMPORTED_MODULE_5__["default"] + "\" class=\"h-24 mx-auto\"></div></div></div>", 3);
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-center text-center bg-white mx-auto mt-4 mb-4 pt-4 pb-4\"><div class=\"flex-initial p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">18</div><div>klassieke auteurs</div><div class=\"p-2 text-center\"><img src=\"" + _images_greek_png__WEBPACK_IMPORTED_MODULE_3__["default"] + "\" class=\"h-24 mx-auto\"></div></div></div><div class=\"flex justify-center text-center bg-white mx-auto mt-4 mb-4 pt-4 pb-4\"><div class=\"flex-initial p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">48</div><div>Latijnse teksten</div><div class=\"p-2 text-center\"><img src=\"" + _images_poem_png__WEBPACK_IMPORTED_MODULE_4__["default"] + "\" class=\"h-24 mx-auto\"></div></div></div><div class=\"flex justify-center text-center bg-white mx-auto mt-4 mb-4 pt-4 pb-4\"><div class=\"flex-initial p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">1364</div><div>Latijnse woorden</div><div class=\"p-2 text-center\"><img src=\"" + _images_book_png__WEBPACK_IMPORTED_MODULE_5__["default"] + "\" class=\"h-24 mx-auto\"></div></div></div><div class=\"flex justify-center p-8\"><div><p class=\"border-pink-500 bg-gray-50 border-2 rounded shadow-lg text-center text-pink-500 font-bold p-2\"> Zelf leerkracht Latijn? Wil jij op deze manier ook graag teksten aan leerlingen aanbieden? </p><p class=\"mt-2\"> We werken er hard aan om dit mogelijk te maken. Stuur een mailtje met je gegevens naar pascal_pieters@yahoo.com en we houden je zeker op de hoogte indien deze functie beschikbaar wordt. </p></div></div>", 4);
 
-var _hoisted_27 = {
+var _hoisted_28 = {
   "class": "hidden md:block"
 };
 
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex justify-center mb-4 p-8"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex-initial w-128 p-2 text-4xl center-text text-pink-500 font-bold"
-}, " Hier wordt Latijn lezen terug fun! ")], -1
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Hier wordt Latijn lezen terug "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "italic"
+}, "fun"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("! ")])], -1
 /* HOISTED */
 );
 
-var _hoisted_29 = {
+var _hoisted_30 = {
   "class": "flex justify-center p-8"
 };
-var _hoisted_30 = {
+var _hoisted_31 = {
   "class": "flex-initial md:w-128 p-2"
 };
-var _hoisted_31 = {
+var _hoisted_32 = {
   "class": "grid grid-cols-2 gap-1 border-lime-500 bg-gray-50 border-2 rounded shadow-lg"
 };
 
-var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "p-2 opacity-50"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: _images_old_books_jpg__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -36181,34 +36185,34 @@ var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_33 = {
+var _hoisted_34 = {
   "class": "inline-block text-center text-lime-500 font-bold align-middle grid place-items-center"
 };
 
-var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "md:text-xl"
 }, "LECTIO", -1
 /* HOISTED */
 );
 
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Latijn lezen zonder zorgen", -1
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Latijn lezen zonder zorgen", -1
 /* HOISTED */
 );
 
-var _hoisted_36 = {
+var _hoisted_37 = {
   "class": "p-4 m-2 bg-lime-500 text-white text-center font-bold rounded border-2"
 };
 
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nu lezen");
+var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nu lezen");
 
-var _hoisted_38 = {
+var _hoisted_39 = {
   "class": "flex-initial w-128 p-2"
 };
-var _hoisted_39 = {
+var _hoisted_40 = {
   "class": "grid grid-cols-2 gap-1 border-lime-500 bg-gray-50 border-2 rounded shadow-lg"
 };
 
-var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "p-2 opacity-50"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: _images_old_dictionary_jpg__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -36217,27 +36221,27 @@ var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_41 = {
+var _hoisted_42 = {
   "class": "inline-block text-center text-lime-500 font-bold align-middle grid place-items-center"
 };
 
-var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "md:text-xl"
 }, "REPETITIO", -1
 /* HOISTED */
 );
 
-var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Efficiënt vocabularium oefenen", -1
+var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Efficiënt vocabularium oefenen", -1
 /* HOISTED */
 );
 
-var _hoisted_44 = {
+var _hoisted_45 = {
   "class": "p-4 m-2 bg-lime-500 text-white text-center font-bold rounded border-2"
 };
 
-var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nu oefenen");
+var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nu oefenen");
 
-var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex flex-row justify-center text-center bg-white mx-auto mt-4 mb-4 pt-4 pb-4\"><div class=\"basis-1/3 p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">18</div><div>klassieke auteurs</div><div class=\"p-2 text-center\"><img src=\"" + _images_greek_png__WEBPACK_IMPORTED_MODULE_3__["default"] + "\" class=\"h-24 mx-auto\"></div></div><div class=\"basis-1/3 p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">48</div><div>Latijnse teksten</div><div class=\"p-2 text-center\"><img src=\"" + _images_poem_png__WEBPACK_IMPORTED_MODULE_4__["default"] + "\" class=\"h-24 mx-auto\"></div></div><div class=\"basis-1/3 p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">1364</div><div>Latijnse woorden</div><div class=\"p-2 text-center\"><img src=\"" + _images_book_png__WEBPACK_IMPORTED_MODULE_5__["default"] + "\" class=\"h-24 mx-auto\"></div></div></div>", 1);
+var _hoisted_47 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex flex-row justify-center text-center bg-white mx-auto mt-4 mb-4 pt-4 pb-4\"><div class=\"basis-1/3 p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">18</div><div>klassieke auteurs</div><div class=\"p-2 text-center\"><img src=\"" + _images_greek_png__WEBPACK_IMPORTED_MODULE_3__["default"] + "\" class=\"h-24 mx-auto\"></div></div><div class=\"basis-1/3 p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">48</div><div>Latijnse teksten</div><div class=\"p-2 text-center\"><img src=\"" + _images_poem_png__WEBPACK_IMPORTED_MODULE_4__["default"] + "\" class=\"h-24 mx-auto\"></div></div><div class=\"basis-1/3 p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">1364</div><div>Latijnse woorden</div><div class=\"p-2 text-center\"><img src=\"" + _images_book_png__WEBPACK_IMPORTED_MODULE_5__["default"] + "\" class=\"h-24 mx-auto\"></div></div></div><div class=\"flex justify-center p-4\"><div class=\"border-pink-500 bg-gray-50 border-2 rounded shadow-lg text-center text-pink-500 font-bold p-2\"> Zelf leerkracht Latijn? Wil jij op deze manier ook graag teksten aan leerlingen aanbieden? </div></div><div class=\"flex justify-center p-4\"><div class=\"mt-2\"><p>We werken er hard aan om dit mogelijk te maken.</p> <p>Stuur een mailtje met je gegevens naar pascal_pieters@yahoo.com en we houden je zeker op de hoogte indien deze functie beschikbaar wordt.</p></div></div>", 3);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
@@ -36277,25 +36281,25 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })])])])])]), _hoisted_24]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End of layout for mobile "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" start of layout for medium screens and up "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [_hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [_hoisted_34, _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+  })])])])])]), _hoisted_24]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End of layout for mobile "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" start of layout for medium screens and up "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [_hoisted_35, _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
     href: '/overview'
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_37];
+      return [_hoisted_38];
     }),
     _: 1
     /* STABLE */
 
-  })])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [_hoisted_42, _hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+  })])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [_hoisted_43, _hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
     href: '/voc/repetitio/step/1'
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_45];
+      return [_hoisted_46];
     }),
     _: 1
     /* STABLE */
 
-  })])])])])]), _hoisted_46]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" end of layout for medium screens and up ")])], 64
+  })])])])])]), _hoisted_47]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" end of layout for medium screens and up ")])], 64
   /* STABLE_FRAGMENT */
   );
 }

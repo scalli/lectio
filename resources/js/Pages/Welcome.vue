@@ -67,7 +67,9 @@ const props = defineProps({
             font-bold
           "
         >
-          Hier wordt Latijn lezen terug fun!
+          Hier wordt Latijn lezen terug
+          <div class="italic inline"><i>fun</i></div>
+          !
         </div>
       </div>
 
@@ -228,7 +230,33 @@ const props = defineProps({
           </div>
         </div>
       </div>
+
+      <div class="flex justify-center p-8">
+        <div>
+          <p
+            class="
+              border-pink-500
+              bg-gray-50
+              border-2
+              rounded
+              shadow-lg
+              text-center text-pink-500
+              font-bold
+              p-2
+            "
+          >
+            Zelf leerkracht Latijn? Wil jij op deze manier ook graag teksten aan
+            leerlingen aanbieden?
+          </p>
+          <p class="mt-2">
+            We werken er hard aan om dit mogelijk te maken. Stuur een mailtje
+            met je gegevens naar pascal_pieters@yahoo.com en we houden je zeker
+            op de hoogte indien deze functie beschikbaar wordt.
+          </p>
+        </div>
+      </div>
     </div>
+
     <!-- End of layout for mobile -->
 
     <!-- start of layout for medium screens and up -->
@@ -245,7 +273,7 @@ const props = defineProps({
             font-bold
           "
         >
-          Hier wordt Latijn lezen terug fun!
+          Hier wordt Latijn lezen terug <span class="italic">fun</span>!
         </div>
       </div>
 
@@ -373,6 +401,33 @@ const props = defineProps({
             <img src="././images/book.png" class="h-24 mx-auto" />
           </div>
         </div>
+      </div>
+
+      <div class="flex justify-center p-4">
+
+          <div
+            class="
+              border-pink-500
+              bg-gray-50
+              border-2
+              rounded
+              shadow-lg
+              text-center text-pink-500
+              font-bold
+              p-2
+            "
+          >
+            Zelf leerkracht Latijn? Wil jij op deze manier ook graag teksten aan
+            leerlingen aanbieden?
+          </div>
+      </div>
+      <div class="flex justify-center p-4">
+          <div class="mt-2">
+            <p>We werken er hard aan om dit mogelijk te maken.</p> <p>Stuur een mailtje
+            met je gegevens naar pascal_pieters@yahoo.com en we houden je zeker
+            op de hoogte indien deze functie beschikbaar wordt.</p>
+          </div>
+
       </div>
     </div>
     <!-- end of layout for medium screens and up -->
