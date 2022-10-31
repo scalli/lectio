@@ -3,6 +3,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 import { reactive, ref, computed } from 'vue';
 import JetCheckbox from '@/Jetstream/Checkbox.vue';
 import ConfettiExplosion from "vue-confetti-explosion";
+import Menu from "@/Pages/Menu.vue";
 
 const props = defineProps({
     canLogin: Boolean,
@@ -438,29 +439,17 @@ function shuffle(array) {
             </Link>
 
             <template v-else>
-                <div class="grid grid-cols-2 justify-items-end">
-                    <div>
-                        <Link :href="route('login')" class="text-sm text-gray-700 underline text-right">
-                            Log in
-                        </Link>
-                    </div> 
-
-                    <div>
-                        <Link v-if="canRegister" :href="route('register')" class="ml-4 text-sm text-gray-700 underline text-right">
-                            Register
-                        </Link>
-                    </div> 
-
-                </div>
+                <Menu>
+                </Menu>
             </template>
         </div>
 
         <h2 class="flex justify-center pt-2 pb-2 pl-2 pr-2 pl-2 pr-2 ml-2 mr-2   md:w-1/2 lg:w-1/3 md:mx-auto font-bold">{{title}}: vocabularium oefenen </h2>
 
-      <div class="flex justify-center pt-2 pb-2 pl-2 pr-2 bg-zinc-200 text-amber-500 pl-2 pr-2 ml-2 mr-2   md:w-1/2 lg:w-1/3 md:mx-auto font-bold" @click="toggleShowPreferences($event)">
-                  &#8595 Instellingen &#8595
+      <div class="flex justify-center pt-2 pb-2 pl-2 pr-2 bg-zinc-200 text-pink-500 pl-2 pr-2 ml-2 mr-2   md:w-1/2 lg:w-1/3 md:mx-auto font-bold" @click="toggleShowPreferences($event)">
+                  &#8595; Instellingen &#8595;
       </div>
-      <div class="flex justify-center pt-2 pb-2 pl-2 pr-2 text-sm bg-zinc-200 text-amber-500 pl-2 pr-2 ml-2 mr-2   md:w-1/2 lg:w-1/3 md:mx-auto font-bold" @click="toggleShowPreferences($event)">
+      <div class="flex justify-center pt-2 pb-2 pl-2 pr-2 text-sm bg-zinc-200 text-pink-500 pl-2 pr-2 ml-2 mr-2   md:w-1/2 lg:w-1/3 md:mx-auto font-bold" @click="toggleShowPreferences($event)">
                   {{this.checkedWords.length}} woorden geselecteerd. Klik hier om te wijzigen.
       </div>
       <div v-if="show_preferences" class="pt-2 pb-2 pl-2 pr-2 bg-white pt-2 pb-2 pl-2 pr-2 ml-2 mr-2 mt-2 md:w-1/2 lg:w-1/3 md:mx-auto">
@@ -479,11 +468,11 @@ function shuffle(array) {
               Selecteer de woorden die je wil oefenen.
             </div>
             <div class="mb-2">
-              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-1" @click="selectAll">Alles</button>
-              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-1" @click="selectNone">Niets</button>
-              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-1" @click="selectFirstHalf">1e helft</button>
-              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" @click="selectSecondHalf">2e helft</button>
-              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-1 rounded" @click="plus10">+10</button>
+              <button class="bg-lime-300 hover:bg-lime-400 font-bold py-2 px-4 rounded mr-1" @click="selectAll">Alles</button>
+              <button class="bg-lime-300 hover:bg-lime-400 font-bold py-2 px-4 rounded mr-1" @click="selectNone">Niets</button>
+              <button class="bg-lime-300 hover:bg-lime-400 font-bold py-2 px-4 rounded mr-1" @click="selectFirstHalf">1e helft</button>
+              <button class="bg-lime-300 hover:bg-lime-400 font-bold py-2 px-4 rounded" @click="selectSecondHalf">2e helft</button>
+              <button class="bg-lime-300 hover:bg-lime-400 font-bold py-2 px-4 ml-1 mt-1 rounded" @click="plus10">+10</button>
             </div>
 
             <div class="grid grid-cols-3 gap-1">
@@ -501,7 +490,7 @@ function shuffle(array) {
       </div>
 
 
-      <div v-if="!show_solution"  id="currentFront" @click="toggleShowSolution" class="bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-3xl mx-auto font-bold">
+      <div v-if="!show_solution"  id="currentFront" @click="toggleShowSolution" class="border-lime-300 border-2 rounded bg-white mt-4 px-4 py-4 w-3/4 md:w-1/3 text-3xl mx-auto font-bold">
         <div class="flex justify-center">
           {{current_exercise.ex["word"]}}
         </div>
@@ -510,7 +499,7 @@ function shuffle(array) {
         </div> 
       </div>
 
-      <div v-if="show_solution"  id="currentBack" @click="toggleShowSolution" class="flex justify-center bg-yellow-100 mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
+      <div v-if="show_solution"  id="currentBack" @click="toggleShowSolution" class="flex justify-center border-lime-300 border-2 rounded bg-white mt-4 px-4 py-4 w-3/4 md:w-1/3 text-xl mx-auto font-bold">
         {{current_exercise.ex["back"]}}
       </div>
 
@@ -521,18 +510,18 @@ function shuffle(array) {
 
 
       <div class="grid grid-cols-12">
-        <div class="grid grid-cols-12 bg-yellow-400 rounded-full pt-2 pb-2 ml-1 mr-1 mt-4 col-start-1 col-end-12 md:col-start-5 md:col-end-9">
+        <div class="grid grid-cols-12 bg-lime-300 rounded-full border-2 border-black pt-2 pb-2 ml-1 mr-1 mt-4 col-start-1 col-end-12 md:col-start-5 md:col-end-9">
           <div :class="{ 'col-span-1': isOneTwelfth,  'col-span-2': isTwoTwelfth, 'col-span-3': isThreeTwelfth, 'col-span-4': isFourTwelfth,  'col-span-5': isFiveTwelfth, 'col-span-6': isSixTwelfth, 
             'col-span-7': isSevenTwelfth,  'col-span-8': isEightTwelfth, 'col-span-9': isNineTwelfth,
             'col-span-10': isTenTwelfth,  'col-span-11': isElevenTwelfth, 'col-span-12': isTwelveTwelfth}"
-          class="bg-yellow-200 rounded-full animate-pulse ml-1 mr-1 text-center font-bold text-2xl ">{{progress_percentage.val}}%</div>
+          class="bg-lime-600 rounded-full animate-pulse ml-1 mr-1 text-center font-bold text-2xl ">{{progress_percentage.val}}%</div>
         </div>
       </div>
 
       <div class="grid grid-cols-12 pt-2 pb-2 ml-1 mr-1 mt-4">
         <div class="grid grid-cols-7 gap-1 col-start-1 col-span-12 md:col-start-3 md:col-end-10">
           <div>
-            <div class="bg-amber-500 text-zinc-100 border-4 border-red-500 border-t-0 text-center px-4 py-6 font-bold">
+            <div class="bg-pink-500 text-zinc-100 border-4 border-pink-600 border-t-0 text-center px-4 py-6 font-bold">
               {{box1.length}}
             </div>
             <div class="text-center text-blue-500 text-3xl" v-if="current_exercise.ex['box'] == 1">*</div>
@@ -544,7 +533,7 @@ function shuffle(array) {
           </div>
           
           <div>
-            <div class="bg-amber-500 text-zinc-100 border-4 border-orange-500 border-t-0 text-center px-4 py-6 font-bold">{{box2.length}}</div>
+            <div class="bg-pink-500 text-zinc-100 border-4 border-pink-600 border-t-0 text-center px-4 py-6 font-bold">{{box2.length}}</div>
             <div class="text-center text-blue-500 text-3xl" v-if="current_exercise.ex['box'] == 2">*</div>
           </div>
           
@@ -554,7 +543,7 @@ function shuffle(array) {
           </div>
 
           <div>
-            <div class="bg-amber-500 text-zinc-100 border-4 border-yellow-500 border-t-0 text-center px-4 py-6 font-bold">{{box3.length}}</div>
+            <div class="bg-pink-500 text-zinc-100 border-4 border-pink-600 border-t-0 text-center px-4 py-6 font-bold">{{box3.length}}</div>
               <div class="text-center text-blue-500 text-3xl" v-if="current_exercise.ex['box'] == 3">*</div>
           </div>
           
@@ -563,7 +552,7 @@ function shuffle(array) {
           </div>
           
           <div>
-            <div class="bg-amber-500 text-zinc-100 border-4 border-green-500 border-t-0 text-center px-4 py-6 font-bold">{{box4.length}}</div>
+            <div class="bg-pink-500 text-zinc-100 border-4 border-pink-600 border-t-0 text-center px-4 py-6 font-bold">{{box4.length}}</div>
             </div>
           </div>
       </div>
