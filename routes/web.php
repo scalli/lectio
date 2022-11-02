@@ -39,6 +39,11 @@ Route::post('/voc','App\Http\Controllers\VocController@store');
 Route::get('/overview', 'App\Http\Controllers\TextInfoController@show');
 Route::post('/filterTextsOverwiew', 'App\Http\Controllers\TextInfoController@filter');
 
+// Route::get('/users', 'App\Http\Controllers\UserController@index');
+Route::group(['middleware'=>'admins'],function(){
+    Route::get('/users','App\Http\Controllers\UserController@index');
+    Route::post('/users/new','App\Http\Controllers\UserController@create');
+});
 
 Route::middleware([
     'auth:sanctum',

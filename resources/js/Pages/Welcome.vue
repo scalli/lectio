@@ -14,7 +14,7 @@ const props = defineProps({
 
 
 <template>
-  <Head title="Welcome" />
+  <Head title="Latijnlezers" />
 
   <div class="bg-gray-100 dark:bg-gray-900">
     <div v-if="canLogin" class="px-6 py-4">
