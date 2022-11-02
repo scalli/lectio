@@ -47,9 +47,9 @@ const props = defineProps({
               lg:static lg:block lg:justify-start
             "
           >
-            <a
+            <div
               class="
-                text-sm
+                text-xl
                 font-bold
                 leading-relaxed
                 inline-block
@@ -59,10 +59,14 @@ const props = defineProps({
                 uppercase
                 text-white
               "
-              href=""
             >
-              <Link href="/">LATIJNLEZERS</Link>
-            </a>
+            <Link href="/">
+              <div class="grid grid-cols-2 gap-2 content-center ">
+                <div><img src="././images/lectio-logo-lime.png" class="h-24 mx-auto" /></div>
+                <div class="grid place-items-center">LATIJNLEZERS</div>
+              </div>
+            </Link>
+            </div>
             <button
               class="
                 text-white
