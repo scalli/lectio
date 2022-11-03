@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 use Inertia\Inertia;
 
+use Illuminate\Support\Facades\Hash;
+
 class UserController extends Controller
 {
     /**
@@ -41,7 +43,7 @@ class UserController extends Controller
         $text_info_id = DB::table('users')->insertGetId([
             'name' => $request->username,
             'email'  => $request->email,
-            'password'  => $request->password,
+            'password'  => Hash::make($request->password),
             'current_team_id'  => 2
         ]);
 
@@ -91,7 +93,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $affected = DB::table('users')
+              ->where('id', $id)
+              ->update(['name' => $request->username,
+                        'email' => $request->email,
+                        'password' => $request->Hash::make($request->password)            
+        ]);
+
+        return $this->index();
     }
 
     /**

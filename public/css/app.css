@@ -1581,6 +1581,9 @@ select {
 .border-t-0 {
   border-top-width: 0px;
 }
+.border-r-4 {
+  border-right-width: 4px;
+}
 .border-solid {
   border-style: solid;
 }
@@ -1792,6 +1795,9 @@ select {
 .p-4 {
   padding: 1rem;
 }
+.p-16 {
+  padding: 4rem;
+}
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1898,6 +1904,9 @@ select {
 }
 .pl-1 {
   padding-left: 0.25rem;
+}
+.pb-8 {
+  padding-bottom: 2rem;
 }
 .text-left {
   text-align: left;

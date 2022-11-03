@@ -77,7 +77,10 @@ function createNewUser() {
       </div>
     </div>
 
-    <!-- Fields for textinfo -->
+    <!-- Fields for create user -->
+    <div>
+        Create new user
+    </div>
     <div>
       <div class="grid grid-cols-9 gap-4 mb-2 pl-2 mr-2">
         <label class="pr-1 col-span-1" for="method">Naam:</label>

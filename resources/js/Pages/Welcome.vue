@@ -17,7 +17,7 @@ const props = defineProps({
   <Head title="Latijnlezers" />
 
   <div class="bg-gray-100 dark:bg-gray-900">
-    <div v-if="canLogin" class="px-6 py-4">
+    <div v-if="canLogin" class="px-6 py-4 bg-white">
       <Link
         v-if="$page.props.user"
         :href="route('dashboard')"
@@ -27,7 +27,7 @@ const props = defineProps({
       </Link>
 
       <template v-else>
-        <Menu> </Menu>
+        <div class="bg-white"><Menu> </Menu></div>
         <!--
         <div class="grid grid-cols-2 justify-items-end bg-slate-50">
           <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -55,21 +55,21 @@ const props = defineProps({
 
     <!-- Start of layout for mobile -->
     <div class="md:hidden">
-      <div class="flex justify-center mb-4 p-8">
+      <div class="flex justify-center mb-4">
         <div
           class="
-            flex-initial
             w-128
-            p-2
+            p-8
             text-4xl
-            center-text
+            text-center
             text-pink-500
             font-bold
+            bg-white
           "
         >
-          Hier wordt Latijn lezen terug
+          Waar Latijn lezen
           <div class="italic inline"><i>fun</i></div>
-          !
+          is!
         </div>
       </div>
 
@@ -168,18 +168,16 @@ const props = defineProps({
           text-center
           bg-white
           mx-auto
-          mt-4
-          mb-4
           pt-4
           pb-4
         "
       >
         <div
-          class="flex-initial p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4"
+          class="flex-initial p-16 m-4 bg-gray-100 text-pink-500 font-bold"
         >
           <div class="text-4xl">18</div>
           <div>klassieke auteurs</div>
-          <div class="p-2 text-center">
+          <div class="p-4 text-center">
             <img src="././images/greek.png" class="h-24 mx-auto" />
           </div>
         </div>
@@ -191,18 +189,16 @@ const props = defineProps({
           text-center
           bg-white
           mx-auto
-          mt-4
-          mb-4
           pt-4
           pb-4
         "
       >
         <div
-          class="flex-initial p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4"
+          class="flex-initial bg-gray-100 text-pink-500 font-bold p-16 m-4"
         >
           <div class="text-4xl">48</div>
           <div>Latijnse teksten</div>
-          <div class="p-2 text-center">
+          <div class="p-4 text-center">
             <img src="././images/poem.png" class="h-24 mx-auto" />
           </div>
         </div>
@@ -214,14 +210,12 @@ const props = defineProps({
           text-center
           bg-white
           mx-auto
-          mt-4
-          mb-4
           pt-4
           pb-4
         "
       >
         <div
-          class="flex-initial p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4"
+          class="flex-initial bg-gray-100 text-pink-500 font-bold p-16 m-4"
         >
           <div class="text-4xl">1364</div>
           <div>Latijnse woorden</div>
@@ -261,19 +255,19 @@ const props = defineProps({
 
     <!-- start of layout for medium screens and up -->
     <div class="hidden md:block">
-      <div class="flex justify-center mb-4 p-8">
+      <div class="mb-4 ">
         <div
           class="
-            flex-initial
-            w-128
-            p-2
             text-4xl
-            center-text
+            text-center
             text-pink-500
             font-bold
+            bg-white
+            pt-8
+            pb-8
           "
         >
-          Hier wordt Latijn lezen terug <span class="italic">fun</span>!
+          Waar Latijn lezen <span class="italic">fun</span> is!
         </div>
       </div>
 
@@ -380,21 +374,21 @@ const props = defineProps({
           pb-4
         "
       >
-        <div class="basis-1/3 p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4">
+        <div class="basis-1/3 p-2 border-r-4 border-lime-300 text-pink-500 font-bold p-4 m-4">
           <div class="text-4xl">18</div>
           <div>klassieke auteurs</div>
           <div class="p-2 text-center">
             <img src="././images/greek.png" class="h-24 mx-auto" />
           </div>
         </div>
-        <div class="basis-1/3 p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4">
+        <div class="basis-1/3 p-2 border-r-4 border-lime-300 text-pink-500 font-bold p-4 m-4">
           <div class="text-4xl">48</div>
           <div>Latijnse teksten</div>
           <div class="p-2 text-center">
             <img src="././images/poem.png" class="h-24 mx-auto" />
           </div>
         </div>
-        <div class="basis-1/3 p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4">
+        <div class="basis-1/3 p-2 text-pink-500 font-bold p-4 m-4">
           <div class="text-4xl">1364</div>
           <div>Latijnse woorden</div>
           <div class="p-2 text-center">

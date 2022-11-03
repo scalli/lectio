@@ -35449,32 +35449,37 @@ var _hoisted_6 = {
 var _hoisted_7 = {
   "class": "text-pink-500"
 };
-var _hoisted_8 = {
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, " Create new user ", -1
+/* HOISTED */
+);
+
+var _hoisted_9 = {
   "class": "grid grid-cols-9 gap-4 mb-2 pl-2 mr-2"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "pr-1 col-span-1",
   "for": "method"
 }, "Naam:", -1
 /* HOISTED */
 );
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "pr-1 col-span-1",
   "for": "chapter"
 }, "E-mail:", -1
 /* HOISTED */
 );
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "pr-1 col-span-1",
   "for": "grade"
 }, "Wachtwoord:", -1
 /* HOISTED */
 );
 
-var _hoisted_12 = {
+var _hoisted_13 = {
   "class": "text-center"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -35509,7 +35514,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_5);
   }), 128
   /* KEYED_FRAGMENT */
-  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Fields for textinfo "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Fields for create user "), _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "col-span-2 border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.username = $event;
@@ -35517,7 +35522,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "username"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.username]]), _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.username]]), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "col-span-2 border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $setup.email = $event;
@@ -35525,7 +35530,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "email"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.email]]), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.email]]), _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "col-span-2 border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $setup.password = $event;
@@ -35533,7 +35538,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "password"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.password]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.password]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-1 text-center",
     onClick: _cache[3] || (_cache[3] = function ($event) {
       return $setup.createNewUser($event);
@@ -36271,36 +36276,39 @@ var _hoisted_1 = {
 };
 var _hoisted_2 = {
   key: 0,
-  "class": "px-6 py-4"
+  "class": "px-6 py-4 bg-white"
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Dashboard ");
 
 var _hoisted_4 = {
+  "class": "bg-white"
+};
+var _hoisted_5 = {
   "class": "md:hidden"
 };
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex justify-center mb-4 p-8"
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "flex justify-center mb-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex-initial w-128 p-2 text-4xl center-text text-pink-500 font-bold"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Hier wordt Latijn lezen terug "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "w-128 p-8 text-4xl text-center text-pink-500 font-bold bg-white"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Waar Latijn lezen "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "italic inline"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "fun")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ! ")])], -1
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "fun")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" is! ")])], -1
 /* HOISTED */
 );
 
-var _hoisted_6 = {
+var _hoisted_7 = {
   "class": "flex justify-center p-8"
 };
-var _hoisted_7 = {
+var _hoisted_8 = {
   "class": "flex-initial md:w-128 p-2"
 };
-var _hoisted_8 = {
+var _hoisted_9 = {
   "class": "border-lime-500 bg-gray-50 border-2 rounded shadow-lg text-center"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "p-2 opacity-50"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: _images_old_books_jpg__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -36309,37 +36317,37 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_10 = {
+var _hoisted_11 = {
   "class": "inline-block text-lime-500 font-bold align-middle place-items-center"
 };
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "text-xl text-center"
 }, "LECTIO", -1
 /* HOISTED */
 );
 
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Latijn lezen zonder zorgen", -1
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Latijn lezen zonder zorgen", -1
 /* HOISTED */
 );
 
-var _hoisted_13 = {
+var _hoisted_14 = {
   "class": "p-4 m-2 bg-lime-500 text-white text-center font-bold rounded border-2"
 };
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nu lezen");
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nu lezen");
 
-var _hoisted_15 = {
+var _hoisted_16 = {
   "class": "flex justify-center p-8"
 };
-var _hoisted_16 = {
+var _hoisted_17 = {
   "class": "flex-initial w-128 p-2"
 };
-var _hoisted_17 = {
+var _hoisted_18 = {
   "class": "border-lime-500 bg-gray-50 border-2 rounded shadow-lg text-center"
 };
 
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "p-2 opacity-50"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: _images_old_dictionary_jpg__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -36348,53 +36356,53 @@ var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_19 = {
+var _hoisted_20 = {
   "class": "inline-block text-center text-lime-500 font-bold align-middle place-items-center"
 };
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "text-xl"
 }, "REPETITIO", -1
 /* HOISTED */
 );
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Efficiënt vocabularium oefenen", -1
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Efficiënt vocabularium oefenen", -1
 /* HOISTED */
 );
 
-var _hoisted_22 = {
+var _hoisted_23 = {
   "class": "p-4 m-2 bg-lime-500 text-white text-center font-bold rounded border-2"
 };
 
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nu oefenen");
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nu oefenen");
 
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-center text-center bg-white mx-auto mt-4 mb-4 pt-4 pb-4\"><div class=\"flex-initial p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">18</div><div>klassieke auteurs</div><div class=\"p-2 text-center\"><img src=\"" + _images_greek_png__WEBPACK_IMPORTED_MODULE_3__["default"] + "\" class=\"h-24 mx-auto\"></div></div></div><div class=\"flex justify-center text-center bg-white mx-auto mt-4 mb-4 pt-4 pb-4\"><div class=\"flex-initial p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">48</div><div>Latijnse teksten</div><div class=\"p-2 text-center\"><img src=\"" + _images_poem_png__WEBPACK_IMPORTED_MODULE_4__["default"] + "\" class=\"h-24 mx-auto\"></div></div></div><div class=\"flex justify-center text-center bg-white mx-auto mt-4 mb-4 pt-4 pb-4\"><div class=\"flex-initial p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">1364</div><div>Latijnse woorden</div><div class=\"p-2 text-center\"><img src=\"" + _images_book_png__WEBPACK_IMPORTED_MODULE_5__["default"] + "\" class=\"h-24 mx-auto\"></div></div></div><div class=\"flex justify-center p-8\"><div><p class=\"border-pink-500 bg-gray-50 border-2 rounded shadow-lg text-center text-pink-500 font-bold p-2\"> Zelf leerkracht Latijn? Wil jij op deze manier ook graag teksten aan leerlingen aanbieden? </p><p class=\"mt-2\"> We werken er hard aan om dit mogelijk te maken. Stuur een mailtje met je gegevens naar pascal_pieters@yahoo.com en we houden je zeker op de hoogte indien deze functie beschikbaar wordt. </p></div></div>", 4);
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-center text-center bg-white mx-auto pt-4 pb-4\"><div class=\"flex-initial p-16 m-4 bg-gray-100 text-pink-500 font-bold\"><div class=\"text-4xl\">18</div><div>klassieke auteurs</div><div class=\"p-4 text-center\"><img src=\"" + _images_greek_png__WEBPACK_IMPORTED_MODULE_3__["default"] + "\" class=\"h-24 mx-auto\"></div></div></div><div class=\"flex justify-center text-center bg-white mx-auto pt-4 pb-4\"><div class=\"flex-initial bg-gray-100 text-pink-500 font-bold p-16 m-4\"><div class=\"text-4xl\">48</div><div>Latijnse teksten</div><div class=\"p-4 text-center\"><img src=\"" + _images_poem_png__WEBPACK_IMPORTED_MODULE_4__["default"] + "\" class=\"h-24 mx-auto\"></div></div></div><div class=\"flex justify-center text-center bg-white mx-auto pt-4 pb-4\"><div class=\"flex-initial bg-gray-100 text-pink-500 font-bold p-16 m-4\"><div class=\"text-4xl\">1364</div><div>Latijnse woorden</div><div class=\"p-2 text-center\"><img src=\"" + _images_book_png__WEBPACK_IMPORTED_MODULE_5__["default"] + "\" class=\"h-24 mx-auto\"></div></div></div><div class=\"flex justify-center p-8\"><div><p class=\"border-pink-500 bg-gray-50 border-2 rounded shadow-lg text-center text-pink-500 font-bold p-2\"> Zelf leerkracht Latijn? Wil jij op deze manier ook graag teksten aan leerlingen aanbieden? </p><p class=\"mt-2\"> We werken er hard aan om dit mogelijk te maken. Stuur een mailtje met je gegevens naar pascal_pieters@yahoo.com en we houden je zeker op de hoogte indien deze functie beschikbaar wordt. </p></div></div>", 4);
 
-var _hoisted_28 = {
+var _hoisted_29 = {
   "class": "hidden md:block"
 };
 
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex justify-center mb-4 p-8"
+var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "mb-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex-initial w-128 p-2 text-4xl center-text text-pink-500 font-bold"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Hier wordt Latijn lezen terug "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "text-4xl text-center text-pink-500 font-bold bg-white pt-8 pb-8"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Waar Latijn lezen "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "italic"
-}, "fun"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("! ")])], -1
+}, "fun"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" is! ")])], -1
 /* HOISTED */
 );
 
-var _hoisted_30 = {
+var _hoisted_31 = {
   "class": "flex justify-center p-8"
 };
-var _hoisted_31 = {
+var _hoisted_32 = {
   "class": "flex-initial md:w-128 p-2"
 };
-var _hoisted_32 = {
+var _hoisted_33 = {
   "class": "grid grid-cols-2 gap-1 border-lime-500 bg-gray-50 border-2 rounded shadow-lg"
 };
 
-var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_34 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "p-2 opacity-50"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: _images_old_books_jpg__WEBPACK_IMPORTED_MODULE_1__["default"],
@@ -36403,34 +36411,34 @@ var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_34 = {
+var _hoisted_35 = {
   "class": "inline-block text-center text-lime-500 font-bold align-middle grid place-items-center"
 };
 
-var _hoisted_35 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "md:text-xl"
 }, "LECTIO", -1
 /* HOISTED */
 );
 
-var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Latijn lezen zonder zorgen", -1
+var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Latijn lezen zonder zorgen", -1
 /* HOISTED */
 );
 
-var _hoisted_37 = {
+var _hoisted_38 = {
   "class": "p-4 m-2 bg-lime-500 text-white text-center font-bold rounded border-2"
 };
 
-var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nu lezen");
+var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nu lezen");
 
-var _hoisted_39 = {
+var _hoisted_40 = {
   "class": "flex-initial w-128 p-2"
 };
-var _hoisted_40 = {
+var _hoisted_41 = {
   "class": "grid grid-cols-2 gap-1 border-lime-500 bg-gray-50 border-2 rounded shadow-lg"
 };
 
-var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "p-2 opacity-50"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: _images_old_dictionary_jpg__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -36439,27 +36447,27 @@ var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_42 = {
+var _hoisted_43 = {
   "class": "inline-block text-center text-lime-500 font-bold align-middle grid place-items-center"
 };
 
-var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "md:text-xl"
 }, "REPETITIO", -1
 /* HOISTED */
 );
 
-var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Efficiënt vocabularium oefenen", -1
+var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Efficiënt vocabularium oefenen", -1
 /* HOISTED */
 );
 
-var _hoisted_45 = {
+var _hoisted_46 = {
   "class": "p-4 m-2 bg-lime-500 text-white text-center font-bold rounded border-2"
 };
 
-var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nu oefenen");
+var _hoisted_47 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nu oefenen");
 
-var _hoisted_47 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex flex-row justify-center text-center bg-white mx-auto mt-4 mb-4 pt-4 pb-4\"><div class=\"basis-1/3 p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">18</div><div>klassieke auteurs</div><div class=\"p-2 text-center\"><img src=\"" + _images_greek_png__WEBPACK_IMPORTED_MODULE_3__["default"] + "\" class=\"h-24 mx-auto\"></div></div><div class=\"basis-1/3 p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">48</div><div>Latijnse teksten</div><div class=\"p-2 text-center\"><img src=\"" + _images_poem_png__WEBPACK_IMPORTED_MODULE_4__["default"] + "\" class=\"h-24 mx-auto\"></div></div><div class=\"basis-1/3 p-2 bg-gray-100 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">1364</div><div>Latijnse woorden</div><div class=\"p-2 text-center\"><img src=\"" + _images_book_png__WEBPACK_IMPORTED_MODULE_5__["default"] + "\" class=\"h-24 mx-auto\"></div></div></div><div class=\"flex justify-center p-4\"><div class=\"border-pink-500 bg-gray-50 border-2 rounded shadow-lg text-center text-pink-500 font-bold p-2\"> Zelf leerkracht Latijn? Wil jij op deze manier ook graag teksten aan leerlingen aanbieden? </div></div><div class=\"flex justify-center p-4\"><div class=\"mt-2\"><p>We werken er hard aan om dit mogelijk te maken.</p> <p>Stuur een mailtje met je gegevens naar pascal_pieters@yahoo.com en we houden je zeker op de hoogte indien deze functie beschikbaar wordt.</p></div></div>", 3);
+var _hoisted_48 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex flex-row justify-center text-center bg-white mx-auto mt-4 mb-4 pt-4 pb-4\"><div class=\"basis-1/3 p-2 border-r-4 border-lime-300 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">18</div><div>klassieke auteurs</div><div class=\"p-2 text-center\"><img src=\"" + _images_greek_png__WEBPACK_IMPORTED_MODULE_3__["default"] + "\" class=\"h-24 mx-auto\"></div></div><div class=\"basis-1/3 p-2 border-r-4 border-lime-300 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">48</div><div>Latijnse teksten</div><div class=\"p-2 text-center\"><img src=\"" + _images_poem_png__WEBPACK_IMPORTED_MODULE_4__["default"] + "\" class=\"h-24 mx-auto\"></div></div><div class=\"basis-1/3 p-2 text-pink-500 font-bold p-4 m-4\"><div class=\"text-4xl\">1364</div><div>Latijnse woorden</div><div class=\"p-2 text-center\"><img src=\"" + _images_book_png__WEBPACK_IMPORTED_MODULE_5__["default"] + "\" class=\"h-24 mx-auto\"></div></div></div><div class=\"flex justify-center p-4\"><div class=\"border-pink-500 bg-gray-50 border-2 rounded shadow-lg text-center text-pink-500 font-bold p-2\"> Zelf leerkracht Latijn? Wil jij op deze manier ook graag teksten aan leerlingen aanbieden? </div></div><div class=\"flex justify-center p-4\"><div class=\"mt-2\"><p>We werken er hard aan om dit mogelijk te maken.</p> <p>Stuur een mailtje met je gegevens naar pascal_pieters@yahoo.com en we houden je zeker op de hoogte indien deze functie beschikbaar wordt.</p></div></div>", 3);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
@@ -36479,45 +36487,45 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["href"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 1
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Menu"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n        <div class=\"grid grid-cols-2 justify-items-end bg-slate-50\">\n          <h2 class=\"font-semibold text-xl text-gray-800 leading-tight\">\n            <Link\n              :href=\"route('login')\"\n              class=\"text-sm text-gray-700 underline text-right\"\n            >\n              Log in\n            </Link>\n          </h2>\n\n          <h2 class=\"font-semibold text-xl text-gray-800 leading-tight\">\n            <Link\n              v-if=\"canRegister\"\n              :href=\"route('register')\"\n              class=\"ml-4 text-sm text-gray-700 underline text-right\"\n            >\n              Register\n            </Link>\n          </h2>\n        </div>\n        ")], 2112
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Menu"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("\n        <div class=\"grid grid-cols-2 justify-items-end bg-slate-50\">\n          <h2 class=\"font-semibold text-xl text-gray-800 leading-tight\">\n            <Link\n              :href=\"route('login')\"\n              class=\"text-sm text-gray-700 underline text-right\"\n            >\n              Log in\n            </Link>\n          </h2>\n\n          <h2 class=\"font-semibold text-xl text-gray-800 leading-tight\">\n            <Link\n              v-if=\"canRegister\"\n              :href=\"route('register')\"\n              class=\"ml-4 text-sm text-gray-700 underline text-right\"\n            >\n              Register\n            </Link>\n          </h2>\n        </div>\n        ")], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
-  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Start of layout for mobile "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Start of layout for mobile "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
     href: '/overview'
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_14];
+      return [_hoisted_15];
     }),
     _: 1
     /* STABLE */
 
-  })])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+  })])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [_hoisted_21, _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
     href: '/voc/repetitio/step/1'
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_23];
+      return [_hoisted_24];
     }),
     _: 1
     /* STABLE */
 
-  })])])])])]), _hoisted_24]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End of layout for mobile "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" start of layout for medium screens and up "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [_hoisted_35, _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+  })])])])])]), _hoisted_25]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End of layout for mobile "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" start of layout for medium screens and up "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [_hoisted_36, _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
     href: '/overview'
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_38];
+      return [_hoisted_39];
     }),
     _: 1
     /* STABLE */
 
-  })])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [_hoisted_43, _hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+  })])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [_hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [_hoisted_44, _hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_46, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
     href: '/voc/repetitio/step/1'
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_46];
+      return [_hoisted_47];
     }),
     _: 1
     /* STABLE */
 
-  })])])])])]), _hoisted_47]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" end of layout for medium screens and up ")])], 64
+  })])])])])]), _hoisted_48]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" end of layout for medium screens and up ")])], 64
   /* STABLE_FRAGMENT */
   );
 }
