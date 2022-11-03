@@ -16,6 +16,13 @@ const username = ref("");
 const email = ref("");
 const password = ref("");
 
+const username_update = ref("");
+const email_update = ref("");
+const password_update = ref("");
+const id_update = ref("");
+
+const userToUpdate = ref("");
+
 function createNewUser() {
   Inertia.post("/users/new", {
     username: username.value,
@@ -23,9 +30,32 @@ function createNewUser() {
     password: password.value,
   });
 
-  username.value="";
-  email.value="";
-  password.value="";
+  username.value = "";
+  email.value = "";
+  password.value = "";
+}
+
+function setUserToUpdate($user){
+  id_update.value = $user.id;
+  username_update.value = $user.name;
+  email_update.value = $user.email;
+
+  console.log($user);
+}
+
+function updateUser() {
+  console.log(username_update.value);
+
+  Inertia.post("/users/update", {
+    username: username_update.value,
+    email: email_update.value,
+    password: password_update.value,
+    id: id_update.value
+  });
+
+  username_update.value = "";
+  email_update.value = "";
+  password_update.value = "";
 }
 </script>
 
@@ -70,17 +100,21 @@ function createNewUser() {
             rounded
           "
         >
-          <div class="text-pink-500">
-            {{ user.name }}
+          <div class="grid grid-cols-2 gap-4 text-pink-500">
+            <div>
+              {{ user.name }}
+            </div>
+            <div>
+              <img src="././images/edit.png" class="w-6 inline-block mr-3" @click="setUserToUpdate(user)"/>
+              <img src="././images/bin.png" class="w-6 inline-block"  />
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Fields for create user -->
-    <div>
-        Create new user
-    </div>
+    <div>Create new user</div>
     <div>
       <div class="grid grid-cols-9 gap-4 mb-2 pl-2 mr-2">
         <label class="pr-1 col-span-1" for="method">Naam:</label>
@@ -119,6 +153,52 @@ function createNewUser() {
             text-center
           "
           @click="createNewUser($event)"
+        >
+          Opslaan
+        </button>
+      </div>
+    </div>
+
+    <!-- Fields for update user -->
+    <div>Update an existing user</div>
+    <div>
+      <div class="grid grid-cols-9 gap-4 mb-2 pl-2 mr-2">
+        <label class="pr-1 col-span-1" for="method">Naam:</label>
+        <input
+          class="col-span-2 border-solid border-2 rounded border-black"
+          v-model="username_update"
+          name="username_update"
+        />
+
+        <label class="pr-1 col-span-1" for="chapter">E-mail:</label>
+        <input
+          class="col-span-2 border-solid border-2 rounded border-black"
+          v-model="email_update"
+          name="email_update"
+        />
+
+        <label class="pr-1 col-span-1" for="grade">Nieuw wachtwoord:</label>
+        <input
+          class="col-span-2 border-solid border-2 rounded border-black"
+          v-model="password_update"
+          name="password_update"
+        />
+      </div>
+
+      <div class="text-center">
+        <button
+          class="
+            bg-blue-500
+            hover:bg-blue-700
+            text-white
+            font-bold
+            py-2
+            px-4
+            rounded
+            mr-1
+            text-center
+          "
+          @click="updateUser($event)"
         >
           Opslaan
         </button>

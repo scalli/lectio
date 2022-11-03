@@ -28092,6 +28092,11 @@ __webpack_require__.r(__webpack_exports__);
     var username = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
     var email = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
     var password = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
+    var username_update = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
+    var email_update = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
+    var password_update = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
+    var id_update = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
+    var userToUpdate = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
 
     function createNewUser() {
       _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.post("/users/new", {
@@ -28104,13 +28109,40 @@ __webpack_require__.r(__webpack_exports__);
       password.value = "";
     }
 
+    function setUserToUpdate($user) {
+      id_update.value = $user.id;
+      username_update.value = $user.name;
+      email_update.value = $user.email;
+      console.log($user);
+    }
+
+    function updateUser() {
+      console.log(username_update.value);
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.post("/users/update", {
+        username: username_update.value,
+        email: email_update.value,
+        password: password_update.value,
+        id: id_update.value
+      });
+      username_update.value = "";
+      email_update.value = "";
+      password_update.value = "";
+    }
+
     var __returned__ = {
       props: props,
       users: users,
       username: username,
       email: email,
       password: password,
+      username_update: username_update,
+      email_update: email_update,
+      password_update: password_update,
+      id_update: id_update,
+      userToUpdate: userToUpdate,
       createNewUser: createNewUser,
+      setUserToUpdate: setUserToUpdate,
+      updateUser: updateUser,
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Head,
       Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Link,
       reactive: vue__WEBPACK_IMPORTED_MODULE_1__.reactive,
@@ -35428,6 +35460,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _images_edit_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ././images/edit.png */ "./resources/js/Pages/images/edit.png");
+/* harmony import */ var _images_bin_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ././images/bin.png */ "./resources/js/Pages/images/bin.png");
+
+
 
 var _hoisted_1 = {
   "class": "bg-gray-100 dark:bg-gray-900"
@@ -35447,39 +35483,80 @@ var _hoisted_6 = {
   "class": "border-lime-500 mb-2 pl-2 text-lg text-gray-700 border-2 bg-gray-50 font-bold rounded"
 };
 var _hoisted_7 = {
-  "class": "text-pink-500"
+  "class": "grid grid-cols-2 gap-4 text-pink-500"
 };
+var _hoisted_8 = ["onClick"];
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, " Create new user ", -1
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  src: _images_bin_png__WEBPACK_IMPORTED_MODULE_2__["default"],
+  "class": "w-6 inline-block"
+}, null, -1
 /* HOISTED */
 );
 
-var _hoisted_9 = {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Create new user", -1
+/* HOISTED */
+);
+
+var _hoisted_11 = {
   "class": "grid grid-cols-9 gap-4 mb-2 pl-2 mr-2"
 };
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "pr-1 col-span-1",
   "for": "method"
 }, "Naam:", -1
 /* HOISTED */
 );
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "pr-1 col-span-1",
   "for": "chapter"
 }, "E-mail:", -1
 /* HOISTED */
 );
 
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "pr-1 col-span-1",
   "for": "grade"
 }, "Wachtwoord:", -1
 /* HOISTED */
 );
 
-var _hoisted_13 = {
+var _hoisted_15 = {
+  "class": "text-center"
+};
+
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Update an existing user", -1
+/* HOISTED */
+);
+
+var _hoisted_17 = {
+  "class": "grid grid-cols-9 gap-4 mb-2 pl-2 mr-2"
+};
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "pr-1 col-span-1",
+  "for": "method"
+}, "Naam:", -1
+/* HOISTED */
+);
+
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "pr-1 col-span-1",
+  "for": "chapter"
+}, "E-mail:", -1
+/* HOISTED */
+);
+
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "pr-1 col-span-1",
+  "for": "grade"
+}, "Nieuw wachtwoord:", -1
+/* HOISTED */
+);
+
+var _hoisted_21 = {
   "class": "text-center"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -35507,14 +35584,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       id: user.id,
       key: user.id,
       "class": "ml-4 mr-4 text-gray-700 font-bold"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.name), 1
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.name), 1
     /* TEXT */
-    )])], 8
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+      src: _images_edit_png__WEBPACK_IMPORTED_MODULE_1__["default"],
+      "class": "w-6 inline-block mr-3",
+      onClick: function onClick($event) {
+        return $setup.setUserToUpdate(user);
+      }
+    }, null, 8
+    /* PROPS */
+    , _hoisted_8), _hoisted_9])])])], 8
     /* PROPS */
     , _hoisted_5);
   }), 128
   /* KEYED_FRAGMENT */
-  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Fields for create user "), _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Fields for create user "), _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "col-span-2 border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.username = $event;
@@ -35522,7 +35607,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "username"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.username]]), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.username]]), _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "col-span-2 border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $setup.email = $event;
@@ -35530,7 +35615,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "email"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.email]]), _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.email]]), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "col-span-2 border-solid border-2 rounded border-black",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $setup.password = $event;
@@ -35538,10 +35623,39 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "password"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.password]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.password]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-1 text-center",
     onClick: _cache[3] || (_cache[3] = function ($event) {
       return $setup.createNewUser($event);
+    })
+  }, " Opslaan ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Fields for update user "), _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "class": "col-span-2 border-solid border-2 rounded border-black",
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+      return $setup.username_update = $event;
+    }),
+    name: "username_update"
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.username_update]]), _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "class": "col-span-2 border-solid border-2 rounded border-black",
+    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+      return $setup.email_update = $event;
+    }),
+    name: "email_update"
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.email_update]]), _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "class": "col-span-2 border-solid border-2 rounded border-black",
+    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+      return $setup.password_update = $event;
+    }),
+    name: "password_update"
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.password_update]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-1 text-center",
+    onClick: _cache[7] || (_cache[7] = function ($event) {
+      return $setup.updateUser($event);
     })
   }, " Opslaan ")])])])], 64
   /* STABLE_FRAGMENT */
@@ -36839,6 +36953,21 @@ module.exports = deepmerge_1;
 
 /***/ }),
 
+/***/ "./resources/js/Pages/images/bin.png":
+/*!*******************************************!*\
+  !*** ./resources/js/Pages/images/bin.png ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/bin.png?c4f0af28c10a19fbeee1499429b2e889");
+
+/***/ }),
+
 /***/ "./resources/js/Pages/images/book.png":
 /*!********************************************!*\
   !*** ./resources/js/Pages/images/book.png ***!
@@ -36851,6 +36980,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/book.png?2f8a42bf861243362f991d2a9d2acab2");
+
+/***/ }),
+
+/***/ "./resources/js/Pages/images/edit.png":
+/*!********************************************!*\
+  !*** ./resources/js/Pages/images/edit.png ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/edit.png?603345b5d7192676592d7a3257ca556a");
 
 /***/ }),
 

@@ -43,6 +43,7 @@ Route::post('/filterTextsOverwiew', 'App\Http\Controllers\TextInfoController@fil
 Route::group(['middleware'=>'admins'],function(){
     Route::get('/users','App\Http\Controllers\UserController@index');
     Route::post('/users/new','App\Http\Controllers\UserController@create');
+    Route::post('/users/update','App\Http\Controllers\UserController@update');
 });
 
 Route::middleware([

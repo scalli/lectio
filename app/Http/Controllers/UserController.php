@@ -91,14 +91,24 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $affected = DB::table('users')
-              ->where('id', $id)
-              ->update(['name' => $request->username,
-                        'email' => $request->email,
-                        'password' => $request->Hash::make($request->password)            
-        ]);
+        if($request->password != "") {
+            $affected = DB::table('users')
+            ->where('id', $request->id)
+            ->update(['name' => $request->username,
+                      'email' => $request->email,
+                      'password' => Hash::make($request->password)            
+         ]);
+        }
+        else { //Password not changed
+            $affected = DB::table('users')
+            ->where('id', $request->id)
+            ->update(['name' => $request->username,
+                      'email' => $request->email            
+         ]);
+        }
+
 
         return $this->index();
     }
