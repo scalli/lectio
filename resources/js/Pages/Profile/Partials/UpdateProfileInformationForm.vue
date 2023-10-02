@@ -1,7 +1,9 @@
 <script setup>
 import { ref } from 'vue';
-import { Inertia } from '@inertiajs/inertia';
-import { Link, useForm } from '@inertiajs/inertia-vue3';
+// import { Inertia } from '@inertiajs/inertia';
+import { router } from '@inertiajs/vue3'
+// import { Link, useForm } from '@inertiajs/inertia-vue3';
+import { Link, useForm } from '@inertiajs/vue3';
 import JetButton from '@/Jetstream/Button.vue';
 import JetFormSection from '@/Jetstream/FormSection.vue';
 import JetInput from '@/Jetstream/Input.vue';

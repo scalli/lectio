@@ -1,7 +1,9 @@
 <script setup>
 import { reactive, ref } from "vue";
-import { useForm } from "@inertiajs/inertia-vue3";
-import { Inertia } from "@inertiajs/inertia";
+// import { useForm } from "@inertiajs/inertia-vue3";
+import { useForm } from '@inertiajs/vue3'
+// import { Inertia } from "@inertiajs/inertia";
+import { router } from '@inertiajs/vue3'
 import AppLayout from '@/Layouts/AppLayout.vue';
 
 const props = defineProps({

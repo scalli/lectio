@@ -1,7 +1,10 @@
 <script setup>
-import { Head, Link } from "@inertiajs/inertia-vue3";
+// import { Head, Link } from "@inertiajs/inertia-vue3";
+// import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 import { reactive, ref } from "vue";
-import { Inertia } from "@inertiajs/inertia";
+// import { Inertia } from "@inertiajs/inertia";
+import { router } from '@inertiajs/vue3'
 import Menu from "@/Pages/Menu.vue";
 
 const props = defineProps({

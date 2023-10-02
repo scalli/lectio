@@ -1,5 +1,6 @@
 <script setup>
-import { Head, Link } from "@inertiajs/inertia-vue3";
+// import { Head, Link } from "@inertiajs/inertia-vue3";
+import { Head, Link } from '@inertiajs/vue3';
 import { reactive, ref } from "vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Menu from "@/Pages/Menu.vue";

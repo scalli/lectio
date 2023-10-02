@@ -1,5 +1,6 @@
 <script setup>
-import { Head, Link } from "@inertiajs/inertia-vue3";
+// import { Head, Link } from "@inertiajs/inertia-vue3";
+import { Head, Link } from '@inertiajs/vue3';
 import { reactive, ref, computed } from "vue";
 import JetCheckbox from "@/Jetstream/Checkbox.vue";
 import ConfettiExplosion from "vue-confetti-explosion";
