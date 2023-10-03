@@ -23435,13 +23435,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/vue3 */ "./node_modules/@inertiajs/vue3/dist/index.esm.js");
  // import { usePage } from '@inertiajs/inertia-vue3';
 
+ // const errors = computed(() => usePage().props.value.errors);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
     var errors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
-      return (0,_inertiajs_vue3__WEBPACK_IMPORTED_MODULE_1__.usePage)().props.value.errors;
+      return (0,_inertiajs_vue3__WEBPACK_IMPORTED_MODULE_1__.usePage)().props.errors;
     });
     var hasErrors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
       return Object.keys(errors.value).length > 0;
@@ -23917,7 +23918,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     canResetPassword: Boolean,
-    status: String
+    status: String,
+    errors: Object
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
@@ -34611,18 +34613,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
  // import { InertiaProgress } from '@inertiajs/progress';
 
-var appName = ((_window$document$getE = window.document.getElementsByTagName('title')[0]) === null || _window$document$getE === void 0 ? void 0 : _window$document$getE.innerText) || 'Laravel'; // createInertiaApp({
-//     resolve: name => {
-//       const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
-//       return pages[`./Pages/${name}.vue`]
-//     },
-//     setup({ el, App, props, plugin }) {
-//       createApp({ render: () => h(App, props) })
-//         .use(plugin)
-//         .mount(el)
-//     },
-//   })
-
+var appName = ((_window$document$getE = window.document.getElementsByTagName('title')[0]) === null || _window$document$getE === void 0 ? void 0 : _window$document$getE.innerText) || 'Laravel';
 (0,_inertiajs_vue3__WEBPACK_IMPORTED_MODULE_1__.createInertiaApp)({
   title: function title(_title) {
     return "".concat(_title, " - ").concat(appName);

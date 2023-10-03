@@ -10,3 +10,6 @@ js:
     not-name:
       - webpack.mix.js
 css: true
+# if (!mix.inProduction()) {
+#     mix.browserSync({open:false});
+# }
